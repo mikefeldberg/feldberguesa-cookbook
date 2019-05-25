@@ -14,7 +14,7 @@ var recipeSchema = new mongoose.Schema({
     categories: Array,
     description: String,
     heroImage: String,
-    image: String,
+    imageUrl: String,
     favorites: {
         type: Schema.Types.ObjectId,
         ref: 'Favorite'
@@ -26,7 +26,8 @@ var recipeSchema = new mongoose.Schema({
     reviews: {
         type: Schema.Types.ObjectId,
         ref: 'Review'
-    }
+    },
+    dateDeleted: Date,
 }, {
     timestamps: true
 });

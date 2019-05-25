@@ -1,0 +1,27 @@
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script defer src="../javascripts/formHandler.js"></script>
+
+<%- include ../partials/header.ejs %>
+<div class="pageTitle">Add a Recipe</div>
+
+<thead>
+    <tr class="tableHeader">
+        <th>Qty</th>
+        <th>Ingredient</th>
+        <th>Preparation</th>
+    </tr>
+</thead>
+<form>
+    <div class="row">
+        <input name="qty" type="text">
+        <input name="ingredient" type="text">
+        <input name="preparation" type="text">
+        <button class="remove formModifier">-</button>
+    </div>
+    <div class="rowButtonContainer">
+        <button class="add formModifier">+</button>
+    </div>
+    <!-- <input class="" type="submit" value="Submit" onClick="checkFields()">
+    <input class="" type="submit" value="Cancel" onClick="checkFields()"> -->
+</form>

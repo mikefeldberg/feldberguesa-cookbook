@@ -1,9 +1,7 @@
 var express = require('express');
 var router = express.Router();
-const User = require('../models/user');
+var memberController = require('../controllers/members')
 
-router.get('/', function(req, res, next) {
-  res.render('/', {name: req.query.name});
-});
+router.get('/', memberController.profile);
 
 module.exports = router;

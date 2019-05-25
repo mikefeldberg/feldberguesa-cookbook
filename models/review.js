@@ -5,6 +5,7 @@ var reviewSchema = new mongoose.Schema({
     userId: Number,
     reviewBody: String,
     rating: Number,
+    dateDeleted: Date,
 }, {
     timestamps: true
 });
