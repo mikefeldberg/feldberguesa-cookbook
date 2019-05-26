@@ -5,22 +5,48 @@
 
 <%- include ../partials/header.ejs %>
 
-<form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite"><button type="submit">Fav</button></form>
-<form id="heart" action=><img src=""></form>
+
+<img src="<%= recipe.imageUrl %>">
+
+<p> <%= recipe.heroImage %> </p>
 
 <h2> <%= recipe.name %> </h2>
-<p> <%= recipe.description %> </p>
-<p> <%= recipe.ingredients %> </p>
-<p> <%= recipe.instructions %> </p>
-<p> <%= recipe.skillLevel %> </p>
-<p> <%= recipe.timePrep %> </p>
-<p> <%= recipe.timeCook %> </p>
-<p> <%= recipe.timeWait %> </p>
-<p> <%= recipe.timeTotal %> </p>
-<p> <%= recipe.servings %> </p>
-<p> <%= recipe.categories %> </p>
-<p> <%= recipe.heroImage %> </p>
-<p> <%= recipe.imageUrl %> </p>
+
 <p> <%= recipe.stars %> </p>
-<p> <%= recipe.addedBy %> </p>
-<p> <%= recipe.createdAt %> </p>
+
+
+<% if (user) { %>
+    <a href="/recipes/<%= recipe._id %>/edit">Edit</a>
+    <a href="/recipes/<%= recipe._id %>/delete">Delete</a>
+<% } %>
+
+<% if (user) { %>
+    <% if (isFavorited) { %>
+        <form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite?_method=DELETE"><button type="submit">UnFav</button></form>
+    <% } else { %>
+        <form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite"><button type="submit">Fav</button></form>
+    <% } %>
+<% } %>
+
+<p>Added by: <%= recipe.addedBy %> on <%= recipe.createdAt %> </p>
+<p> <%= recipe.description %> </p>
+
+<p>Skill Level: <%= recipe.skillLevel %> </p>
+<p>Prep Time: <%= recipe.timePrep %> </p>
+<p>Cook Time: <%= recipe.timeCook %> </p>
+<p>Wait Time: <%= recipe.timeWait %> </p>
+<p>Total Time: <%= recipe.timeTotal %> </p>
+<p>Servings Yield: <%= recipe.servings %> </p>
+<p>Categories: <%= recipe.categories %> </p>
+
+<% recipe.ingredients.forEach(function(ingredient) { %>
+<div>
+    <p>- <%= ingredient[0] %> <%= ingredient[1] %>, <%= ingredient[2] %> </p>
+</div>
+<% }); %>
+
+<% recipe.instructions.forEach(function(instruction) { %>
+<div>
+    <p> <%= instruction %></p>
+</div>
+<% }); %>

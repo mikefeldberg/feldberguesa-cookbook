@@ -10,7 +10,8 @@ module.exports = {
     edit,
     update,
     delete: deleteRecipe,
-    favorite
+    favorite,
+    unfavorite
 };
 
 function index(req, res) {
@@ -21,15 +22,21 @@ function index(req, res) {
 
 function show(req, res) {
     Recipe.findById(req.params.id).exec(function (err, recipe) {
-        User.findById(recipe.addedBy).exec(function (err, user) {
-            // console.log(req.session.passport.user)
-            res.render('recipes/show', { recipe, user: req.user});
+        User.findById(recipe.userId).exec(function (err, author) {
+            var isFavorited = false;
+            if (req.user) {
+                Favorite.findOne({ userId: req.user._id, recipeId: req.params.id, deletedAt: null }, function (err, favorite) {
+                    res.render('recipes/show', { recipe, user: req.user, isFavorited: !!favorite });
+                });
+            } else {
+                res.render('recipes/show', { recipe, user: req.user, isFavorited });
+            }  
         });
     });
 }
 
 function newRecipe(req, res) {
-    res.render('recipes/new', {user: req.user});
+    res.render('recipes/new', { user: req.user });
 }
 
 function create(req, res) {
@@ -37,13 +44,13 @@ function create(req, res) {
     var ingredientQty = req.body.qty;
     var ingredientName = req.body.ingredient;
     var ingredientPrep = req.body.preparation;
-    var ingredients = {};
+    var ingredients = [];
     for (var i = 0; i < ingredientQty.length; i++) {
         var ingredient = [];
         ingredient.push(ingredientQty[i]);
         ingredient.push(ingredientName[i]);
         ingredient.push(ingredientPrep[i]);
-        ingredients[i] = ingredient;
+        ingredients.push(ingredient);
     }
 
     recipe.name = req.body.name;
@@ -58,17 +65,25 @@ function create(req, res) {
     recipe.servings = req.body.servings;
     recipe.imageUrl = req.body.imageUrl;
     recipe.addedBy = req.user.name;
+    recipe.userId = req.user._id;
 
     recipe.save(function (err) {
         res.redirect('/recipes');
     });
 }
 
+// function edit(req, res) {
+//     findById(req.params.id).exec(function (err, recipe) {
+//     res.render('recipes/edit', {
+//         recipe: Recipe.getOne(req.params.id),
+//         id: req.params.id,
+//         user: req.user,
+//     });
+// }
+
 function edit(req, res) {
-    res.render('recipes/edit', {
-        recipe: Recipe.getOne(req.params.id),
-        id: req.params.id,
-        // user: req.user,
+    Recipe.findById(req.params.id).exec(function (err, recipe) {
+        res.render('recipes/edit', { recipe, user: req.user });
     });
 }
 
@@ -84,25 +99,49 @@ function deleteRecipe(req, res) {
 }
 
 function favorite(req, res) {
-    // console.log(req.user._id);
-    // console.log(req.params.id);
-    Favorite.findOne({userId: req.user._id, recipeId: req.params.id}, function(err, fav) {
-        // console.log('FAVORITE BELOW')
-        // console.log(fav)
-        // console.log('FAVORITE ABOVE')
-        // if (err) res.redirect(`/recipes/${req.params.id}`);
-        if (fav) {
-            fav.favorited == 'No' ? fav.favorited = 'Yes' : fav.favorited = 'No'
-            fav.save();
-            res.redirect(`/recipes/${req.params.id}`);
+    console.log('in favorite')
+    Favorite.findOne({userId: req.user._id, recipeId: req.params.id}, function(err, favorite) {
+        console.log(favorite)
+        console.log('FAVORITE ABOVE')
+        if (favorite) {
+            favorite.deletedAt = null;
         } else {
-            var fav = new Favorite;
-            fav.userId = req.user._id;
-            fav.recipeId = req.params.id;
-            fav.favorited = 'Yes';
-            fav.save();
-            // console.log(fav)
-            res.redirect(`/recipes/${req.params.id}`);
+            var favorite = new Favorite({userId: req.user._id, recipeId: req.params.id});
+            // favorite.userId = req.user._id;
+            // favorite.recipeId = req.params.id;
         }
+        favorite.save();
+        res.redirect(`/recipes/${req.params.id}`);
     });
 }
+
+function unfavorite(req, res) {
+    Favorite.findOne({userId: req.user._id, recipeId: req.params.id}, function(err, favorite) {
+        favorite.deletedAt = new Date();
+        favorite.save();
+        res.redirect(`/recipes/${req.params.id}`);
+    });
+}
+
+
+// function favorite(req, res) {
+//     // console.log(req.user._id);
+//     // console.log(req.params.id);
+//     Favorite.findOne({userId: req.user._id, recipeId: req.params.id}, function(err, favorite) {
+//         // console.log('FAVORITE BELOW')
+//         // console.log(favorite)
+//         // console.log('FAVORITE ABOVE')
+//         // if (err) res.redirect(`/recipes/${req.params.id}`);
+//         if (favorite) {
+//             favorite.save();
+//             res.redirect(`/recipes/${req.params.id}`);
+//         } else {
+//             var favorite = new Favorite;
+//             favorite.userId = req.user._id;
+//             favorite.recipeId = req.params.id;
+//             favorite.save();
+//             // console.log(favorite)
+//             res.redirect(`/recipes/${req.params.id}`);
+//         }
+//     });
+// }

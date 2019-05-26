@@ -1,0 +1,145 @@
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script defer src="../javascripts/formHandler.js"></script>
+
+<%- include ../partials/header.ejs %>
+<div class="pageTitle">Edit a Recipe</div>
+
+<form action="/recipes" method="POST">
+    <h2>Recipe Name</h2>
+    <input name="name" type="text">
+    <h2>Recipe Description</h2>
+    <input name="description" type="text">
+    <h2>Ingredients</h2>
+    <thead>
+        <tr class="tableHeader">
+            <th></th>
+            <th>Qty</th>
+            <th>Ingredient</th>
+            <th>Preparation</th>
+        </tr>
+    </thead><br>
+    <tbody>
+        <tr>
+            <td>1</td>
+            <td><input name="qty" type="text"></td>
+            <td><input name="ingredient" type="text"></td>
+            <td><input name="preparation" type="text"></td>
+        </tr><br>
+         <tr>
+            <td>2</td>
+            <td><input name="qty" type="text"></td>
+            <td><input name="ingredient" type="text"></td>
+            <td><input name="preparation" type="text"></td>
+        </tr><br>
+        <!-- <tr>
+            <td>3</td>
+            <td><input name="qty" type="text"></td>
+            <td><input name="ingredient" type="text"></td>
+            <td><input name="preparation" type="text"></td>
+        </tr><br>
+        <tr>
+            <td>4</td>
+            <td><input name="qty" type="text"></td>
+            <td><input name="ingredient" type="text"></td>
+            <td><input name="preparation" type="text"></td>
+        </tr><br>
+        <tr>
+            <td>5</td>
+            <td><input name="qty" type="text"></td>
+            <td><input name="ingredient" type="text"></td>
+            <td><input name="preparation" type="text"></td>
+        </tr><br> -->
+    </tbody>
+
+    <h2>Instructions</h2>
+
+    <tbody>
+        <tr>
+            <th>1</th>
+            <th><input name="instruction" type="text"></th>
+        </tr><br>
+        <tr>
+            <th>2</th>
+            <th><input name="instruction" type="text"></th>
+        </tr><br>
+        <tr>
+            <th>3</th>
+            <th><input name="instruction" type="text"></th>
+        </tr><br>
+        <!-- <tr>
+            <th>4</th>
+            <th><input name="instruction" type="text"></th>
+        </tr><br>
+        <tr>
+            <th>5</th>
+            <th><input name="instruction" type="text"></th>
+        </tr><br> -->
+    </tbody>
+
+    <h2>Additional Info</h2>
+
+    <p>Skill Level: </p>
+    <select name="skillLevel" type="text">
+            <option value="1">Easy</option>
+            <option value="2">Medium</option>
+            <option value="3">Difficult</option>
+    </select>
+
+    <p>Sevings: </p><input name="servings" type="number">
+    <p>Prep Time (minutes): </p><input name="timePrep" type="number">
+    <p>Cook Time (minutes):</p><input name="timeCook" type="number">
+    <p>Wait Time (minutes):</p><input name="timeWait" type="number">
+    <p>Upload an image</p><input name="imageUrl" type="text">
+    <br>
+    <input class="" type="submit" value="Submit">
+    <input class="" type="submit" value="Cancel">
+</form>
+
+
+
+
+
+
+<!-- <h2>Add the Ingredients</h2>
+<thead>
+    <tr class="tableHeader">
+        <th>Qty</th>
+        <th>Ingredient</th>
+        <th>Preparation</th>
+    </tr>
+</thead>
+<form>
+    <p class="row">
+        <input name="qty" type="text">
+        <input name="ingredient" type="text">
+        <input name="preparation" type="text">
+        <span class="remove" onClick="removeRow()"> - </span>
+    </p>
+    <p class="rowButtonContainer">
+        <span onClick="addRow()"> + </span>
+    </p>
+    <input class="" type="submit" value="Submit">
+    <input class="" type="submit" value="Cancel">
+</form>
+
+<h2>Add the Instructions</h2>
+<thead>
+    <tr class="tableHeader">
+        <th>Qty</th>
+        <th>Ingredient</th>
+        <th>Preparation</th>
+    </tr>
+</thead>
+<form>
+    <p class="row">
+        <input name="qty" type="text">
+        <input name="ingredient" type="text">
+        <input name="preparation" type="text">
+        <span class="remove" onClick="removeRow()"> - </span>
+    </p>
+    <p class="rowButtonContainer">
+        <span onClick="addRow()"> + </span>
+    </p>
+
+</form> -->
