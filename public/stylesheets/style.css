@@ -33,6 +33,11 @@ header * {
   display: inline;
 }
 
+form span {
+  border: solid black 1px;
+  border-radius: 50%;
+}
+
 .hero {
   width: 100vw;
   height: 5vh;

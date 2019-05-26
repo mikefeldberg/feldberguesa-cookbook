@@ -3,18 +3,20 @@ var Schema = mongoose.Schema;
 
 var recipeSchema = new mongoose.Schema({
     name: String,
-    skillLevel: Number,
-    stars: Number,
-    servings: Number,
-    ingredients: Array,
+    description: String,
+    ingredients: Object,
+    instructions: Array,
+    skillLevel: Object,
     timePrep: Number,
     timeCook: Number,
     timeWait: Number,
     timeTotal: Number,
+    servings: Number,
     categories: Array,
-    description: String,
     heroImage: String,
     imageUrl: String,
+    stars: Number,
+    addedBy: String,
     favorites: {
         type: Schema.Types.ObjectId,
         ref: 'Favorite'
