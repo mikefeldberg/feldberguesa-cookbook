@@ -5,6 +5,8 @@ var ingredientSchema = new mongoose.Schema({
     quantity: String,
     preparation: String,
     dateDeleted: Date,
+}, {
+    timestamps: true
 });
 
 module.exports = mongoose.model('Ingredient', ingredientSchema);

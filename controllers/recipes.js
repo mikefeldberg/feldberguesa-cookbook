@@ -1,4 +1,6 @@
 var Recipe = require('../models/recipe');
+var User = require('../models/user');
+var Favorite = require('../models/favorite');
 
 module.exports = {
     index,
@@ -8,6 +10,7 @@ module.exports = {
     edit,
     update,
     delete: deleteRecipe,
+    favorite
 };
 
 function index(req, res) {
@@ -17,10 +20,11 @@ function index(req, res) {
 }
 
 function show(req, res) {
-    res.render('recipes/show', {
-        recipe: Recipe.getOne(req.params.id),
-        recipeNum: parseInt(req.params.id) + 1
-    });
+    Recipe.findById(req.params.id).exec(function (err, recipe) {
+        User.findById(recipe.addedBy).exec(function (err, user) {
+            res.render('recipes/show', { recipe, user });
+        });
+    });   
 }
 
 function newRecipe(req, res) {
@@ -77,4 +81,28 @@ function update(req, res) {
 function deleteRecipe(req, res) {
     Recipe.deleteOne(req.params.id);
     res.redirect('/recipes');
+}
+
+function favorite(req, res) {
+    console.log(req.user._id);
+    console.log(req.params.id);
+    Favorite.findOne({userId: req.user._id, recipeId: req.params.id}, function(err, favorite) {
+        console.log('FAVORITE BELOW')
+        console.log(favorite)
+        console.log('FAVORITE ABOVE')
+        // if (err) res.redirect(`/recipes/${req.params.id}`);
+        if (favorite) {
+            favorite.favorited == 'No' ? favorite.favorited = 'Yes' : favorite.favorited = 'No'
+            favorite.save();
+            res.redirect(`/recipes/${req.params.id}`);
+        } else {
+            var favorite = new Favorite;
+            favorite.userId = req.user._id;
+            favorite.recipeId = req.params.id;
+            favorite.favorited = 'Yes';
+            favorite.save();
+            console.log(favorite)
+            res.redirect(`/recipes/${req.params.id}`);
+        }
+    });
 }

@@ -1,9 +1,12 @@
 var mongoose = require('mongoose');
 
 var favoriteSchema = new mongoose.Schema({
-    userId: Number,
-    recipeId: Number,
+    userId: String,
+    recipeId: String,
     dateDeleted: Date,
+    favorited: String,
+}, {
+    timestamps: true
 });
 
 module.exports = mongoose.model('Favorite', favoriteSchema);
