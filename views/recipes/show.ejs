@@ -5,7 +5,7 @@
 
 <%- include ../partials/header.ejs %>
 
-<form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite"><button type="submit"> </button></form>
+<form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite"><button type="submit">Fav</button></form>
 <form id="heart" action=><img src=""></form>
 
 <h2> <%= recipe.name %> </h2>
@@ -22,5 +22,5 @@
 <p> <%= recipe.heroImage %> </p>
 <p> <%= recipe.imageUrl %> </p>
 <p> <%= recipe.stars %> </p>
-<p> <%= user.name %> </p>
+<p> <%= recipe.addedBy %> </p>
 <p> <%= recipe.createdAt %> </p>

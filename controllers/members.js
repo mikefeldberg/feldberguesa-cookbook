@@ -6,6 +6,6 @@ module.exports = {
 
 function profile(req, res, next) {
     User.findById(req.user._id).exec(function (err, user) {
-        res.render('member/account', { name: user.name });
+        res.render('member/account', { user, name: user.name });
     });
 }

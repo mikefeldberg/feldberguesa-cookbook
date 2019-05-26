@@ -9,6 +9,14 @@
 <%- include ../partials/header.ejs %> 
 
 <body>
-    
+    <div>
+        <% recipes.forEach(function(r) { %>
+            <div>
+                <img src="<%= r.imageUrl %>">
+                <a href="/recipes/<%= r._id %>"><%= r.name %></a>
+                <a href="/recipes/<%= r._id %>"><%= r.description %></a>
+            </div>
+        <% }); %>
+    </div>
 </body>
 </html>
