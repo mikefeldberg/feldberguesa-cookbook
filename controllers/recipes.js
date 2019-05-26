@@ -27,8 +27,6 @@ function newRecipe(req, res) {
     res.render('recipes/new');
 }
 
-
-
 function create(req, res) {
     var recipe = new Recipe;
     var ingredientQty = req.body.qty;
@@ -42,31 +40,25 @@ function create(req, res) {
         ingredient.push(ingredientPrep[i]);
         ingredients[i] = ingredient;
     }
-    var skillLevel
+    console.log(req)
+
 
     recipe.name = req.body.name;
     recipe.description = req.body.description;
     recipe.ingredients = ingredients;
     recipe.instructions = req.body.instruction;
-    // recipe.skillLevel = req.body.skillLevel;
+    recipe.skillLevel = req.body.skillLevel;
     recipe.timePrep = req.body.timePrep;
     recipe.timeWait = req.body.timeWait;
     recipe.timeCook = req.body.timeCook;
     recipe.timeTotal = parseInt(req.body.timePrep) + parseInt(req.body.timeWait) + parseInt(req.body.timeCook);
     recipe.servings = req.body.servings;
     recipe.imageUrl = req.body.imageUrl;
-
-    console.log('RECIPE BELOW')
-    console.log(recipe)
-    console.log('RECIPE ABOVE')
+    recipe.addedBy = req.user._id;
 
     recipe.save(function (err) {
-        // if (err) return res.render('recipes/new');
         res.redirect('/recipes');
-    })
-    // console.log('CREATE REQ BODY BELOW')
-    // console.log(req.body)
-    // console.log('CREATE REQ BODY ABOVE')
+    });
 }
 
 function edit(req, res) {
