@@ -29,12 +29,11 @@
 </div> -->
 
 <% if (user) { %>
-<% if (isFavorited) { %>
-<form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite?_method=DELETE"><button
-        type="submit">UnFav</button></form>
-<% } else { %>
-<form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite"><button type="submit">Fav</button></form>
-<% } %>
+    <% if (isFavorited) { %>
+        <form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite?_method=DELETE"><button type="submit">UnFav</button></form>
+    <% } else { %>
+        <form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite"><button type="submit">Fav</button></form>
+    <% } %>
 <% } %>
 
 <p>Added by: <%= recipe.addedBy %> on <%= recipe.createdAt %> </p>
@@ -66,6 +65,10 @@
             <%= c.commentBody %>
             <br>
             Added by <%= c.addedBy %> on  <%= c.createdAt %>
+            <br>
+            <% if (user._id == c.userId) { %>
+                <a href="/comment/<%= c._id %>/edit?<%= recipe._id %>">Edit</a>
+            <% } %>
             <br><br>
         </div>
     <% }); %>

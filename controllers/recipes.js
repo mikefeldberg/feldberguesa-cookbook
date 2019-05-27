@@ -13,7 +13,6 @@ module.exports = {
     delete: deleteRecipe,
     favorite,
     unfavorite,
-    addComment,
 };
 
 function index(req, res) {
@@ -23,7 +22,11 @@ function index(req, res) {
 }
 
 function show(req, res) {
+    console.log('SHOW REQ')
+    console.log(req)
     Recipe.findById(req.params.id).exec(function (err, recipe) {
+        console.log('SHOW RECIPE')
+        console.log(recipe)
         Comment.find({recipeId: recipe._id}).exec(function (err, comments) {
             User.findById(recipe.userId).exec(function (err, author) {
                 var isFavorited = false;
