@@ -1,0 +1,30 @@
+<div class="commentForm">
+    <form action="/recipes/<%= recipe._id %>/comment/<%= c._id %>?_method=PUT" method="POST">
+        <textarea name="comment" rows="4" cols="50"></textarea><br>
+        <button type="submit">Update Comment</button>
+        <button type="submit">Cancel</button>
+    </form>
+</div>
+
+
+<% if (comments) { %>
+    comments.forEach(function(c) {
+        <% if (c.deletedAt == null) { %>
+            <h3>Your Comments</h3>
+            <div class="userCommentContainer">
+                <p> <%= c.commentBody %> </p>
+            </div>
+        <% } %>
+    })
+<% } %>
+
+<% if (favorites) { %>
+    favorites.forEach(function(f) {
+        <% if (f.deletedAt == null) { %>
+            <h3>Your Favorites</h3>
+            <div class="userFavoritesContainer">
+                <p> <%= f.recipeId %> </p>
+            </div>
+        <% } %>
+    })
+<% } %>

@@ -1,0 +1,37 @@
+<%- include ../partials/header.ejs %> 
+
+<h2>Holla, <%= user.name %>!</h2>
+
+
+<% if (recipes) { %>
+    <h3>Your Recipes</h3>
+    <% recipes.forEach(function(r) { %>
+        <% if (r.deletedAt == null) { %>
+            <div class="userRecipeContainer">
+                <p> <%= r.name %> </p>
+            </div>
+        <% } %>
+    <% }) %>
+<% } %>
+
+<% if (comments) { %>
+    <h3>Your Comments</h3>
+    <% comments.forEach(function(c) { %>
+        <% if (c.deletedAt == null) { %>
+            <div class="userCommentContainer">
+                <p> <%= c.commentBody %> </p>
+            </div>
+        <% } %>
+    <% }) %>
+<% } %>
+
+<% if (favorites) { %>
+    <h3>Your Favorites</h3>
+    <% favorites.forEach(function(f) { %>
+        <% if (f.deletedAt == null) { %>
+            <div class="userFavoritesContainer">
+                <a href="/recipes/<%= f.recipeId %>"> <%= f.addedTo %> </a>
+            </div>
+        <% } %>
+    <% }) %>
+<% } %>

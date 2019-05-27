@@ -18,18 +18,6 @@ var recipeSchema = new mongoose.Schema({
     stars: Number,
     addedBy: String,
     userId: String,
-    favorites: {
-        type: Schema.Types.ObjectId,
-        ref: 'Favorite'
-    },
-    comments: {
-        type: Schema.Types.ObjectId,
-        ref: 'Comment'
-    },
-    reviews: {
-        type: Schema.Types.ObjectId,
-        ref: 'Review'
-    },
     deletedAt: {
         type: Date,
         default: null,

@@ -11,7 +11,7 @@ require('dotenv').config();
 
 var indexRouter = require('./routes/index');
 var recipesRouter = require('./routes/recipes');
-var memberRouter = require('./routes/member');
+var userRouter = require('./routes/users');
 var commentsRouter = require('./routes/comments');
 
 var app = express();
@@ -40,7 +40,7 @@ app.use(methodOverride('_method'));
 
 app.use('/', indexRouter);
 app.use('/recipes', recipesRouter);
-app.use('/myaccount', memberRouter);
+app.use('/user', userRouter);
 app.use('/comment', commentsRouter);
 
 // catch 404 and forward to error handler

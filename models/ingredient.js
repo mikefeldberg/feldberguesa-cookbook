@@ -4,7 +4,10 @@ var ingredientSchema = new mongoose.Schema({
     item: String,
     quantity: String,
     preparation: String,
-    dateDeleted: Date,
+    deletedAt: {
+        type: Date,
+        default: null,
+    }
 }, {
     timestamps: true
 });

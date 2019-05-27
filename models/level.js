@@ -2,7 +2,10 @@ var mongoose = require('mongoose');
 
 var levelSchema = new mongoose.Schema({
     skillLevel: String,
-    dateDeleted: Date,
+    deletedAt: {
+        type: Date,
+        default: null,
+    }
 }, {
     timestamps: true
 });

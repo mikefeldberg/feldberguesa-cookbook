@@ -5,9 +5,11 @@ var reviewSchema = new mongoose.Schema({
     userId: Number,
     reviewBody: String,
     rating: Number,
-    dateDeleted: Date,
+    deletedAt: {
+        type: Date,
+        default: null,
+    }
 }, {
     timestamps: true
 });
-
 module.exports = mongoose.model('Review', reviewSchema);

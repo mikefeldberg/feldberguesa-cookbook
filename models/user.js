@@ -6,22 +6,12 @@ var userSchema = new mongoose.Schema({
     email: String,
     avatarUrl: String,
     googleId: String,
-    favorites: Array,
-    recipes: Array,
-    favorites: {
-        type: Schema.Types.ObjectId,
-        ref: 'Favorite'
-    },
-    comments: {
-        type: Schema.Types.ObjectId,
-        ref: 'Comment'
-    },
-    reviews: {
-        type: Schema.Types.ObjectId,
-        ref: 'Review'
-    },
     dateDeleted: Date,
     sessionId: String,
+    deletedAt: {
+        type: Date,
+        default: null,
+    }
 }, {
     timestamps: true
 });

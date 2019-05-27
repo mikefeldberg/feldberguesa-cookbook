@@ -128,13 +128,15 @@ function deleteRecipe(req, res) {
 
 function favorite(req, res) {
     Favorite.findOne({userId: req.user._id, recipeId: req.params.id}, function(err, favorite) {
-        if (favorite) {
-            favorite.deletedAt = null;
-        } else {
-            var favorite = new Favorite({userId: req.user._id, recipeId: req.params.id});
-        }
-        favorite.save();
-        res.redirect(`/recipes/${req.params.id}`);
+        Recipe.findById(req.params.id).exec(function(err, recipe) {
+            if (favorite) {
+                favorite.deletedAt = null;
+            } else {
+                var favorite = new Favorite({userId: req.user._id, recipeId: req.params.id, addedBy: req.user.name, addedTo: recipe.name});
+            }
+            favorite.save();
+            res.redirect(`/recipes/${req.params.id}`);
+        });
     });
 }
 
