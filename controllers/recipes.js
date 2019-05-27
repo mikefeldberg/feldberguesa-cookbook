@@ -16,7 +16,7 @@ module.exports = {
 };
 
 function index(req, res) {
-    Recipe.find({}).exec(function (err, recipes) {
+    Recipe.find({}).exec(function(err, recipes) {
         res.render('recipes/index', { recipes, user: req.user });
     });
 }
@@ -24,14 +24,14 @@ function index(req, res) {
 function show(req, res) {
     console.log('SHOW REQ')
     console.log(req)
-    Recipe.findById(req.params.id).exec(function (err, recipe) {
+    Recipe.findById(req.params.id).exec(function(err, recipe) {
         console.log('SHOW RECIPE')
         console.log(recipe)
-        Comment.find({recipeId: recipe._id}).exec(function (err, comments) {
-            User.findById(recipe.userId).exec(function (err, author) {
+        Comment.find({recipeId: recipe._id}).exec(function(err, comments) {
+            User.findById(recipe.userId).exec(function(err, author) {
                 var isFavorited = false;
                 if (req.user) {
-                    Favorite.findOne({ userId: req.user._id, recipeId: req.params.id, deletedAt: null }, function (err, favorite) {
+                    Favorite.findOne({ userId: req.user._id, recipeId: req.params.id, deletedAt: null }, function(err, favorite) {
                         res.render('recipes/show', { recipe, user: req.user, comments, isFavorited: !!favorite });
                     });
                 } else {
@@ -74,19 +74,19 @@ function create(req, res) {
     recipe.addedBy = req.user.name;
     recipe.userId = req.user._id;
 
-    recipe.save(function (err) {
+    recipe.save(function(err) {
         res.redirect('/recipes');
     });
 }
 
 function edit(req, res) {
-    Recipe.findById(req.params.id).exec(function (err, recipe) {
+    Recipe.findById(req.params.id).exec(function(err, recipe) {
         res.render('recipes/edit', { recipe, user: req.user });
     });
 }
 
 function update(req, res) {
-    Recipe.findById(req.params.id).exec(function (err, recipe) {
+    Recipe.findById(req.params.id).exec(function(err, recipe) {
         var ingredientQty = req.body.qty;
         var ingredientName = req.body.ingredient;
         var ingredientPrep = req.body.preparation;
@@ -118,8 +118,12 @@ function update(req, res) {
 }
 
 function deleteRecipe(req, res) {
-    Recipe.deleteOne(req.params.id);
-    res.redirect('/recipes');
+    Recipe.findById(req.params.id).exec(function(err, recipe) {
+        recipe.deletedAt = new Date();
+        recipe.save(function(err) {
+            res.redirect('/recipes');
+        });
+    });
 }
 
 function favorite(req, res) {

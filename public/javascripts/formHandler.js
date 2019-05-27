@@ -21,3 +21,8 @@ function removeRow() {
 $("#heart").click(function() {
     
 });
+
+function editComment() {
+    $(".editComment").
+}
+

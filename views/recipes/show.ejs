@@ -12,8 +12,10 @@
 
 
 <% if (user) { %>
-<a href="/recipes/<%= recipe._id %>/edit">Edit</a> |
-<a href="/recipes/<%= recipe._id %>/delete">Delete</a>
+<div class="">
+    <form action="/recipes/<%= recipe._id %>/edit"><button type="submit">Edit</button></form>
+    <form method="POST" action="/recipes/<%= recipe._id %>?_method=DELETE"><button type="submit">Delete</button></form>
+</div>
 <% } %>
 
 <p> <%= recipe.stars %> </p>
@@ -60,18 +62,20 @@
 <% }); %>
 
 <div class="commentSection">
-    <% comments.forEach(function(c) { %>
-        <div class="commentContainer">
-            <%= c.commentBody %>
-            <br>
-            Added by <%= c.addedBy %> on  <%= c.createdAt %>
-            <br>
-            <% if (user._id == c.userId) { %>
-                <a href="/comment/<%= c._id %>/edit?<%= recipe._id %>">Edit</a>
-            <% } %>
-            <br><br>
-        </div>
-    <% }); %>
+    <% if (comments) { %>
+        <% comments.forEach(function(c) { %>
+            <div class="commentContainer">
+                <p class="commentBody"> <%= c.commentBody %> </p>
+                <br>
+                <span class="addedBy">Added by <a href=""><%= c.addedBy %></a></span><span class="addedOn"> on <%= c.createdAt %></span>
+                <br>
+                <% if (user._id == c.userId) { %>
+                    <a class="editComment" href="/comment/<%= c._id %>/edit?<%= recipe._id %>">Edit</a>
+                <% } %>
+                <br><br>
+            </div>
+        <% }); %>
+    <% } %>
 </div>
 
 <div class="commentForm">
@@ -80,3 +84,4 @@
         <button type="submit">Add Comment</button>
     </form>
 </div>
+

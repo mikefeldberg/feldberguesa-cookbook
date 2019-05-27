@@ -10,8 +10,8 @@ router.get('/:id/edit', recipesController.edit);
 router.post('/:id/favorite', recipesController.favorite);
 router.post('/:id/comment', commentsController.create);
 router.delete('/:id/favorite', recipesController.unfavorite);
+router.delete('/:id', recipesController.delete);
 router.post('/', recipesController.create);
 router.put('/:id', recipesController.update);
-router.delete('/:id', recipesController.delete);
 
 module.exports = router;

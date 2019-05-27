@@ -25,8 +25,8 @@ function create(req, res) {
 function edit(req, res) {
     var recipeId = Object.keys(req.query)[0];
 
-    Comment.findById(req.params.id).exec(function (err, comment) {
-        User.findById(req.user._id).exec(function (err, user) {
+    Comment.findById(req.params.id).exec(function(err, comment) {
+        User.findById(req.user._id).exec(function(err, user) {
             res.render(`comments/edit`, { comment, user, recipeId });
         });
     });
@@ -34,7 +34,7 @@ function edit(req, res) {
 
 function update(req, res) {
     var recipeId = req.query._recipeId;
-    Comment.findById(req.params.id).exec(function (err, comment) {
+    Comment.findById(req.params.id).exec(function(err, comment) {
         comment.commentBody = req.body.comment;
         comment.save(function(err) {
             res.redirect(`/recipes/${recipeId}`);
