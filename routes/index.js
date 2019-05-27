@@ -3,7 +3,7 @@ var router = express.Router();
 var passport = require('passport');
 
 router.get('/', function(req, res, next) {
-    res.render('index', { user: req.user });
+    res.render('index', { sessionUser: req.user });
 });
 
 router.get('/auth/google', passport.authenticate(

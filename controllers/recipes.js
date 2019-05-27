@@ -17,7 +17,7 @@ module.exports = {
 
 function index(req, res) {
     Recipe.find({}).exec(function(err, recipes) {
-        res.render('recipes/index', { recipes, user: req.user });
+        res.render('recipes/index', { recipes, sessionUser: req.user });
     });
 }
 
@@ -32,10 +32,10 @@ function show(req, res) {
                 var isFavorited = false;
                 if (req.user) {
                     Favorite.findOne({ userId: req.user._id, recipeId: req.params.id, deletedAt: null }, function(err, favorite) {
-                        res.render('recipes/show', { recipe, user: req.user, comments, isFavorited: !!favorite });
+                        res.render('recipes/show', { recipe, sessionUser: req.user, comments, isFavorited: !!favorite });
                     });
                 } else {
-                    res.render('recipes/show', { recipe, user: req.user, comments, isFavorited });
+                    res.render('recipes/show', { recipe, sessionUser: req.user, comments, isFavorited });
                 }  
             });
         })
@@ -43,7 +43,7 @@ function show(req, res) {
 }
 
 function newRecipe(req, res) {
-    res.render('recipes/new', { user: req.user });
+    res.render('recipes/new', { sessionUser: req.user });
 }
 
 function create(req, res) {
@@ -81,7 +81,7 @@ function create(req, res) {
 
 function edit(req, res) {
     Recipe.findById(req.params.id).exec(function(err, recipe) {
-        res.render('recipes/edit', { recipe, user: req.user });
+        res.render('recipes/edit', { recipe, sessionUser: req.user });
     });
 }
 

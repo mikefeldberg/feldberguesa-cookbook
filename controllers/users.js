@@ -6,40 +6,54 @@ const Comment = require('../models/comment');
 module.exports = {
     index,
     show,
-    // userProfile,
 };
 
 function index(req, res) {
-    User.find({}).exec(function (err, members) {
-        User.findById(req.user._id).exec(function (err, user) {
-            res.render('users/index', { members, user });
+    if (req.user) {
+        User.find({}).exec(function (err, users) {
+            User.findById(req.user._id).exec(function (err, sessionUser) {
+                res.render('users/index', { users, sessionUser });
+            });
         });
-    });
+    } else {
+        User.find({}).exec(function (err, users) {
+            res.render('users/index', { users, sessionUser: null });
+        });
+    }
 }
 
 function show(req, res, next) {
-    console.log(req);
-    if (req.params.id == req.user._id) {
-        User.findById(req.params.id).exec(function (err, member) {
-            User.findById(req.user._id).exec(function (err, user) {
+    if (req.user) {
+        console.log('-------------user show auth-------------')
+
+        User.findById(req.params.id).exec(function (err, user) {
+            console.log('-------------user-------------')
+            console.log(user)
+            User.findById(req.user._id).exec(function (err, sessionUser) {
+                console.log('-------------sessionUser-------------')
+                console.log(sessionUser)
                 Comment.find({ userId: req.user._id }).exec(function (err, comments) {
+                    console.log('-------------comments-------------')
+                    console.log(comments)
                     Recipe.find({ userId: req.user._id }).exec(function (err, recipes) {
+                        console.log('-------------recipes-------------')
+                        console.log(recipes)
                         Favorite.find({ userId: req.user._id }).exec(function (err, favorites) {
-                            console.log(user)
-                            res.render('users/show', { user, comments, recipes, favorites, member });
+                            console.log('-------------favorites-------------')
+                            console.log(favorites)
+                            res.render('users/show', { comments, recipes, favorites, user, sessionUser });
                         });
                     });
                 });
             });
         });
     } else {
-        User.findById(req.params.id).exec(function (err, member) {
-            User.findById(req.user._id).exec(function (err, user) {
-                Comment.find({ userId: req.params.id }).exec(function (err, comments) {
-                    Recipe.find({ userId: req.params.id }).exec(function (err, recipes) {
-                        Favorite.find({ userId: req.params.id }).exec(function (err, favorites) {
-                            res.render('users/show', { user, comments, recipes, favorites, member });
-                        });
+        console.log('user show unauth')
+        User.findById(req.params.id).exec(function (err, user) {
+            Comment.find({ userId: req.params.id }).exec(function (err, comments) {
+                Recipe.find({ userId: req.params.id }).exec(function (err, recipes) {
+                    Favorite.find({ userId: req.params.id }).exec(function (err, favorites) {
+                        res.render('users/show', { comments, recipes, favorites, user, sessionUser: null });
                     });
                 });
             });

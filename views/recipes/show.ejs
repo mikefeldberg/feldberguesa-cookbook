@@ -11,7 +11,7 @@
 <h2> <%= recipe.name %> </h2>
 
 
-<% if (user) { %>
+<% if (sessionUser) { %>
 <div class="">
     <form action="/recipes/<%= recipe._id %>/edit"><button type="submit">Edit</button></form>
     <form method="POST" action="/recipes/<%= recipe._id %>?_method=DELETE"><button type="submit">Delete</button></form>
@@ -30,7 +30,7 @@
     </fieldset>
 </div> -->
 
-<% if (user) { %>
+<% if (sessionUser) { %>
     <% if (isFavorited) { %>
         <form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite?_method=DELETE"><button type="submit">UnFav</button></form>
     <% } else { %>
@@ -38,7 +38,7 @@
     <% } %>
 <% } %>
 
-<p>Added by: <%= recipe.addedBy %> on <%= recipe.createdAt %> </p>
+<p>Added by: <a href="/users/<%= recipe.userId %>"><%= recipe.addedBy %></a> on <%= recipe.createdAt %> </p>
 
 <h2>Summary</h2>
 
@@ -76,10 +76,12 @@
             <div class="commentContainer">
                 <p class="commentBody"> <%= c.commentBody %> </p>
                 <br>
-                <span class="addedBy">Added by <a href=""><%= c.addedBy %></a></span><span class="addedOn"> on <%= c.createdAt %></span>
+                <span class="addedBy">By <a href="/users/<%= c.userId %>"><%= c.addedBy %></a></span><span class="addedOn"> on <%= c.createdAt %></span>
                 <br>
-                <% if (user._id == c.userId) { %>
-                    <a class="editComment" href="/comment/<%= c._id %>/edit?<%= recipe._id %>">Edit</a>
+                <% if(sessionUser) { %>
+                    <% if (sessionUser._id == c.userId) { %>
+                        <a class="editComment" href="/comment/<%= c._id %>/edit?<%= recipe._id %>">Edit</a>
+                    <% } %>
                 <% } %>
                 <br><br>
             </div>

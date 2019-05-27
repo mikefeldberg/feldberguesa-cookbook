@@ -2,11 +2,11 @@
 
 <body>
     <div>
-        <% members.forEach(function(m) { %>
-            <% if (m.deletedAt == null) {%>
+        <% users.forEach(function(u) { %>
+            <% if (u.deletedAt == null) {%>
             <div class="membersContainer">
-                <img class="memberImage" src="<%= m.imageUrl %>">
-                <a class="memberName" href="/users/<%= m._id %>"><%= m.name %></a>
+                <img class="memberImage" src="<%= u.imageUrl %>">
+                <a class="memberName" href="/users/<%= u._id %>"><%= u.name %></a>
             </div>
             <% } %>
         <% }); %>

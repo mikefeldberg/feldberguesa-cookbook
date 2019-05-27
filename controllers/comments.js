@@ -29,8 +29,8 @@ function edit(req, res) {
     var recipeId = Object.keys(req.query)[0];
 
     Comment.findById(req.params.id).exec(function(err, comment) {
-        User.findById(req.user._id).exec(function(err, user) {
-            res.render(`comments/edit`, { comment, user, recipeId });
+        User.findById(req.user._id).exec(function(err, sessionUser) {
+            res.render(`comments/edit`, { comment, sessionUser, recipeId });
         });
     });
 }

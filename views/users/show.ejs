@@ -1,11 +1,11 @@
 <%- include ../partials/header.ejs %> 
 
-<% var greeting = member.name %>
-<% var author = `${member.name}'s` %>
+<% var greeting = user.name %>
+<% var author = `${user.name}'s` %>
 
-<% if (user) { %>
-    <% if (member.id == user._id) { %>
-        <% greeting = `Holla, ${user.name}` %>
+<% if (sessionUser) { %>
+    <% if (user.id == sessionUser._id) { %>
+        <% greeting = `Holla, ${sessionUser.name}` %>
         <% author = `Your` %>
     <% } %>
 <% } %>
