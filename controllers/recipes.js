@@ -79,9 +79,35 @@ function edit(req, res) {
 }
 
 function update(req, res) {
-    //   req.body.cooked = req.body.cooked === 'on';
-    Recipe.update(req.params.id, req.body);
-    res.redirect('/recipes');
+    Recipe.findById(req.params.id).exec(function (err, recipe) {
+        var ingredientQty = req.body.qty;
+        var ingredientName = req.body.ingredient;
+        var ingredientPrep = req.body.preparation;
+        var ingredients = [];
+        for (var i = 0; i < ingredientQty.length; i++) {
+            var ingredient = [];
+            ingredient.push(ingredientQty[i]);
+            ingredient.push(ingredientName[i]);
+            ingredient.push(ingredientPrep[i]);
+            ingredients.push(ingredient);
+        }
+
+        recipe.name = req.body.name;
+        recipe.description = req.body.description;
+        recipe.ingredients = ingredients;
+        recipe.instructions = req.body.instruction;
+        recipe.skillLevel = req.body.skillLevel;
+        recipe.timePrep = req.body.timePrep;
+        recipe.timeWait = req.body.timeWait;
+        recipe.timeCook = req.body.timeCook;
+        recipe.timeTotal = parseInt(req.body.timePrep) + parseInt(req.body.timeWait) + parseInt(req.body.timeCook);
+        recipe.servings = req.body.servings;
+        recipe.imageUrl = req.body.imageUrl;
+        
+        recipe.save(function(err, recipe) {
+            res.redirect(`/recipes/${req.params.id}`);
+        });
+    });
 }
 
 function deleteRecipe(req, res) {
