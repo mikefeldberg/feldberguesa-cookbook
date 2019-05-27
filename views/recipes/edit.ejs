@@ -5,11 +5,11 @@
 <%- include ../partials/header.ejs %>
 <div class="pageTitle">Edit a Recipe</div>
 
-<form action="/recipes" method="POST">
+<form action="/recipes/<%= recipe._id %>?_method=PUT" method="POST">
     <h2>Recipe Name</h2>
-    <input name="name" type="text">
+    <input name="name" type="text" value="<%= recipe.name %>">
     <h2>Recipe Description</h2>
-    <input name="description" type="text">
+    <input name="description" type="text" value="<%= recipe.description %>">
     <h2>Ingredients</h2>
     <thead>
         <tr class="tableHeader">
@@ -22,15 +22,15 @@
     <tbody>
         <tr>
             <td>1</td>
-            <td><input name="qty" type="text"></td>
-            <td><input name="ingredient" type="text"></td>
-            <td><input name="preparation" type="text"></td>
+            <td><input name="qty" type="text" value="<%= recipe.ingredients[0][0] %>"></td>
+            <td><input name="ingredient" type="text" value="<%= recipe.ingredients[0][1] %>"></td>
+            <td><input name="preparation" type="text" value="<%= recipe.ingredients[0][2] %>"></td>
         </tr><br>
-         <tr>
+        <tr>
             <td>2</td>
-            <td><input name="qty" type="text"></td>
-            <td><input name="ingredient" type="text"></td>
-            <td><input name="preparation" type="text"></td>
+            <td><input name="qty" type="text" value="<%= recipe.ingredients[1][0] %>"></td>
+            <td><input name="ingredient" type="text" value="<%= recipe.ingredients[1][1] %>"></td>
+            <td><input name="preparation" type="text" value="<%= recipe.ingredients[1][2] %>"></td>
         </tr><br>
         <!-- <tr>
             <td>3</td>
@@ -57,15 +57,15 @@
     <tbody>
         <tr>
             <th>1</th>
-            <th><input name="instruction" type="text"></th>
+            <th><input name="instruction" type="text" value="<%= recipe.instructions[0] %>"></th>
         </tr><br>
         <tr>
             <th>2</th>
-            <th><input name="instruction" type="text"></th>
+            <th><input name="instruction" type="text" value="<%= recipe.instructions[1] %>"></th>
         </tr><br>
         <tr>
             <th>3</th>
-            <th><input name="instruction" type="text"></th>
+            <th><input name="instruction" type="text" value="<%= recipe.instructions[2] %>"></th>
         </tr><br>
         <!-- <tr>
             <th>4</th>
@@ -81,16 +81,16 @@
 
     <p>Skill Level: </p>
     <select name="skillLevel" type="text">
-            <option value="1">Easy</option>
-            <option value="2">Medium</option>
-            <option value="3">Difficult</option>
+        <option value="1">Easy</option>
+        <option value="2">Medium</option>
+        <option value="3">Difficult</option>
     </select>
 
-    <p>Sevings: </p><input name="servings" type="number">
-    <p>Prep Time (minutes): </p><input name="timePrep" type="number">
-    <p>Cook Time (minutes):</p><input name="timeCook" type="number">
-    <p>Wait Time (minutes):</p><input name="timeWait" type="number">
-    <p>Upload an image</p><input name="imageUrl" type="text">
+    <p>Sevings: </p><input name="servings" type="number" value="<%= recipe.servings %>">
+    <p>Prep Time (minutes): </p><input name="timePrep" type="number" value="<%= recipe.timePrep %>">
+    <p>Cook Time (minutes):</p><input name="timeCook" type="number" value="<%= recipe.timeCook %>">
+    <p>Wait Time (minutes):</p><input name="timeWait" type="number" value="<%= recipe.timeWait %>">
+    <p>Upload an image</p><input name="imageUrl" type="text" value="<%= recipe.imageUrl %>">
     <br>
     <input class="" type="submit" value="Submit">
     <input class="" type="submit" value="Cancel">

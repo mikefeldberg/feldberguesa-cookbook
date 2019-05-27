@@ -72,15 +72,6 @@ function create(req, res) {
     });
 }
 
-// function edit(req, res) {
-//     findById(req.params.id).exec(function (err, recipe) {
-//     res.render('recipes/edit', {
-//         recipe: Recipe.getOne(req.params.id),
-//         id: req.params.id,
-//         user: req.user,
-//     });
-// }
-
 function edit(req, res) {
     Recipe.findById(req.params.id).exec(function (err, recipe) {
         res.render('recipes/edit', { recipe, user: req.user });
