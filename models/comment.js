@@ -6,6 +6,7 @@ var commentSchema = new mongoose.Schema({
     recipeId: String,
     commentBody: String,
     addedBy: String,
+    addedTo: String,
     deletedAt: {
         type: Date,
         default: null,

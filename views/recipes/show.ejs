@@ -39,7 +39,11 @@
 <% } %>
 
 <p>Added by: <%= recipe.addedBy %> on <%= recipe.createdAt %> </p>
+
+<h2>Summary</h2>
+
 <p> <%= recipe.description %> </p>
+
 
 <p>Skill Level: <%= recipe.skillLevel %> </p>
 <p>Prep Time: <%= recipe.timePrep %> </p>
@@ -49,11 +53,15 @@
 <p>Servings Yield: <%= recipe.servings %> </p>
 <p>Categories: <%= recipe.categories %> </p>
 
+<h2>Ingredients</h2>
+
 <% recipe.ingredients.forEach(function(ingredient) { %>
 <div>
     <p>- <%= ingredient[0] %> <%= ingredient[1] %>, <%= ingredient[2] %> </p>
 </div>
 <% }); %>
+
+<h2>Instructions</h2>
 
 <% recipe.instructions.forEach(function(instruction) { %>
 <div>
@@ -62,6 +70,7 @@
 <% }); %>
 
 <div class="commentSection">
+    <h2>Comments</h2>
     <% if (comments) { %>
         <% comments.forEach(function(c) { %>
             <div class="commentContainer">

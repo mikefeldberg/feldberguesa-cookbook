@@ -17,8 +17,11 @@ function create(req, res) {
     comment.recipeId = req.params.id;
     comment.addedBy = req.user.name;
 
-    comment.save(function(err) {
-        res.redirect(`/recipes/${req.params.id}`);
+    Recipe.findById(req.params.id).exec(function(err, recipe) {
+        comment.addedTo = recipe.name;
+        comment.save(function(err) {
+            res.redirect(`/recipes/${req.params.id}`);
+        });
     });
 }
 

@@ -1,0 +1,15 @@
+<%- include ../partials/header.ejs %> 
+
+<body>
+    <div>
+        <% members.forEach(function(m) { %>
+            <% if (m.deletedAt == null) {%>
+            <div class="membersContainer">
+                <img class="memberImage" src="<%= m.imageUrl %>">
+                <a class="memberName" href="/users/<%= m._id %>"><%= m.name %></a>
+            </div>
+            <% } %>
+        <% }); %>
+    </div>
+</body>
+</html>

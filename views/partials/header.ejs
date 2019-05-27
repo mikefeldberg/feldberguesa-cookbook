@@ -5,9 +5,11 @@
     <ul>
       <% if (user) { %>
       <li><a href="/">Home</a></li>
+      <li><a href="/users/<%= user._id %>">My Account</a></li>
       <li><a href="/recipes/new">Add Recipe</a></li>
       <li><a href="/recipes">All Recipes</a></li>
       <li><a href="/logout"><i></i>Log Out</a></li>
+      <li>Logged in as <%= user._id %></li>
       <% } else { %>
       <li><a href="/">Home</a></li>
       <li><a href="/recipes">All Recipes</a></li>

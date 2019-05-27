@@ -1,10 +1,19 @@
 <%- include ../partials/header.ejs %> 
 
-<h2>Holla, <%= user.name %>!</h2>
+<% var greeting = member.name %>
+<% var author = `${member.name}'s` %>
 
+<% if (user) { %>
+    <% if (member.id == user._id) { %>
+        <% greeting = `Holla, ${user.name}` %>
+        <% author = `Your` %>
+    <% } %>
+<% } %>
+
+<h2><%= greeting %></h2>
 
 <% if (recipes) { %>
-    <h3>Your Recipes</h3>
+    <h3><%= author %> Recipes</h3>
     <% recipes.forEach(function(r) { %>
         <% if (r.deletedAt == null) { %>
             <div class="userRecipeContainer">
@@ -15,18 +24,20 @@
 <% } %>
 
 <% if (comments) { %>
-    <h3>Your Comments</h3>
+    <h3><%= author %> Comments</h3>
     <% comments.forEach(function(c) { %>
         <% if (c.deletedAt == null) { %>
             <div class="userCommentContainer">
+                <a href="/recipes/<%= c.recipeId %>"> <%= c.addedTo %> </a>
                 <p> <%= c.commentBody %> </p>
+                <p> <%= c.createdAt %> </p>
             </div>
         <% } %>
     <% }) %>
 <% } %>
 
 <% if (favorites) { %>
-    <h3>Your Favorites</h3>
+    <h3><%= author %> Favorites</h3>
     <% favorites.forEach(function(f) { %>
         <% if (f.deletedAt == null) { %>
             <div class="userFavoritesContainer">
