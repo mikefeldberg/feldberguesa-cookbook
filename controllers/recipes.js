@@ -22,11 +22,11 @@ function index(req, res) {
 }
 
 function show(req, res) {
-    console.log('SHOW REQ')
-    console.log(req)
+    // console.log('SHOW REQ')
+    // console.log(req)
     Recipe.findById(req.params.id).exec(function(err, recipe) {
-        console.log('SHOW RECIPE')
-        console.log(recipe)
+        // console.log('SHOW RECIPE')
+        // console.log(recipe)
         Comment.find({recipeId: recipe._id}).exec(function(err, comments) {
             User.findById(recipe.userId).exec(function(err, author) {
                 var isFavorited = false;
@@ -127,8 +127,13 @@ function deleteRecipe(req, res) {
 }
 
 function favorite(req, res) {
-    Favorite.findOne({userId: req.user._id, recipeId: req.params.id}, function(err, favorite) {
-        Recipe.findById(req.params.id).exec(function(err, recipe) {
+    console.log('in fav')
+    console.log('userid')
+    console.log(req.user._id)
+    console.log('recipeid')
+    console.log(req.params.id)
+    Recipe.findById(req.params.id).exec(function(err, recipe) {
+        Favorite.findOne({userId: req.user._id, recipeId: req.params.id}, function(err, favorite) {
             if (favorite) {
                 favorite.deletedAt = null;
             } else {
@@ -140,8 +145,17 @@ function favorite(req, res) {
     });
 }
 
+
+
 function unfavorite(req, res) {
+    console.log('in unfav')
+    console.log('userid')
+    console.log(req.user._id)
+    console.log('recipeid')
+    console.log(req.params.id)
     Favorite.findOne({userId: req.user._id, recipeId: req.params.id}, function(err, favorite) {
+        console.log('favorite')
+        console.log(favorite)
         favorite.deletedAt = new Date();
         favorite.save();
         res.redirect(`/recipes/${req.params.id}`);
