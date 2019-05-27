@@ -1,6 +1,7 @@
 var Recipe = require('../models/recipe');
 var User = require('../models/user');
 var Favorite = require('../models/favorite');
+var Comment = require('../models/comment');
 
 module.exports = {
     index,
@@ -11,7 +12,8 @@ module.exports = {
     update,
     delete: deleteRecipe,
     favorite,
-    unfavorite
+    unfavorite,
+    addComment,
 };
 
 function index(req, res) {
@@ -22,16 +24,18 @@ function index(req, res) {
 
 function show(req, res) {
     Recipe.findById(req.params.id).exec(function (err, recipe) {
-        User.findById(recipe.userId).exec(function (err, author) {
-            var isFavorited = false;
-            if (req.user) {
-                Favorite.findOne({ userId: req.user._id, recipeId: req.params.id, deletedAt: null }, function (err, favorite) {
-                    res.render('recipes/show', { recipe, user: req.user, isFavorited: !!favorite });
-                });
-            } else {
-                res.render('recipes/show', { recipe, user: req.user, isFavorited });
-            }  
-        });
+        Comment.find({recipeId: recipe._id}).exec(function (err, comments) {
+            User.findById(recipe.userId).exec(function (err, author) {
+                var isFavorited = false;
+                if (req.user) {
+                    Favorite.findOne({ userId: req.user._id, recipeId: req.params.id, deletedAt: null }, function (err, favorite) {
+                        res.render('recipes/show', { recipe, user: req.user, comments, isFavorited: !!favorite });
+                    });
+                } else {
+                    res.render('recipes/show', { recipe, user: req.user, comments, isFavorited });
+                }  
+            });
+        })
     });
 }
 
@@ -116,16 +120,11 @@ function deleteRecipe(req, res) {
 }
 
 function favorite(req, res) {
-    console.log('in favorite')
     Favorite.findOne({userId: req.user._id, recipeId: req.params.id}, function(err, favorite) {
-        console.log(favorite)
-        console.log('FAVORITE ABOVE')
         if (favorite) {
             favorite.deletedAt = null;
         } else {
             var favorite = new Favorite({userId: req.user._id, recipeId: req.params.id});
-            // favorite.userId = req.user._id;
-            // favorite.recipeId = req.params.id;
         }
         favorite.save();
         res.redirect(`/recipes/${req.params.id}`);
@@ -140,25 +139,15 @@ function unfavorite(req, res) {
     });
 }
 
+function addComment(req, res) {
+    var comment = new Comment;
+    comment.commentBody = req.body.comment;
+    comment.userId = req.user._id;
+    comment.recipeId = req.params.id;
+    comment.addedBy = req.user.name;
 
-// function favorite(req, res) {
-//     // console.log(req.user._id);
-//     // console.log(req.params.id);
-//     Favorite.findOne({userId: req.user._id, recipeId: req.params.id}, function(err, favorite) {
-//         // console.log('FAVORITE BELOW')
-//         // console.log(favorite)
-//         // console.log('FAVORITE ABOVE')
-//         // if (err) res.redirect(`/recipes/${req.params.id}`);
-//         if (favorite) {
-//             favorite.save();
-//             res.redirect(`/recipes/${req.params.id}`);
-//         } else {
-//             var favorite = new Favorite;
-//             favorite.userId = req.user._id;
-//             favorite.recipeId = req.params.id;
-//             favorite.save();
-//             // console.log(favorite)
-//             res.redirect(`/recipes/${req.params.id}`);
-//         }
-//     });
-// }
+
+    comment.save(function(err) {
+        res.redirect(`/recipes/${req.params.id}`);
+    });
+}

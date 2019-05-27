@@ -2,9 +2,7 @@
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 <script defer src="../javascripts/formHandler.js"></script>
 
-
 <%- include ../partials/header.ejs %>
-
 
 <img src="<%= recipe.imageUrl %>">
 
@@ -12,20 +10,31 @@
 
 <h2> <%= recipe.name %> </h2>
 
-<p> <%= recipe.stars %> </p>
-
 
 <% if (user) { %>
-    <a href="/recipes/<%= recipe._id %>/edit">Edit</a>
-    <a href="/recipes/<%= recipe._id %>/delete">Delete</a>
+<a href="/recipes/<%= recipe._id %>/edit">Edit</a> |
+<a href="/recipes/<%= recipe._id %>/delete">Delete</a>
 <% } %>
 
+<p> <%= recipe.stars %> </p>
+<!-- 
+<div class="rating">
+    <fieldset class="rating">
+        <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5"></label>
+        <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4"></label>
+        <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3"></label>
+        <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2"></label>
+        <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1"></label>
+    </fieldset>
+</div> -->
+
 <% if (user) { %>
-    <% if (isFavorited) { %>
-        <form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite?_method=DELETE"><button type="submit">UnFav</button></form>
-    <% } else { %>
-        <form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite"><button type="submit">Fav</button></form>
-    <% } %>
+<% if (isFavorited) { %>
+<form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite?_method=DELETE"><button
+        type="submit">UnFav</button></form>
+<% } else { %>
+<form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite"><button type="submit">Fav</button></form>
+<% } %>
 <% } %>
 
 <p>Added by: <%= recipe.addedBy %> on <%= recipe.createdAt %> </p>
@@ -50,3 +59,21 @@
     <p> <%= instruction %></p>
 </div>
 <% }); %>
+
+<div class="commentSection">
+    <% comments.forEach(function(c) { %>
+        <div class="commentContainer">
+            <%= c.commentBody %>
+            <br>
+            Added by <%= c.addedBy %> on  <%= c.createdAt %>
+            <br><br>
+        </div>
+    <% }); %>
+</div>
+
+<div class="commentForm">
+    <form action="/recipes/<%= recipe._id %>/comment" method="POST">
+        <textarea name="comment" rows="4" cols="50"></textarea><br>
+        <button type="submit">Add Comment</button>
+    </form>
+</div>

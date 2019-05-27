@@ -1,7 +1,6 @@
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  /* margin-top: 60px; */
 }
 
 header {
@@ -57,4 +56,8 @@ form span {
   width: 20px;
   height: 20px;
   text-align: center;
+}
+
+.commentForm {
+  
 }
