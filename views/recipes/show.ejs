@@ -30,6 +30,7 @@
     </fieldset>
 </div> -->
 
+<%= favoriteCount %>
 <% if (sessionUser) { %>
     <% if (isFavorited) { %>
         <form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite?_method=DELETE"><button type="submit">UnFav</button></form>
@@ -69,6 +70,16 @@
 </div>
 <% }); %>
 
+
+<%- include ../partials/starRating.ejs %>
+
+<div class="commentForm">
+    <form action="/recipes/<%= recipe._id %>/comment" method="POST">
+        <textarea name="comment" rows="4" cols="50"></textarea><br>
+        <button type="submit">Add Comment</button>
+    </form>
+</div>
+
 <div class="commentSection">
     <h2>Comments</h2>
     <% if (comments) { %>
@@ -87,11 +98,4 @@
             </div>
         <% }); %>
     <% } %>
-</div>
-
-<div class="commentForm">
-    <form action="/recipes/<%= recipe._id %>/comment" method="POST">
-        <textarea name="comment" rows="4" cols="50"></textarea><br>
-        <button type="submit">Add Comment</button>
-    </form>
 </div>

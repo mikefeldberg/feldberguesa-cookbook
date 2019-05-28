@@ -5,12 +5,12 @@
     <meta charset="utf-8">
     <title>Accessible 5-star rating</title>
     <link rel='stylesheet' href='/stylesheets/starRating.css' />
-
+    <script defer src="../javascripts/formHandler.js"></script>
 </head>
 
 <body>
     <form>
-        <fieldset class="rating">
+        <div class="rating">
             <input id="demo-1" type="radio" name="demo" value="1">
             <label for="demo-1">1 star</label>
             <input id="demo-2" type="radio" name="demo" value="2">
@@ -23,14 +23,14 @@
             <label for="demo-5">5 stars</label>
 
             <div class="stars">
-                <label for="demo-1" aria-label="1 star" title="1 star"></label>
-                <label for="demo-2" aria-label="2 stars" title="2 stars"></label>
-                <label for="demo-3" aria-label="3 stars" title="3 stars"></label>
-                <label for="demo-4" aria-label="4 stars" title="4 stars"></label>
-                <label for="demo-5" aria-label="5 stars" title="5 stars"></label>
+                <label id="star1" for="demo-1" aria-label="1 star" title="1 star"></label>
+                <label id="star2" for="demo-2" aria-label="2 stars" title="2 stars"></label>
+                <label id="star3" for="demo-3" aria-label="3 stars" title="3 stars"></label>
+                <label id="star4" for="demo-4" aria-label="4 stars" title="4 stars"></label>
+                <label id="star5" for="demo-5" aria-label="5 stars" title="5 stars"></label>
             </div>
 
-        </fieldset>
+        </div>
 
         <script>
             (function () {

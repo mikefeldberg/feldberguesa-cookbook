@@ -1,3 +1,5 @@
+
+
 $(".addIngredient").click(function() {
     $(".ingredientRow > p:first-child").clone(true).insertBefore(".ingredientRow > p:last-child");
     console.log('add')
@@ -45,3 +47,32 @@ $(".editComment").click(function() {
 
 //     form.submit();
 // }
+$("#star1").click(function() {
+    console.log('1 star');
+    console.log(this.id)
+
+});
+
+$("#star2").click(function() {
+    console.log('2 star');
+    console.log(this.id)
+});
+
+$("#star3").click(function() {
+    console.log('3 star');
+    console.log(this.id)
+});
+
+$("#star4").click(function() {
+    console.log('4 star');
+    console.log(this.id)
+});
+
+$("#star5").click(function() {
+    console.log('5 star');
+    console.log(this.id)
+});
+
+function recordRating() {
+
+}
