@@ -6,7 +6,6 @@ var userSchema = new mongoose.Schema({
     email: String,
     avatarUrl: String,
     googleId: String,
-    dateDeleted: Date,
     sessionId: String,
     deletedAt: {
         type: Date,

@@ -1,12 +1,7 @@
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-<script defer src="../javascripts/formHandler.js"></script>
-
-<%- include ../partials/header.ejs %>
-
 <div class="commentForm">
     <form action="/comment/<%= comment._id %>?_recipeId=<%= recipeId %>&_method=PUT" method="POST">
         <textarea name="comment" rows="4" cols="50" value="<%= comment.commentBody %>"></textarea><br>
         <button type="submit">Update Comment</button>
     </form>
 </div>
+

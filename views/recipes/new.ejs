@@ -6,62 +6,92 @@
 <div class="pageTitle">Add a Recipe</div>
 
 <form action="/recipes" method="POST">
-    <h2>Recipe Name</h2>
-    <input name="name" type="text">
-    <h2>Recipe Description</h2>
-    <input name="description" type="text">
-    <h2>Ingredients</h2>
-    <thead>
-        <tr class="tableHeader">
-            <th></th>
-            <th>Qty</th>
-            <th>Ingredient</th>
-            <th>Preparation</th>
-        </tr>
-    </thead><br>
-    <div class="ingredientsSection">
-        <div class="ingredientRow">
-            <p>
-                <input name="qty" type="text">
-                <input name="ingredient" type="text">
-                <input name="preparation" type="text">
-                <span class="removeIngredient"> - </span>
-            </p>
-            <p>
-                <span class="addIngredient"> + </span>
-            </p>
-        </div>
-    </div>
 
-    <h2>Instructions</h2>
+    <fieldset>
 
-    <div class="instructionsSection">
-            <div class="instructionRow">
+        <legend>Recipe Name</legend>
+
+        <input name="name" type="text">
+
+    </fieldset>
+
+    <fieldset>
+
+        <legend>Recipe Description</legend>
+        
+        <input name="description" type="text">
+
+    </fieldset>
+
+    <fieldset id="recipeInstructions">
+
+        <legend>Ingredients</legend>
+
+        <thead>
+            <tr class="tableHeader">
+                <th></th>
+                <th>Qty</th>
+                <th>Ingredient</th>
+                <th>Preparation</th>
+            </tr>
+        </thead>
+
+        <div class="ingredientsSection">
+            <div class="ingredientRow">
                 <p>
-                    <input name="instruction" type="text">
-                    <span class="removeInstruction"> - </span>
+                    <input name="qty" type="text">
+                    <input name="ingredient" type="text">
+                    <input name="preparation" type="text">
+                    <button class="removeIngredient"> - </button>
                 </p>
                 <p>
-                    <span class="addInstruction"> + </span>
+                    <button class="addIngredient"> + </button>
                 </p>
             </div>
         </div>
 
-    <h2>Additional Info</h2>
+    </fieldset>
 
-    <p>Skill Level: </p>
-    <select name="skillLevel" type="text">
-        <option value="1">Easy</option>
-        <option value="2">Medium</option>
-        <option value="3">Difficult</option>
-    </select>
+    <fieldset id="recipeInstructions">
 
-    <p>Sevings: </p><input name="servings" type="number">
-    <p>Prep Time (minutes): </p><input name="timePrep" type="number">
-    <p>Cook Time (minutes):</p><input name="timeCook" type="number">
-    <p>Wait Time (minutes):</p><input name="timeWait" type="number">
-    <p>Upload an image</p><input name="imageUrl" type="text">
-    <br>
-    <input class="" type="submit" value="Submit">
-    <input class="" type="submit" value="Cancel">
+        <legend>Instructions</legend>
+
+        <div class="instructionsSection">
+            <div class="instructionRow">
+                <p>
+                    <input name="instruction" type="text">
+                    <button class="removeInstruction"> - </button>
+                </p>
+                <p>
+                    <button class="addInstruction"> + </button>
+                </p>
+            </div>
+        </div>
+
+    </fieldset>
+
+    <fieldset id="recipeAdditionalInfo">
+
+        <legend>Additional Info</legend>
+
+        <p>Skill Level: </p>
+        <select name="skillLevel" type="text">
+            <option value="1">Easy</option>
+            <option value="2">Medium</option>
+            <option value="3">Difficult</option>
+        </select>
+
+        <p>Sevings: </p><input name="servings" type="number">
+        <p>Prep Time (minutes): </p><input name="timePrep" type="number">
+        <p>Cook Time (minutes):</p><input name="timeCook" type="number">
+        <p>Wait Time (minutes):</p><input name="timeWait" type="number">
+        <p>Upload an image</p><input name="imageUrl" type="text">
+
+    </fieldset>
+
+    <div class="buttonContainer">
+        <input class="" type="submit" value="Submit">
+        <input class="" type="submit" value="Cancel">
+    </div>
+
 </form>

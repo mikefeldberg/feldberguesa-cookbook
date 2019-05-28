@@ -80,7 +80,7 @@
                 <br>
                 <% if(sessionUser) { %>
                     <% if (sessionUser._id == c.userId) { %>
-                        <a class="editComment" href="/comment/<%= c._id %>/edit?<%= recipe._id %>">Edit</a>
+                        <a class="editComment" commentId="<%= c._id%>" commentBody="<%= c.commentBody %>">Edit</a>
                     <% } %>
                 <% } %>
                 <br><br>
@@ -95,4 +95,3 @@
         <button type="submit">Add Comment</button>
     </form>
 </div>
-
