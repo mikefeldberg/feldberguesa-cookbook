@@ -58,6 +58,10 @@ form span {
   text-align: center;
 }
 
-.commentForm {
-  
-}
+.ingredientsSection .ingredientRow:first-child p:first-child .removeIngredient {
+  display: none;
+} 
+
+.instructionsSection .instructionRow:first-child p:first-child .removeInstruction {
+  display: none;
+} 

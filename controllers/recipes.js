@@ -13,6 +13,7 @@ module.exports = {
     delete: deleteRecipe,
     favorite,
     unfavorite,
+    newTest,
 };
 
 function index(req, res) {
@@ -44,6 +45,10 @@ function show(req, res) {
 
 function newRecipe(req, res) {
     res.render('recipes/new', { sessionUser: req.user });
+}
+
+function newTest(req, res) {
+    res.render('recipes/newTest', { sessionUser: req.user });
 }
 
 function create(req, res) {
