@@ -10,6 +10,10 @@ module.exports = {
 };
 
 function create(req, res) {
+    Recipe.findById(req.params.id).exec(function(err, recipe) {
+        
+    });
+    
     var comment = new Comment;
     comment.rating = req.body.rated
     comment.commentBody = req.body.comment;

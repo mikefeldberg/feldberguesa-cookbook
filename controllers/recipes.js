@@ -16,7 +16,7 @@ module.exports = {
 };
 
 function index(req, res) {
-    Recipe.find({}).exec(function (err, recipes) {
+    Recipe.find({}).exec(function(err, recipes) {
         res.render('recipes/index', { recipes, sessionUser: req.user });
     });
 }
@@ -24,14 +24,31 @@ function index(req, res) {
 function show(req, res) {
     // console.log('SHOW REQ')
     // console.log(req)
-    Recipe.findById(req.params.id).exec(function (err, recipe) {
-        Comment.find({ recipeId: recipe._id }).exec(function (err, comments) {
-            User.findById(recipe.userId).exec(function (err, author) {
-                Favorite.find({ recipeId: recipe._id, deletedAt: null }).exec(function (err, favorites) {
+    Recipe.findById(req.params.id).exec(function(err, recipe) {
+        Comment.find({ recipeId: recipe._id, deletedAt: null }).exec(function(err, comments) {
+            User.findById(recipe.userId).exec(function(err, author) {
+                Favorite.find({ recipeId: recipe._id, deletedAt: null }).exec(function(err, favorites) {
+                    var recipeRatingNew
+                    var recipeAllRatings = [];
+                    var recipeAllRatingsSum = 0;
+                    var recipeRatingsCount = 0;
+
+                    comments.forEach(function(c) {
+                        if (c.rating) recipeAllRatings.push(c.rating)
+                    });
+
+                    for(var i = 0; i < recipeAllRatings.length; i++) {
+                        recipeAllRatingsSum += recipeAllRatings[i];
+                    }
+                    recipeRatingNew = recipeAllRatingsSum / recipeAllRatings.length;
+
+                    recipe.rating = recipeRatingNew
+                    recipe.save();
+                    
                     var favoriteCount = favorites.length;
                     var isFavorited = false;
                     if (req.user) {
-                        Favorite.findOne({ userId: req.user._id, recipeId: req.params.id, deletedAt: null }, function (err, favorite) {
+                        Favorite.findOne({ userId: req.user._id, recipeId: req.params.id, deletedAt: null }, function(err, favorite) {
                             res.render('recipes/show', { recipe, sessionUser: req.user, comments, isFavorited: !!favorite, favoriteCount });
                         });
                     } else {
@@ -79,19 +96,19 @@ function create(req, res) {
     recipe.addedBy = req.user.name;
     recipe.userId = req.user._id;
 
-    recipe.save(function (err) {
+    recipe.save(function(err) {
         res.redirect('/recipes');
     });
 }
 
 function edit(req, res) {
-    Recipe.findById(req.params.id).exec(function (err, recipe) {
+    Recipe.findById(req.params.id).exec(function(err, recipe) {
         res.render('recipes/edit', { recipe, sessionUser: req.user });
     });
 }
 
 function update(req, res) {
-    Recipe.findById(req.params.id).exec(function (err, recipe) {
+    Recipe.findById(req.params.id).exec(function(err, recipe) {
         var ingredientQty = req.body.qty;
         var ingredientName = req.body.ingredient;
         var ingredientPrep = req.body.preparation;
@@ -116,16 +133,16 @@ function update(req, res) {
         recipe.servings = req.body.servings;
         recipe.imageUrl = req.body.imageUrl;
 
-        recipe.save(function (err, recipe) {
+        recipe.save(function(err, recipe) {
             res.redirect(`/recipes/${req.params.id}`);
         });
     });
 }
 
 function deleteRecipe(req, res) {
-    Recipe.findById(req.params.id).exec(function (err, recipe) {
+    Recipe.findById(req.params.id).exec(function(err, recipe) {
         recipe.deletedAt = new Date();
-        recipe.save(function (err) {
+        recipe.save(function(err) {
             res.redirect('/recipes');
         });
     });
@@ -137,8 +154,8 @@ function favorite(req, res) {
     // console.log(req.user._id)
     // console.log('recipeid')
     // console.log(req.params.id)
-    Recipe.findById(req.params.id).exec(function (err, recipe) {
-        Favorite.findOne({ userId: req.user._id, recipeId: req.params.id }, function (err, favorite) {
+    Recipe.findById(req.params.id).exec(function(err, recipe) {
+        Favorite.findOne({ userId: req.user._id, recipeId: req.params.id }, function(err, favorite) {
             if (favorite) {
                 favorite.deletedAt = null;
             } else {
@@ -156,7 +173,7 @@ function unfavorite(req, res) {
     // console.log(req.user._id)
     // console.log('recipeid')
     // console.log(req.params.id)
-    Favorite.findOne({ userId: req.user._id, recipeId: req.params.id }, function (err, favorite) {
+    Favorite.findOne({ userId: req.user._id, recipeId: req.params.id }, function(err, favorite) {
         // console.log('favorite')
         // console.log(favorite)
         favorite.deletedAt = new Date();
@@ -173,7 +190,7 @@ function addComment(req, res) {
     comment.addedBy = req.user.name;
 
 
-    comment.save(function (err) {
+    comment.save(function(err) {
         res.redirect(`/recipes/${req.params.id}`);
     });
 }
