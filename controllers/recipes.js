@@ -48,10 +48,10 @@ function show(req, res) {
                     var isFavorited = false;
                     if (req.user) {
                         Favorite.findOne({ userId: req.user._id, recipeId: req.params.id, deletedAt: null }, function(err, favorite) {
-                            res.render('recipes/show', { recipe, sessionUser: req.user, comments, ratingsCount: recipeAllRatings.length, favoriteCount, isFavorited: !!favorite,  });
+                            res.render('recipes/show', { recipe, author, sessionUser: req.user, comments, ratingsCount: recipeAllRatings.length, favoriteCount, isFavorited: !!favorite,  });
                         });
                     } else {
-                        res.render('recipes/show', { recipe, sessionUser: req.user, comments, ratingsCount: recipeAllRatings.length, favoriteCount, isFavorited,  });
+                        res.render('recipes/show', { recipe, author, sessionUser: req.user, comments, ratingsCount: recipeAllRatings.length, favoriteCount, isFavorited,  });
                     }
                 });
             });

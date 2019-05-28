@@ -17,7 +17,7 @@
     <% recipes.forEach(function(r) { %>
         <% if (r.deletedAt == null) { %>
             <div class="userRecipeContainer">
-                <p> <%= r.name %> </p>
+                <a href="/recipes/<%= r._id %>"><%= r.name %> </a>
             </div>
         <% } %>
     <% }) %>
@@ -30,7 +30,7 @@
             <fieldset>
                 <div class="userCommentContainer">
                     <a href="/recipes/<%= c.recipeId %>"> <%= c.addedTo %> </a>
-                    <p> <%= "★".repeat(c.rating) %> </p>
+                    <p class="userRating"> <%= "★".repeat(c.rating) %> </p>
                     <p> <%= c.commentBody %> </p>
                     <p> <%= c.createdAt %> </p>
                 </div>
