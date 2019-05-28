@@ -18,27 +18,27 @@
 </div>
 <% } %>
 
-<p class="userRating"> <%= "★".repeat(recipe.rating) %> </p> 
+<span class="userRating"> <%= "★".repeat(recipe.rating) %></span> <span><%= ratingsCount %> Ratings</span><br>
 
-<!-- 
-<div class="rating">
-    <fieldset class="rating">
-        <input type="radio" id="star5" name="rating" value="5" /><label class="full" for="star5"></label>
-        <input type="radio" id="star4" name="rating" value="4" /><label class="full" for="star4"></label>
-        <input type="radio" id="star3" name="rating" value="3" /><label class="full" for="star3"></label>
-        <input type="radio" id="star2" name="rating" value="2" /><label class="full" for="star2"></label>
-        <input type="radio" id="star1" name="rating" value="1" /><label class="full" for="star1"></label>
-    </fieldset>
-</div> -->
 
-<%= favoriteCount %>
-<% if (sessionUser) { %>
-    <% if (isFavorited) { %>
-        <form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite?_method=DELETE"><button type="submit">UnFav</button></form>
+<% if (isFavorited) { %>
+    <form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite?_method=DELETE"><button type="submit">UnFav</button></form>
+<% } else { %>
+    <form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite"><button type="submit" <% if (!sessionUser) { %> disabled="disabled" title="Please log in to leave a comment or review." <% } %> >Fav</button></form>
+<% } %>
+
+<!-- refactor below to ternary -->
+
+<% if (favoriteCount > 0) { %>
+    <p>Favorited <%= favoriteCount %>
+    <% if (favoriteCount > 1) { %>
+        times
     <% } else { %>
-        <form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite"><button type="submit">Fav</button></form>
+        time
     <% } %>
 <% } %>
+
+<!-- refactor below to ternary -->
 
 <p>Added by: <a href="/users/<%= recipe.userId %>"><%= recipe.addedBy %></a> on <%= recipe.createdAt %> </p>
 
@@ -76,8 +76,8 @@
 <div class="commentForm">
     <form action="/recipes/<%= recipe._id %>/comment" method="POST">
         <%- include ../partials/starRating.ejs %>
-        <textarea name="comment" rows="4" cols="50"></textarea><br>
-        <button type="submit">Add Comment</button>
+        <textarea name="comment" rows="4" cols="50" <% if (!sessionUser) { %> disabled="disabled" title="Please log in to leave a comment or review." <% } %> ></textarea><br>
+        <button type="submit" <% if (!sessionUser) { %> disabled="disabled" title="Please log in to leave a comment or review." <% } %> >Add Comment</button>
     </form>
 </div>
 

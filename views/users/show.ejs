@@ -27,11 +27,14 @@
     <h3><%= author %> Comments</h3>
     <% comments.forEach(function(c) { %>
         <% if (c.deletedAt == null) { %>
-            <div class="userCommentContainer">
-                <a href="/recipes/<%= c.recipeId %>"> <%= c.addedTo %> </a>
-                <p> <%= c.commentBody %> </p>
-                <p> <%= c.createdAt %> </p>
-            </div>
+            <fieldset>
+                <div class="userCommentContainer">
+                    <a href="/recipes/<%= c.recipeId %>"> <%= c.addedTo %> </a>
+                    <p> <%= "★".repeat(c.rating) %> </p>
+                    <p> <%= c.commentBody %> </p>
+                    <p> <%= c.createdAt %> </p>
+                </div>
+            </fieldset>
         <% } %>
     <% }) %>
 <% } %>
