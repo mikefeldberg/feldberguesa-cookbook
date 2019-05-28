@@ -5,7 +5,6 @@ var commentsController = require('../controllers/comments');
 
 router.get('/', recipesController.index);
 router.get('/new', recipesController.new);
-router.get('/newTest', recipesController.newTest);
 router.get('/:id', recipesController.show);
 router.get('/:id/edit', recipesController.edit);
 router.post('/:id/favorite', recipesController.favorite);

@@ -13,7 +13,6 @@ module.exports = {
     delete: deleteRecipe,
     favorite,
     unfavorite,
-    newTest,
 };
 
 function index(req, res) {
