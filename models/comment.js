@@ -1,10 +1,10 @@
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
 
 var commentSchema = new mongoose.Schema({
     userId: String,
     recipeId: String,
     commentBody: String,
+    rating: Number,
     addedBy: String,
     addedTo: String,
     deletedAt: {

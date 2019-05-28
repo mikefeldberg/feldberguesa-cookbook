@@ -18,7 +18,8 @@
 </div>
 <% } %>
 
-<p> <%= recipe.stars %> </p>
+<p class="userRating"> <%= "★".repeat(recipe.rating) %> </p> 
+
 <!-- 
 <div class="rating">
     <fieldset class="rating">
@@ -71,10 +72,10 @@
 <% }); %>
 
 
-<%- include ../partials/starRating.ejs %>
 
 <div class="commentForm">
     <form action="/recipes/<%= recipe._id %>/comment" method="POST">
+        <%- include ../partials/starRating.ejs %>
         <textarea name="comment" rows="4" cols="50"></textarea><br>
         <button type="submit">Add Comment</button>
     </form>
@@ -85,9 +86,10 @@
     <% if (comments) { %>
         <% comments.forEach(function(c) { %>
             <div class="commentContainer">
+                <span class="addedBy"><a href="/users/<%= c.userId %>"> <%= c.addedBy %> </a></span><span class="addedOn"> on <%= c.createdAt %></span>
+                <p class="userRating"> <%= "★".repeat(c.rating) %> </p> 
                 <p class="commentBody"> <%= c.commentBody %> </p>
                 <br>
-                <span class="addedBy">By <a href="/users/<%= c.userId %>"><%= c.addedBy %></a></span><span class="addedOn"> on <%= c.createdAt %></span>
                 <br>
                 <% if(sessionUser) { %>
                     <% if (sessionUser._id == c.userId) { %>

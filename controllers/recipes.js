@@ -1,7 +1,7 @@
-var Recipe = require('../models/recipe');
 var User = require('../models/user');
-var Favorite = require('../models/favorite');
+var Recipe = require('../models/recipe');
 var Comment = require('../models/comment');
+var Favorite = require('../models/favorite');
 
 module.exports = {
     index,
@@ -132,11 +132,11 @@ function deleteRecipe(req, res) {
 }
 
 function favorite(req, res) {
-    console.log('in fav')
-    console.log('userid')
-    console.log(req.user._id)
-    console.log('recipeid')
-    console.log(req.params.id)
+    // console.log('in fav')
+    // console.log('userid')
+    // console.log(req.user._id)
+    // console.log('recipeid')
+    // console.log(req.params.id)
     Recipe.findById(req.params.id).exec(function (err, recipe) {
         Favorite.findOne({ userId: req.user._id, recipeId: req.params.id }, function (err, favorite) {
             if (favorite) {
@@ -150,17 +150,15 @@ function favorite(req, res) {
     });
 }
 
-
-
 function unfavorite(req, res) {
-    console.log('in unfav')
-    console.log('userid')
-    console.log(req.user._id)
-    console.log('recipeid')
-    console.log(req.params.id)
+    // console.log('in unfav')
+    // console.log('userid')
+    // console.log(req.user._id)
+    // console.log('recipeid')
+    // console.log(req.params.id)
     Favorite.findOne({ userId: req.user._id, recipeId: req.params.id }, function (err, favorite) {
-        console.log('favorite')
-        console.log(favorite)
+        // console.log('favorite')
+        // console.log(favorite)
         favorite.deletedAt = new Date();
         favorite.save();
         res.redirect(`/recipes/${req.params.id}`);

@@ -1,28 +1,28 @@
 
 
-$(".addIngredient").click(function() {
+$(".addIngredient").click(function () {
     $(".ingredientRow > p:first-child").clone(true).insertBefore(".ingredientRow > p:last-child");
     console.log('add')
     return false;
 });
 
-$(".removeIngredient").click(function() {
+$(".removeIngredient").click(function () {
     console.log('remove')
     $(this).parent().remove();
 });
 
-$(".addInstruction").click(function() {
+$(".addInstruction").click(function () {
     $(".instructionRow > p:first-child").clone(true).insertBefore(".instructionRow > p:last-child");
     console.log('add')
     return false;
 });
 
-$(".removeInstruction").click(function() {
+$(".removeInstruction").click(function () {
     console.log('remove')
     $(this).parent().remove();
 });
 
-$(".editComment").click(function() {
+$(".editComment").click(function () {
     var deets = $(this);
     console.log(deets);
 });
@@ -47,28 +47,29 @@ $(".editComment").click(function() {
 
 //     form.submit();
 // }
-$("#star1").click(function() {
+
+$("#star1").click(function () {
     console.log('1 star');
     console.log(this.id)
 
 });
 
-$("#star2").click(function() {
+$("#star2").click(function () {
     console.log('2 star');
     console.log(this.id)
 });
 
-$("#star3").click(function() {
+$("#star3").click(function () {
     console.log('3 star');
     console.log(this.id)
 });
 
-$("#star4").click(function() {
+$("#star4").click(function () {
     console.log('4 star');
     console.log(this.id)
 });
 
-$("#star5").click(function() {
+$("#star5").click(function () {
     console.log('5 star');
     console.log(this.id)
 });
@@ -76,3 +77,11 @@ $("#star5").click(function() {
 function recordRating() {
 
 }
+
+// function () {
+//     var rating = $(".rating");
+//     var handle = $(".toggle-rating");
+//     handle.onchange = function (event) {
+//         rating.classList.toggle('rating', handle.checked);
+//     };
+// };

@@ -1,6 +1,5 @@
-var Recipe = require('../models/recipe');
 var User = require('../models/user');
-var Favorite = require('../models/favorite');
+var Recipe = require('../models/recipe');
 var Comment = require('../models/comment');
 
 module.exports = {
@@ -12,12 +11,14 @@ module.exports = {
 
 function create(req, res) {
     var comment = new Comment;
+    comment.rating = req.body.rated
     comment.commentBody = req.body.comment;
     comment.userId = req.user._id;
     comment.recipeId = req.params.id;
     comment.addedBy = req.user.name;
 
     Recipe.findById(req.params.id).exec(function(err, recipe) {
+        recipe.rating 
         comment.addedTo = recipe.name;
         comment.save(function(err) {
             res.redirect(`/recipes/${req.params.id}`);

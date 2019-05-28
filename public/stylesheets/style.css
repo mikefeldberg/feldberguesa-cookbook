@@ -69,3 +69,12 @@ fieldset {
 .instructionsSection .instructionRow:first-child p:first-child .removeInstruction {
   display: none;
 } 
+
+.commentContainer {
+  border: 1px solid black
+}
+
+.userRating {
+  color: gold;
+  
+}
