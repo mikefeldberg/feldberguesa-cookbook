@@ -21,12 +21,16 @@ function index(req, res) {
     });
 }
 
-
+//  PRETTY SURE I DONT NEED AUTHOR QUERIED OR PASSED BELOW. DELETE LATER IF FIND NO USE FOR IT.
 
 function show(req, res) {
     Recipe.findById(req.params.id).exec(function(err, recipe) {
         Comment.find({ recipeId: recipe._id, deletedAt: null }).exec(function(err, comments) {
             User.findById(recipe.userId).exec(function(err, author) {
+                console.log('author')
+                console.log(author)
+                console.log('req.user')
+                console.log(req.user)
                 Favorite.find({ recipeId: recipe._id, deletedAt: null }).exec(function(err, favorites) {
                     var recipeRatingNew
                     var recipeAllRatings = [];
