@@ -78,7 +78,7 @@
 <% }); %>
 </ol>
 
-<div class="commentForm">
+<div class="addCommentForm">
     <form action="/recipes/<%= recipe._id %>/comment" method="POST">
         <%- include ../partials/starRating.ejs %>
         <textarea id"addCommentForm" name="comment" rows="4" cols="50" <% if (!sessionUser) { %> disabled="disabled" title="Please log in to leave a comment or review." <% } %> ></textarea><br>
@@ -98,7 +98,7 @@
                 <br>
                 <% if(sessionUser) { %>
                     <% if (sessionUser._id == c.userId) { %>
-                        <a class="editComment" data-comment-id="<%= c._id%>" data-comment-body="<%= c.commentBody %>">Edit</a>
+                        <a href="/comment/<%= c._id %>/edit?<%= recipe._id %>">Edit</a>
                     <% } %>
                 <% } %>
                 <br><br>
