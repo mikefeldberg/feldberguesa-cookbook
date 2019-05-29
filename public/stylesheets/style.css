@@ -105,6 +105,6 @@ fieldset {
   margin-bottom: 20px;
 }
 
-#deleteRecipeConfirmDialogue {
+.deleteConfirmDialogue {
   color: red;
 }

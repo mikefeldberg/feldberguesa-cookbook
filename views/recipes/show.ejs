@@ -9,14 +9,19 @@
 <p> <%= recipe.heroImage %> </p>
 
 <h1><%= recipe.name %></h1>
-<h1><%= recipe._id %></h1>
 
 <% if (sessionUser) { %> 
     <% if (sessionUser._id == recipe.userId) { %>
         <div class="recipeEditContainer">
             <form action="/recipes/<%= recipe._id %>/edit"><button type="submit">Edit</button></form>
             <button id="deleteRecipe">Delete</button>
-            <span hidden id="deleteRecipeConfirm"><p id="deleteRecipeConfirmDialogue">Are you sure?</p><button id="deleteRecipeCancel">Cancel</button><form method="POST" action="/recipes/<%= recipe._id %>?_method=DELETE"><button type="submit">Confirm Delete</button></form></span>
+            <span hidden id="deleteRecipeConfirm">
+                <p class="deleteConfirmDialogue">Are you sure?</p>
+                <button id="deleteRecipeCancel">Nevermind</button>
+                <form method="POST" action="/recipes/<%= recipe._id %>?_method=DELETE">
+                    <button type="submit">Confirm Delete</button>
+                </form>
+            </span>
         </div>
     <% } %>
 <% } %>
@@ -85,7 +90,7 @@
     <% if (comments) { %>
         <% comments.forEach(function(c) { %>
             <div class="commentContainer">
-                <span class="addedBy"><a href="/users/<%= c.userId %>"> <%= c.addedBy %></a> </span><span class="addedOn"> on <%= c.createdAt %></span>
+                <span class="addedBy"><a href="/users/<%= c.userId %>"><%= c.addedBy %></a></span><span class="addedOn"> on <%= c.createdAt %></span>
                 <p class="userRating"> <%= "★".repeat(c.rating) %> </p> 
                 <p class="commentBody"> <%= c.commentBody %> </p>
                 <br>
@@ -95,8 +100,14 @@
                     <% if (sessionUser._id == c.userId) { %>
                         <div class="commentEditContainer">
                             <a href="/comment/<%= c._id %>/edit?<%= recipe._id %>"><button>Edit</button></a>
-                            <button id="deleteComment">Delete</button>
-                            <span hidden id="deleteCommentConfirm"><p id="deleteCommentConfirmDialogue">Are you sure?</p><button id="deleteCommentCancel">Cancel</button><form method="POST" action="/comments/<%= c._id %>?_method=DELETE"><button type="submit">Confirm Delete</button></form></span>
+                            <button class="deleteComment">Delete</button>
+                            <span hidden class="deleteCommentConfirm">
+                                <p class="deleteConfirmDialogue">Are you sure?</p>
+                                <button class="deleteCommentCancel">Nevermind</button>
+                                <form method="POST" action="/comments/<%= c._id %>?_method=DELETE">
+                                    <button type="submit">Confirm Delete</button>
+                                </form>
+                            </span>
                         </div>
                     <% } %>
                 <% } %>

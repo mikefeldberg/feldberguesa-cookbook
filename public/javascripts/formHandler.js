@@ -52,14 +52,14 @@ $("#deleteRecipeCancel").click(function() {
     $('#deleteRecipe').removeAttr("hidden");
 });
 
-$("#deleteComment").click(function() {
+$(".deleteComment").click(function() {
     $(this).attr("hidden", "");
-    $('#deleteCommentConfirm').removeAttr("hidden");
+    $(this).parent().children().removeAttr("hidden");
 });
 
-$("#deleteCommentCancel").click(function() {
-    $('#deleteCommentConfirm').attr("hidden", "");
-    $('#deleteComment').removeAttr("hidden");
+$(".deleteCommentCancel").click(function() {
+    $('.deleteCommentConfirm').attr("hidden", "");
+    $('.deleteComment').removeAttr("hidden");
 });
 
 $(".editComment").click(function() {

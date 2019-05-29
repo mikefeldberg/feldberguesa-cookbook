@@ -52,7 +52,11 @@ function update(req, res) {
 }
 
 function deleteComment(req, res) {
-    console.log(req.body)
-    console.log('BODY ABOVE, PARAMS BELOW')
-    console.log(req.params)
+    console.log(req)
+    // Comment.findById(req.params.id).exec(function (err, comment) {
+    //     comment.deletedAt = new Date();
+    //     comment.save(function (err) {
+            res.redirect('/recipes');
+    //     });
+    // });
 }
