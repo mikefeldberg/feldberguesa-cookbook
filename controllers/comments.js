@@ -32,7 +32,7 @@ var comment = new Comment;
 
 function edit(req, res) {
     var recipeId = Object.keys(req.query)[0];
-
+    console.log(req)
     Comment.findById(req.params.id).exec(function(err, comment) {
         User.findById(req.user._id).exec(function(err, sessionUser) {
             res.render(`comments/edit`, { comment, sessionUser, recipeId });

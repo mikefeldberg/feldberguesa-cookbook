@@ -8,6 +8,9 @@
         <%- include ../partials/starRating.ejs %>
         <textarea name="comment" rows="4" cols="50"><%= comment.commentBody %></textarea><br>
         <button type="submit">Update Comment</button>
-        <button type="button">Cancel</button>
     </form>
+    <form action="/recipes/<%= recipeId %>">
+        <button type="submit">Cancel</button>
+    </form>
+    
 </div> 

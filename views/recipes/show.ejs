@@ -9,19 +9,14 @@
 <p> <%= recipe.heroImage %> </p>
 
 <h1><%= recipe.name %></h1>
+<h1><%= recipe._id %></h1>
 
 <% if (sessionUser) { %> 
     <% if (sessionUser._id == recipe.userId) { %>
-        <div class="">
+        <div class="recipeEditContainer">
             <form action="/recipes/<%= recipe._id %>/edit"><button type="submit">Edit</button></form>
             <button id="deleteRecipe">Delete</button>
-            
             <span hidden id="deleteRecipeConfirm"><p id="deleteRecipeConfirmDialogue">Are you sure?</p><button id="deleteRecipeCancel">Cancel</button><form method="POST" action="/recipes/<%= recipe._id %>?_method=DELETE"><button type="submit">Confirm Delete</button></form></span>
-            
-            
-
-            <!-- <form action="/recipes/<%= recipe._id %>/edit"><button type="submit">Edit</button></form>
-            <form method="POST" action="/recipes/<%= recipe._id %>?_method=DELETE"><button type="submit">Delete</button></form> -->
         </div>
     <% } %>
 <% } %>
@@ -54,7 +49,6 @@
 <% if (recipe.timeWait) { %><p><strong>Wait Time:</strong> <%= recipe.timeWait %></p><% } %>
 <% if (recipe.timeTotal) { %><p><strong>Total Time:</strong> <%= recipe.timeTotal %></p><% } %>
 <% if (recipe.servings) { %><p><strong>Servings Yield:</strong> <%= recipe.servings %></p><% } %>
-<!-- <% if (recipe.categories) { %><p><strong>Categories:</strong> <%= recipe.categories %></p><% } %> -->
 
 <h2>Ingredients</h2>
 
@@ -97,8 +91,13 @@
                 <br>
                 <br>
                 <% if(sessionUser) { %>
+
                     <% if (sessionUser._id == c.userId) { %>
-                        <a href="/comment/<%= c._id %>/edit?<%= recipe._id %>">Edit</a>
+                        <div class="commentEditContainer">
+                            <a href="/comment/<%= c._id %>/edit?<%= recipe._id %>"><button>Edit</button></a>
+                            <button id="deleteComment">Delete</button>
+                            <span hidden id="deleteCommentConfirm"><p id="deleteCommentConfirmDialogue">Are you sure?</p><button id="deleteCommentCancel">Cancel</button><form method="POST" action="/comments/<%= c._id %>?_method=DELETE"><button type="submit">Confirm Delete</button></form></span>
+                        </div>
                     <% } %>
                 <% } %>
                 <br><br>
