@@ -44,6 +44,7 @@ function update(req, res) {
     var recipeId = req.query._recipeId;
     Comment.findById(req.params.id).exec(function(err, comment) {
         comment.commentBody = req.body.comment;
+        comment.rating = req.body.rated;
         comment.save(function(err) {
             res.redirect(`/recipes/${recipeId}`);
         });
