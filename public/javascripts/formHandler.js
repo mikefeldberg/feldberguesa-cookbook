@@ -22,6 +22,28 @@ $(".removeInstruction").click(function() {
     $(this).parent().remove();
 });
 
+$(".addEditIngredient").click(function() {
+    $(".ingredientRow > p:first-child").clone(true).insertBefore(".ingredientRow > p:last-child");
+    console.log('add')
+    return false;
+});
+
+$(".removeEditIngredient").click(function() {
+    console.log('remove')
+    $(this).parent().remove();
+});
+
+$(".addEditInstruction").click(function() {
+    $(".instructionRow > p:first-child").clone(true).insertBefore(".instructionRow > p:last-child");
+    console.log('add')
+    return false;
+});
+
+$(".removeEditInstruction").click(function() {
+    console.log('remove')
+    $(this).parent().remove();
+});
+
 $(".editComment").click(function() {
     
     // ----------------------------------------THIS WORKS----------------------------------------
