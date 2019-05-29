@@ -5,7 +5,7 @@
 <%- include ../partials/header.ejs %>
 <h1>Edit Your Recipe</h1>
 
-<form action="/recipes" method="POST">
+<form action="/recipes/<%= recipe._id %>?_method=PUT" method="POST">
 
     <fieldset>
 

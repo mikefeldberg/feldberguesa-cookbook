@@ -117,11 +117,13 @@ function update(req, res) {
         var ingredientName = req.body.ingredient;
         var ingredientPrep = req.body.preparation;
         var ingredients = [];
+        var ingredients = [];
         for (var i = 0; i < ingredientQty.length; i++) {
-            var ingredient = [];
-            ingredient.push(ingredientQty[i]);
-            ingredient.push(ingredientName[i]);
-            ingredient.push(ingredientPrep[i]);
+            var ingredient = {
+                qty: ingredientQty[i],
+                name: ingredientName[i],
+                prep: ingredientPrep[i],
+            };
             ingredients.push(ingredient);
         }
 

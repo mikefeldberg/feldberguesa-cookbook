@@ -41,13 +41,13 @@
 
 <p> <%= recipe.description %> </p>
 
-<p><strong>Skill Level:</strong> <%= recipe.skillLevel %></p>
-<p><strong>Prep Time:</strong> <%= recipe.timePrep %></p>
-<p><strong>Cook Time:</strong> <%= recipe.timeCook %></p>
-<p><strong>Wait Time:</strong> <%= recipe.timeWait %></p>
-<p><strong>Total Time:</strong> <%= recipe.timeTotal %></p>
-<p><strong>Servings Yield:</strong> <%= recipe.servings %></p>
-<p><strong>Categories:</strong> <%= recipe.categories %></p>
+<% if (recipe.skillLevel) { %><p><strong>Skill Level:</strong> <%= recipe.skillLevel %></p><% } %>
+<% if (recipe.timePrep) { %><p><strong>Prep Time:</strong> <%= recipe.timePrep %></p><% } %>
+<% if (recipe.timeCook) { %><p><strong>Cook Time:</strong> <%= recipe.timeCook %></p><% } %>
+<% if (recipe.timeWait) { %><p><strong>Wait Time:</strong> <%= recipe.timeWait %></p><% } %>
+<% if (recipe.timeTotal) { %><p><strong>Total Time:</strong> <%= recipe.timeTotal %></p><% } %>
+<% if (recipe.servings) { %><p><strong>Servings Yield:</strong> <%= recipe.servings %></p><% } %>
+<!-- <% if (recipe.categories) { %><p><strong>Categories:</strong> <%= recipe.categories %></p><% } %> -->
 
 <h2>Ingredients</h2>
 
