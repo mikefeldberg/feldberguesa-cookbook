@@ -42,6 +42,16 @@ $(".removeEditInstruction").click(function() {
     $(this).parent().remove();
 });
 
+$("#deleteRecipe").click(function() {
+    $(this).attr("hidden", "");
+    $('#deleteRecipeConfirm').removeAttr("hidden");
+});
+
+$("#deleteRecipeCancel").click(function() {
+    $('#deleteRecipeConfirm').attr("hidden", "");
+    $('#deleteRecipe').removeAttr("hidden");
+});
+
 $(".editComment").click(function() {
     
     // ----------------------------------------THIS WORKS----------------------------------------

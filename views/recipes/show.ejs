@@ -14,7 +14,14 @@
     <% if (sessionUser._id == recipe.userId) { %>
         <div class="">
             <form action="/recipes/<%= recipe._id %>/edit"><button type="submit">Edit</button></form>
-            <form method="POST" action="/recipes/<%= recipe._id %>?_method=DELETE"><button type="submit">Delete</button></form>
+            <button id="deleteRecipe">Delete</button>
+            
+            <span hidden id="deleteRecipeConfirm"><p id="deleteRecipeConfirmDialogue">Are you sure?</p><button id="deleteRecipeCancel">Cancel</button><form method="POST" action="/recipes/<%= recipe._id %>?_method=DELETE"><button type="submit">Confirm Delete</button></form></span>
+            
+            
+
+            <!-- <form action="/recipes/<%= recipe._id %>/edit"><button type="submit">Edit</button></form>
+            <form method="POST" action="/recipes/<%= recipe._id %>?_method=DELETE"><button type="submit">Delete</button></form> -->
         </div>
     <% } %>
 <% } %>

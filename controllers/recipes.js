@@ -17,6 +17,7 @@ module.exports = {
 
 function index(req, res) {
     Recipe.find({}).exec(function (err, recipes) {
+        console.log(recipes);
         res.render('recipes/index', { recipes, sessionUser: req.user });
     });
 }
@@ -76,20 +77,26 @@ function create(req, res) {
     var ingredientQty = req.body.qty;
     var ingredientName = req.body.ingredient;
     var ingredientPrep = req.body.preparation;
+    
     var ingredients = [];
+    
     for (var i = 0; i < ingredientQty.length; i++) {
         var ingredient = {
             qty: ingredientQty[i],
             name: ingredientName[i],
             prep: ingredientPrep[i],
         };
-        ingredients.push(ingredient);
+        if (ingredient.qty) {ingredients.push(ingredient)};
     }
+    recipe.ingredients = ingredients;
 
     recipe.name = req.body.name;
     recipe.description = req.body.description;
-    recipe.ingredients = ingredients;
-    recipe.instructions = req.body.instruction;
+
+    for (var i = 0; i < req.body.instructions.length; i++) {
+        if (req.body.instructions[i]) {recipe.instructions.push(req.body.instructions[i])};
+    }
+
     recipe.skillLevel = req.body.skillLevel;
     recipe.timePrep = req.body.timePrep;
     recipe.timeWait = req.body.timeWait;
@@ -117,20 +124,25 @@ function update(req, res) {
         var ingredientName = req.body.ingredient;
         var ingredientPrep = req.body.preparation;
         var ingredients = [];
-        var ingredients = [];
         for (var i = 0; i < ingredientQty.length; i++) {
             var ingredient = {
                 qty: ingredientQty[i],
                 name: ingredientName[i],
                 prep: ingredientPrep[i],
             };
-            ingredients.push(ingredient);
+            if (ingredient.qty) {ingredients.push(ingredient)};
         }
 
         recipe.name = req.body.name;
         recipe.description = req.body.description;
         recipe.ingredients = ingredients;
-        recipe.instructions = req.body.instruction;
+        
+        recipe.instructions = []
+
+        for (var i = 0; i < req.body.instructions.length; i++) {
+            if (req.body.instructions[i]) {recipe.instructions.push(req.body.instructions[i])};
+        }
+
         recipe.skillLevel = req.body.skillLevel;
         recipe.timePrep = req.body.timePrep;
         recipe.timeWait = req.body.timeWait;
@@ -175,69 +187,3 @@ function unfavorite(req, res) {
         res.redirect(`/recipes/${req.params.id}`);
     });
 }
-
-// function show(req, res) {
-
-// var querydb = new Promise(function(resolve, reject) {
-//     setTimeout(function() {
-//         resolve('foo');
-//     }, 300);
-// });
-
-// var recipe, comments, author;
-
-//     Promise.resolve().then(function () {
-//         return Recipe.findById(req.params.id);
-//     }).then(function (recipex) {
-//         console.log('recipex')
-//         console.log(recipex)
-//         recipe = recipex
-//         console.log('recipe')
-//         console.log(recipe)
-
-//         return Comment.find({ recipeId: recipe._id, deletedAt: null });
-//     }).then(function (commentsx) {
-//         console.log('commentsx')
-//         console.log(commentsx)
-//         comments = commentsx
-//         return User.findById(recipe.userId);
-//     }).then(function (authorx) {
-//         author = authorx
-//         return Favorite.find({ recipeId: recipe._id, deletedAt: null });
-//     }).catch(function (err) {
-//         console.log(err);
-//     });
-
-//     console.log('recipex')
-    // console.log(recipex)
-//     console.log('recipe')
-    // console.log(recipe)
-
-    // var recipeRatingNew
-    // var recipeAllRatings = [];
-    // var recipeAllRatingsSum = 0;
-    // var recipeRatingsCount = 0;
-
-    // comments.forEach(function (c) {
-    //     if (c.rating) recipeAllRatings.push(c.rating)
-    // });
-
-    // for (var i = 0; i < recipeAllRatings.length; i++) {
-    //     recipeAllRatingsSum += recipeAllRatings[i];
-    // }
-    // recipeRatingNew = recipeAllRatingsSum / recipeAllRatings.length;
-
-    // recipe.rating = recipeRatingNew
-    // recipe.save();
-
-    // var favoriteCount = favorites.length;
-    // var isFavorited = false;
-
-    // if (req.user) {
-    //     Favorite.findOne({ userId: req.user._id, recipeId: req.params.id, deletedAt: null }, function (err, favorite) {
-    //         res.render('recipes/show', { recipe, sessionUser: req.user, comments, isFavorited: !!favorite, favoriteCount });
-    //     });
-    // } else {
-    //     res.render('recipes/show', { recipe, sessionUser: req.user, comments, isFavorited, favoriteCount });
-    // }
-// }

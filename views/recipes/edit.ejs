@@ -66,12 +66,12 @@
             <div class="instructionRow">
             <% for (var i = 0; i < recipe.instructions.length; i++) { %>
                 <p>
-                    <input name="instruction" type="text" value="<%= recipe.instructions[i] %>">
+                    <input name="instructions" type="text" value="<%= recipe.instructions[i] %>">
                     <button type="button" class="removeEditInstruction"> - </button>
                 </p>
             <% } %>
                 <p>
-                    <input name="instruction" type="text">
+                    <input name="instructions" type="text">
                     <button type="button" class="removeEditInstruction"> - </button>
                 </p>
             </div>
