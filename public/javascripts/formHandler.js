@@ -23,7 +23,7 @@ $(".removeInstruction").click(function() {
 });
 
 $(".addEditIngredient").click(function() {
-    $(".ingredientRow > p:first-child").clone(true).insertBefore(".ingredientRow > p:last-child");
+    $(".ingredientRow > p:last-child").clone(true).insertAfter(".ingredientRow > p:last-child");
     console.log('add')
     return false;
 });
@@ -34,7 +34,7 @@ $(".removeEditIngredient").click(function() {
 });
 
 $(".addEditInstruction").click(function() {
-    $(".instructionRow > p:first-child").clone(true).insertBefore(".instructionRow > p:last-child");
+    $(".instructionRow > p:last-child").clone(true).insertAfter(".instructionRow > p:last-child");
     console.log('add')
     return false;
 });
