@@ -23,12 +23,22 @@ $(".removeInstruction").click(function() {
 });
 
 $(".editComment").click(function() {
-    // console.log($(this).data("comment-id"))
-    console.log($(this))
-    console.log($(this).parent())
-    console.log($(this).parent().parent())
+    
+    // ----------------------------------------THIS WORKS----------------------------------------
+    // $(this).parent().parent().prev().children(0).children(6).val($(this).data("comment-body"))
+    // ----------------------------------------THIS WORKS----------------------------------------
 
-    $(this).parent().css("display", "none")
+    console.log($(this).parent().parent().prev())
+    // [""0""].children[""0""][6].form.childNodes[14].innerText
+    // console.log($(this).parent().parent().prev().children(0).children(6).childNodes())
+    // $(this).parent().parent().prev().children(0).children(6).val('GAH')
+    $(this).parent().parent().prev().children(0).children(6).val('Exit')
+
+    // $(this).parent().parent().prev().$("#addCommentForm").val($(this).data("comment-body"))
+
+    // $(this).parent().addClass("updating")
+    // $(this).parent().clone(true).insertBefore(".updating")
+
 
 });
 

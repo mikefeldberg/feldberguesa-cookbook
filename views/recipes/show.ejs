@@ -77,7 +77,7 @@
 <div class="commentForm">
     <form action="/recipes/<%= recipe._id %>/comment" method="POST">
         <%- include ../partials/starRating.ejs %>
-        <textarea name="comment" rows="4" cols="50" <% if (!sessionUser) { %> disabled="disabled" title="Please log in to leave a comment or review." <% } %> ></textarea><br>
+        <textarea id"addCommentForm" name="comment" rows="4" cols="50" <% if (!sessionUser) { %> disabled="disabled" title="Please log in to leave a comment or review." <% } %> ></textarea><br>
         <button type="submit" <% if (!sessionUser) { %> disabled="disabled" title="Please log in to leave a comment or review." <% } %> >Add Comment</button>
     </form>
 </div>
@@ -87,7 +87,7 @@
     <% if (comments) { %>
         <% comments.forEach(function(c) { %>
             <div class="commentContainer">
-                <span class="addedBy"><a href="/users/<%= c.userId %>"> <%= c.addedBy %> </a></span><span class="addedOn"> on <%= c.createdAt %></span>
+                <span class="addedBy"><a href="/users/<%= c.userId %>"> <%= c.addedBy %></a> </span><span class="addedOn"> on <%= c.createdAt %></span>
                 <p class="userRating"> <%= "★".repeat(c.rating) %> </p> 
                 <p class="commentBody"> <%= c.commentBody %> </p>
                 <br>

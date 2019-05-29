@@ -41,6 +41,10 @@ fieldset {
   border-radius: 12px;
 }
 
+.updating {
+  display: none;
+}
+
 .hero {
   width: 100vw;
   height: 5vh;
