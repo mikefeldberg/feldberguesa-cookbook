@@ -55,7 +55,7 @@ function show(req, res) {
                             res.render('recipes/show', { recipe, author, sessionUser: req.user, comments, ratingsCount: recipeAllRatings.length, favoriteCount, isFavorited: !!favorite,  });
                         });
                     } else {
-                        res.render('recipes/show', { recipe, author, sessionUser: req.user, comments, ratingsCount: recipeAllRatings.length, favoriteCount, isFavorited,  });
+                        res.render('recipes/show', { recipe, author, sessionUser: null, comments, ratingsCount: recipeAllRatings.length, favoriteCount, isFavorited,  });
                     }
                 });
             });

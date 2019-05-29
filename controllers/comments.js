@@ -14,7 +14,7 @@ function create(req, res) {
         
     });
     
-    var comment = new Comment;
+var comment = new Comment;
     comment.rating = req.body.rated
     comment.commentBody = req.body.comment;
     comment.userId = req.user._id;

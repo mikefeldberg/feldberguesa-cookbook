@@ -10,12 +10,13 @@
 
 <h2> <%= recipe.name %> </h2>
 
-
-<% if (sessionUser._id == recipe.userId) { %>
-<div class="">
-    <form action="/recipes/<%= recipe._id %>/edit"><button type="submit">Edit</button></form>
-    <form method="POST" action="/recipes/<%= recipe._id %>?_method=DELETE"><button type="submit">Delete</button></form>
-</div>
+<% if (sessionUser) { %> 
+    <% if (sessionUser._id == recipe.userId) { %>
+        <div class="">
+            <form action="/recipes/<%= recipe._id %>/edit"><button type="submit">Edit</button></form>
+            <form method="POST" action="/recipes/<%= recipe._id %>?_method=DELETE"><button type="submit">Delete</button></form>
+        </div>
+    <% } %>
 <% } %>
 
 <span class="userRating"> <%= "★".repeat(recipe.rating) %></span> <span><%= ratingsCount %> Ratings</span><br>
@@ -93,7 +94,7 @@
                 <br>
                 <% if(sessionUser) { %>
                     <% if (sessionUser._id == c.userId) { %>
-                        <a class="editComment" commentId="<%= c._id%>" commentBody="<%= c.commentBody %>">Edit</a>
+                        <a class="editComment" data-comment-id="<%= c._id%>" data-comment-body="<%= c.commentBody %>">Edit</a>
                     <% } %>
                 <% } %>
                 <br><br>

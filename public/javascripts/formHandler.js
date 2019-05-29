@@ -23,9 +23,23 @@ $(".removeInstruction").click(function() {
 });
 
 $(".editComment").click(function() {
-    var deets = $(this);
-    console.log(deets);
+    // console.log($(this).data("comment-id"))
+    console.log($(this))
+    console.log($(this).parent())
+    console.log($(this).parent().parent())
+
+    $(this).parent().css("display", "none")
+
 });
+
+// function() {
+//     var rating = $(".rating");
+//     var handle = $(".toggle-rating");
+//     handle.onchange = function(event) {
+//         rating.classList.toggle('rating', handle.checked);
+//     };
+// };
+
 
 // function editComment(un, pw) {
 //     var form = document.createElement("form");
@@ -47,41 +61,3 @@ $(".editComment").click(function() {
 
 //     form.submit();
 // }
-
-$("#star1").click(function() {
-    console.log('1 star');
-    console.log(this.id)
-
-});
-
-$("#star2").click(function() {
-    console.log('2 star');
-    console.log(this.id)
-});
-
-$("#star3").click(function() {
-    console.log('3 star');
-    console.log(this.id)
-});
-
-$("#star4").click(function() {
-    console.log('4 star');
-    console.log(this.id)
-});
-
-$("#star5").click(function() {
-    console.log('5 star');
-    console.log(this.id)
-});
-
-function recordRating() {
-
-}
-
-// function() {
-//     var rating = $(".rating");
-//     var handle = $(".toggle-rating");
-//     handle.onchange = function(event) {
-//         rating.classList.toggle('rating', handle.checked);
-//     };
-// };
