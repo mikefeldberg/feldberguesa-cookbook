@@ -85,7 +85,7 @@ function show(req, res, next) {
 //                 favorites = dbFavorites;
 //             }).then(function() {
 //                 res.render('users/show', { comments, recipes, favorites, user, sessionUser });
-//                 process.exit();
+//                 // process.exit();
 //             });
 //         } else {
 //             Promise.resolve().then(function() {
@@ -106,7 +106,7 @@ function show(req, res, next) {
 //                 favorites = dbFavorites;
 //             }).then(function() {
 //                 res.render('users/show', { comments, recipes, favorites, user, sessionUser });
-//                 process.exit();
+//                 // process.exit();
 //             });
 //         }
 //     } else {
@@ -125,7 +125,7 @@ function show(req, res, next) {
 //             favorites = dbFavorites;
 //         }).then(function() {
 //             res.render('users/show', { comments, recipes, favorites, user, sessionUser: null });
-//             process.exit();
+//             // process.exit();
 //         });
 //     }
 // }
