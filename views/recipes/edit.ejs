@@ -19,7 +19,7 @@
 
         <legend>Recipe Description</legend>
 
-        <input name="description" type="text" value="<%= recipe.description %>">
+        <textarea rows="5" cols="33" name="description" type="text"><%= recipe.description %></textarea>
 
     </fieldset>
 
@@ -37,21 +37,23 @@
         </thead>
 
         <div class="ingredientsSection">
+            <div class="ingredientRow">
             <% for (var i = 0; i < recipe.ingredients.length; i++) { %>
-                <div class="ingredientRow">
-                    <p>
-                        <input name="qty" type="text" value="<%= recipe.ingredients[i].qty %>">
-                        <input name="ingredient" type="text" value="<%= recipe.ingredients[i].name %>">
-                        <input name="preparation" type="text" value="<%= recipe.ingredients[i].prep %>">
-                        <button type="button" class="removeEditIngredient"> - </button>
-                    </p>
-                </div>
+                <p>
+                    <input name="qty" type="text" value="<%= recipe.ingredients[i].qty %>">
+                    <input name="ingredient" type="text" value="<%= recipe.ingredients[i].name %>">
+                    <input name="preparation" type="text" value="<%= recipe.ingredients[i].prep %>">
+                    <button type="button" class="removeEditIngredient"> - </button>
+                </p>
             <% }; %>
-                <div>
-                    <p>
-                        <button type="button" class="addEditIngredient"> + </button>
-                    </p>
-                </div>
+                <p>
+                    <input name="qty" type="text">
+                    <input name="ingredient" type="text">
+                    <input name="preparation" type="text">
+                    <button type="button" class="removeEditIngredient"> - </button>
+                </p>
+            </div>
+            <button type="button" class="addEditIngredient"> + </button>
         </div>
 
     </fieldset>
@@ -61,19 +63,19 @@
         <legend>Instructions</legend>
 
         <div class="instructionsSection">
-            <% for (var i = 0; i < recipe.instructions.length; i++) { %>
             <div class="instructionRow">
+            <% for (var i = 0; i < recipe.instructions.length; i++) { %>
                 <p>
                     <input name="instruction" type="text" value="<%= recipe.instructions[i] %>">
                     <button type="button" class="removeEditInstruction"> - </button>
                 </p>
-            </div>
             <% } %>
-            <div>
                 <p>
-                    <button type="button" class="addEditInstruction"> + </button>
+                    <input name="instruction" type="text">
+                    <button type="button" class="removeEditInstruction"> - </button>
                 </p>
             </div>
+            <button type="button" class="addEditInstruction"> + </button>
         </div>
 
     </fieldset>

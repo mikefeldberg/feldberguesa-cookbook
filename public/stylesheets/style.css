@@ -83,10 +83,12 @@ fieldset {
   text-align: center;
 }
 
+.ingredientsSection .ingredientRow:first-child p:first-child .removeIngredient,
 .ingredientsSection .ingredientRow:first-child p:first-child .removeEditIngredient {
   display: none;
 } 
 
+.instructionsSection .instructionRow:first-child p:first-child .removeInstruction,
 .instructionsSection .instructionRow:first-child p:first-child .removeEditInstruction {
   display: none;
 } 
