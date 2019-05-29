@@ -41,6 +41,10 @@ fieldset {
   border-radius: 12px;
 }
 
+.removeIngredient, .addIngredient, .removeInstruction, .addInstruction {
+  border-radius: 50%
+}
+
 .updating {
   display: none;
 }

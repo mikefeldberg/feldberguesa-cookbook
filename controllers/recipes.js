@@ -78,10 +78,11 @@ function create(req, res) {
     var ingredientPrep = req.body.preparation;
     var ingredients = [];
     for (var i = 0; i < ingredientQty.length; i++) {
-        var ingredient = [];
-        ingredient.push(ingredientQty[i]);
-        ingredient.push(ingredientName[i]);
-        ingredient.push(ingredientPrep[i]);
+        var ingredient = {
+            qty: ingredientQty[i],
+            name: ingredientName[i],
+            prep: ingredientPrep[i],
+        };
         ingredients.push(ingredient);
     }
 

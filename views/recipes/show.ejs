@@ -19,8 +19,11 @@
     <% } %>
 <% } %>
 
-<span class="userRating"> <%= "★".repeat(recipe.rating) %></span> <span><%= ratingsCount %> Ratings</span><br>
-
+<% if (recipe.rating > 0) { %>
+    <span class="userRating"> <%= "★".repeat(recipe.rating) %></span> <span>(<%= ratingsCount %>)</span><br>
+<% } else { %>
+    <span class="userRating"> <%= "☆".repeat(5) %></span> <span>(<%= 0 %>)</span><br>
+<% } %>
 
 <% if (isFavorited) { %>
     <form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite?_method=DELETE"><button type="submit">UnFav</button></form>
@@ -28,25 +31,15 @@
     <form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite"><button type="submit" <% if (!sessionUser) { %> disabled="disabled" title="Please log in to leave a comment or review." <% } %> >Fav</button></form>
 <% } %>
 
-<!-- refactor below to ternary -->
-
 <% if (favoriteCount > 0) { %>
-    <p>Favorited <%= favoriteCount %>
-    <% if (favoriteCount > 1) { %>
-        times
-    <% } else { %>
-        time
-    <% } %>
+    <p>(<%= favoriteCount %>)</p>
 <% } %>
-
-<!-- refactor below to ternary -->
 
 <p>Added by: <a href="/users/<%= recipe.userId %>"><%= recipe.addedBy %></a> on <%= recipe.createdAt %> </p>
 
 <h2>Summary</h2>
 
 <p> <%= recipe.description %> </p>
-
 
 <p>Skill Level: <%= recipe.skillLevel %> </p>
 <p>Prep Time: <%= recipe.timePrep %> </p>
@@ -60,7 +53,7 @@
 
 <% recipe.ingredients.forEach(function(ingredient) { %>
 <div>
-    <p>- <%= ingredient[0] %> <%= ingredient[1] %>, <%= ingredient[2] %> </p>
+    <p>- <%= ingredient.qty %> <%= ingredient.name %> <%= ingredient.prep %> </p>
 </div>
 <% }); %>
 
@@ -71,8 +64,6 @@
     <p> <%= instruction %></p>
 </div>
 <% }); %>
-
-
 
 <div class="commentForm">
     <form action="/recipes/<%= recipe._id %>/comment" method="POST">
