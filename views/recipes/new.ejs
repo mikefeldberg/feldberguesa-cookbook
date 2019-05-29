@@ -3,7 +3,7 @@
 <script defer src="../javascripts/formHandler.js"></script>
 
 <%- include ../partials/header.ejs %>
-<div class="pageTitle">Add a Recipe</div>
+<h1>Add a Recipe</h1>
 
 <form action="/recipes" method="POST">
 
@@ -19,7 +19,7 @@
 
         <legend>Recipe Description</legend>
         
-        <input name="description" type="text">
+        <textarea rows="5" cols="33" name="description" type="text"></textarea>
 
     </fieldset>
 
@@ -76,9 +76,9 @@
 
         <p>Skill Level: </p>
         <select name="skillLevel" type="text">
-            <option value="1">Easy</option>
-            <option value="2">Medium</option>
-            <option value="3">Difficult</option>
+            <option value="Easy">Easy</option>
+            <option value="Medium">Medium</option>
+            <option value="Difficult">Difficult</option>
         </select>
 
         <p>Sevings: </p><input name="servings" type="number">

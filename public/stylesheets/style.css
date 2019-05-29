@@ -32,6 +32,28 @@ header * {
   display: inline;
 }
 
+h1, h2, h3, h4 {
+  font-family: 'Fugaz One', cursive;
+  font-weight: 300;
+  letter-spacing: .5px;
+}
+
+h1 {
+  font-size: 3.2em;
+}
+
+h2 {
+  font-size: 2em;
+}
+
+ol > li {
+  
+}
+
+ul > li {
+
+}
+
 form span {
   border: solid black 1px;
   border-radius: 50%;
@@ -45,18 +67,9 @@ fieldset {
   border-radius: 50%
 }
 
-.updating {
-  display: none;
-}
-
 .hero {
   width: 100vw;
   height: 5vh;
-}
-
-.pageTitle {
-  font-size: 28px;
-  color: rgb(18, 22, 57);
 }
 
 .row {
@@ -84,5 +97,9 @@ fieldset {
 
 .userRating {
   color: gold;
+}
+
+.mb {
+  margin-bottom: 20px;
 }
 
