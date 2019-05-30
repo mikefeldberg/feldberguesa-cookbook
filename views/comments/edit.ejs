@@ -9,7 +9,7 @@
 <div class="editCommentForm">
     <form action="/comment/<%= comment._id %>?_recipeId=<%= recipeId %>&_method=PUT" method="POST">
         <%- include ../partials/starRating.ejs %>
-        <textarea name="comment" rows="4" cols="50"><%= comment.commentBody %></textarea><br>
+        <textarea name="comment" rows="4" cols="50"><%= comment.commentBody %></textarea>
         <button type="submit">Update Comment</button>
     </form>
     <form action="/recipes/<%= recipeId %>">

@@ -13,6 +13,7 @@ header {
   display: flex;
   align-items: center;
   box-shadow: 0 0 25px 0 black;
+  z-index: 2;
 }
 
 header li {
@@ -36,40 +37,41 @@ h1, h2, h3, h4 {
   font-family: 'Fugaz One', cursive;
   font-weight: 300;
   letter-spacing: .5px;
+  margin-block-start: 0.8em;
+  margin-block-end: .4em;
 }
 
 h1 {
   font-size: 3.2em;
+  margin-bottom: 0;
 }
 
 h2 {
   font-size: 2em;
 }
 
-ol > li {
-  
+ol > .recipeRow {
+  margin: 10px 0;
 }
 
-ul > li {
-
+ul > .recipeRow {
+  margin: 5px 0;
 }
-
-/* form span {
-  border: solid black 1px;
-  border-radius: 50%;
-} */
 
 fieldset {
   border-radius: 12px;
 }
 
-.removeIngredient, .addIngredient, .removeInstruction, .addInstruction {
-  border-radius: 50%
+p {
+  margin: 10px 0;
 }
 
-.hero {
-  width: 100vw;
-  height: 5vh;
+.rowButton {
+  border-radius: 50%;
+  height: 20px;
+  width: 20px;
+  padding: 0;
+  text-align: center;
 }
 
 .row {
@@ -94,17 +96,63 @@ fieldset {
 } 
 
 .commentContainer {
-  border: 1px solid black
+  border: 1px solid #aaa;
+  border-radius: 10px;
+  padding: 8px;
 }
 
 .userRating {
   color: gold;
+  font-size: 18px;
 }
 
 .mb {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .deleteConfirmDialogue {
   color: red;
+}
+
+input:disabled {
+  opacity: .5;
+}
+
+.favoriteButton {
+  width: 18px;
+}
+
+.creditAttribution > a {
+  text-decoration: none;
+}
+
+.favoriteContainer, .ratingContainer {
+  display: inline;
+}
+
+.creditAttribution {
+  font-size: 10px;
+  color: #aaa;
+}
+
+.customList {
+  list-style: none;
+  padding-left: 0;
+}
+.customList li {
+  position: relative;
+  padding-left: 20px;
+  left: 18px;
+}
+.customList li:before {
+  content: '';
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  background-image: url("../images/chef_hat.svg");
+  background-size: cover;
+  background-position: center;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }

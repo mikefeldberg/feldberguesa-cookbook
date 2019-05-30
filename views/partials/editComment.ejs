@@ -1,6 +1,6 @@
 <div class="commentForm">
     <form action="/comment/<%= comment._id %>?_recipeId=<%= recipeId %>&_method=PUT" method="POST">
-        <textarea name="comment" rows="4" cols="50" value="<%= comment.commentBody %>"></textarea><br>
+        <textarea name="comment" rows="4" cols="50" value="<%= comment.commentBody %>"></textarea>
         <button type="submit">Update Comment</button>
     </form>
 </div>
