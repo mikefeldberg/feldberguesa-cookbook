@@ -114,7 +114,10 @@
                         <a href="/users/<%= c.userId %>">
                             <%= c.addedBy %>
                         </a>
-                        <%= c.createdAt %>
+                        <%= getFormattedCommentDate(c.createdAt) %>
+                        <% if (c.updatedAt) { %>
+                            (Edited on <%= getFormattedCommentDate(c.updatedAt) %>)
+                        <% } %>
                     </div>
                     <p class="commenterRating mb10"> <%= "★".repeat(c.rating) %> </p> 
                 </div>
@@ -143,15 +146,16 @@
     <% } %>
 </div>
 
-
 <div class="creditAttribution">UL chef-hat icon made by <a href="https://www.flaticon.com/authors/smalllikeart" title="smalllikeart">smalllikeart</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
 
-<% function getFormattedDate(unparsedDate) { %>
+<% function getFormattedCommentDate(unparsedDate) { %>
     <% var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] %>
     <% var monthNumber = unparsedDate.getMonth(); %>
     <% var month = months[monthNumber]; %>
     <% var day = unparsedDate.getDate(); %>
     <% var year = unparsedDate.getFullYear(); %>
-    <% var displayDate = month + " " + day + ", " + year %>
+    <% var hour = unparsedDate.getHours(); %>
+    <% var minute = (unparsedDate.getMinutes() < 10 ? '0' : '') + unparsedDate.getMinutes() %>
+    <% var displayDate = month + " " + day + ", " + year + " at " + hour +":"+ minute %>
     <% return displayDate; %>
 <% } %>
