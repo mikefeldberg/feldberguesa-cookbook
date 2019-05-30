@@ -17,7 +17,6 @@ module.exports = {
 
 function index(req, res) {
     Recipe.find({}).exec(function (err, recipes) {
-        console.log(recipes);
         res.render('recipes/index', { recipes, sessionUser: req.user });
     });
 }
@@ -28,10 +27,6 @@ function show(req, res) {
     Recipe.findById(req.params.id).exec(function(err, recipe) {
         Comment.find({ recipeId: recipe._id, deletedAt: null }).exec(function(err, comments) {
             User.findById(recipe.userId).exec(function(err, author) {
-                console.log('author')
-                console.log(author)
-                console.log('req.user')
-                console.log(req.user)
                 Favorite.find({ recipeId: recipe._id, deletedAt: null }).exec(function(err, favorites) {
                     var recipeRatingNew
                     var recipeAllRatings = [];

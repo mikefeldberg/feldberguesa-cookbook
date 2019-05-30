@@ -10,21 +10,18 @@ module.exports = {
 };
 
 function create(req, res) {
-    Recipe.findById(req.params.id).exec(function(err, recipe) {
-        
-    });
-    
-var comment = new Comment;
+
+    var comment = new Comment;
     comment.rating = req.body.rated
     comment.commentBody = req.body.comment;
     comment.userId = req.user._id;
     comment.recipeId = req.params.id;
     comment.addedBy = req.user.name;
 
-    Recipe.findById(req.params.id).exec(function(err, recipe) {
-        recipe.rating 
+    Recipe.findById(req.params.id).exec(function (err, recipe) {
+        recipe.rating
         comment.addedTo = recipe.name;
-        comment.save(function(err) {
+        comment.save(function (err) {
             res.redirect(`/recipes/${req.params.id}`);
         });
     });
@@ -32,9 +29,8 @@ var comment = new Comment;
 
 function edit(req, res) {
     var recipeId = Object.keys(req.query)[0];
-    console.log(req)
-    Comment.findById(req.params.id).exec(function(err, comment) {
-        User.findById(req.user._id).exec(function(err, sessionUser) {
+    Comment.findById(req.params.id).exec(function (err, comment) {
+        User.findById(req.user._id).exec(function (err, sessionUser) {
             res.render(`comments/edit`, { comment, sessionUser, recipeId });
         });
     });
@@ -42,10 +38,10 @@ function edit(req, res) {
 
 function update(req, res) {
     var recipeId = req.query._recipeId;
-    Comment.findById(req.params.id).exec(function(err, comment) {
+    Comment.findById(req.params.id).exec(function (err, comment) {
         comment.commentBody = req.body.comment;
         comment.rating = req.body.rated;
-        comment.save(function(err) {
+        comment.save(function (err) {
             res.redirect(`/recipes/${recipeId}`);
         });
     });
@@ -53,10 +49,10 @@ function update(req, res) {
 
 function deleteComment(req, res) {
     console.log(req)
-    // Comment.findById(req.params.id).exec(function (err, comment) {
-    //     comment.deletedAt = new Date();
-    //     comment.save(function (err) {
-            res.redirect('/recipes');
-    //     });
-    // });
+    Comment.findById(req.params.id).exec(function (err, comment) {
+        comment.deletedAt = new Date();
+        comment.save(function (err) {
+            res.redirect('/recipes/');
+        });
+    });
 }

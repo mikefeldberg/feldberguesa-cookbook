@@ -104,7 +104,7 @@
                             <span hidden class="deleteCommentConfirm">
                                 <p class="deleteConfirmDialogue">Are you sure?</p>
                                 <button class="deleteCommentCancel">Nevermind</button>
-                                <form method="POST" action="/comments/<%= c._id %>?_method=DELETE">
+                                <form method="POST" action="/comment/<%= c._id %>?_method=DELETE">
                                     <button type="submit">Confirm Delete</button>
                                 </form>
                             </span>

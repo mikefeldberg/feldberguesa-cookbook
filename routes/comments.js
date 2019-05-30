@@ -4,6 +4,6 @@ var commentsController = require('../controllers/comments');
 
 router.get('/:id/edit', commentsController.edit);
 router.put('/:id', commentsController.update);
-router.delete('/:id/delete', commentsController.delete);
+router.delete('/:id', commentsController.delete);
 
 module.exports = router;
