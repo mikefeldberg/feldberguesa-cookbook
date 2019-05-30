@@ -63,16 +63,14 @@ function newRecipe(req, res) {
     res.render('recipes/new', { sessionUser: req.user });
 }
 
-function newTest(req, res) {
-    res.render('recipes/newTest', { sessionUser: req.user });
-}
-
 function create(req, res) {
+    console.log(req.body)
     var recipe = new Recipe;
+    
     var ingredientQty = req.body.qty;
     var ingredientName = req.body.ingredient;
     var ingredientPrep = req.body.preparation;
-    
+        
     var ingredients = [];
     
     for (var i = 0; i < ingredientQty.length; i++) {
@@ -84,14 +82,14 @@ function create(req, res) {
         if (ingredient.qty) {ingredients.push(ingredient)};
     }
     recipe.ingredients = ingredients;
-
+    
     recipe.name = req.body.name;
     recipe.description = req.body.description;
-
+    
     for (var i = 0; i < req.body.instructions.length; i++) {
         if (req.body.instructions[i]) {recipe.instructions.push(req.body.instructions[i])};
     }
-
+    
     recipe.skillLevel = req.body.skillLevel;
     recipe.timePrep = req.body.timePrep;
     recipe.timeWait = req.body.timeWait;
@@ -101,7 +99,8 @@ function create(req, res) {
     recipe.imageUrl = req.body.imageUrl;
     recipe.addedBy = req.user.name;
     recipe.userId = req.user._id;
-
+    
+    console.log('line 113')
     recipe.save(function (err) {
         res.redirect('/recipes');
     });

@@ -80,7 +80,7 @@
 <div class="addCommentForm">
     <form action="/recipes/<%= recipe._id %>/comment" method="POST">
         <%- include ../partials/starRating.ejs %>
-        <textarea id"addCommentForm" name="comment" rows="4" cols="50" <% if (!sessionUser) { %> disabled="disabled" title="Please log in to leave a comment or review." <% } %> ></textarea><br>
+        <textarea id"addCommentForm" name="comment" rows="4" cols="50" <% if (!sessionUser) { %> disabled="disabled" title="Please log in to leave a comment or review." <% } %> ><% if (!sessionUser) { %> Please log in to leave a comment or review. <% } %></textarea><br>
         <button type="submit" <% if (!sessionUser) { %> disabled="disabled" title="Please log in to leave a comment or review." <% } %> >Add Comment</button>
     </form>
 </div>
