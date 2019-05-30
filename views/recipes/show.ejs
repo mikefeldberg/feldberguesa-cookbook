@@ -107,9 +107,9 @@
     <% if (comments) { %>
         <% comments.forEach(function(c) { %>
             <div class="commentContainer mb10">
-                <span class="addedBy"><a href="/users/<%= c.userId %>"><%= c.addedBy %></a></span><span class="addedOn"> on <%= c.createdAt %></span>
-                <p class="userRating"> <%= "★".repeat(c.rating) %> </p> 
-                <p class="commentBody"> <%= c.commentBody %> </p>
+                <p class="byLine mb5"><a href="/users/<%= c.userId %>"><%= c.addedBy %></a>  <%= c.createdAt %></p>
+                <p class="userRating mb10"> <%= "★".repeat(c.rating) %> </p> 
+                <p class="commentBody mb10"> <%= c.commentBody %> </p>
                 <% if(sessionUser) { %>
 
                     <% if (sessionUser._id == c.userId) { %>
