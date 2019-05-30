@@ -14,6 +14,7 @@ var recipeSchema = new mongoose.Schema({
     categories: Array,
     heroImageUrl: String,
     imageUrl: String,
+    images: [String],
     stars: Number,
     addedBy: String,
     userId: String,
