@@ -8,53 +8,55 @@
 
 <h1><%= recipe.name %></h1>
 
-<p>Added by: <a href="/users/<%= recipe.userId %>"><%= recipe.addedBy %></a> on <%= recipe.createdAt %> </p>
-
-<img id="recipeImage" src="<%= recipe.imageUrl %>">
+<p class="byLine">Added by: <a href="/users/<%= recipe.userId %>"><%= recipe.addedBy %></a> on <%= recipe.createdAt %> <% if (recipe.updatedAt) { %> (Updated <%= recipe.updatedAt %>) <% } %></p>
 
 <% if (sessionUser) { %> 
     <% if (sessionUser._id == recipe.userId) { %>
-        <div class="recipeEditContainer">
-            <form action="/recipes/<%= recipe._id %>/edit"><button type="submit">Edit</button></form>
-            <button id="deleteRecipe">Delete</button>
-            <span hidden id="deleteRecipeConfirm">
-                <p class="deleteConfirmDialogue">Are you sure?</p>
-                <button id="deleteRecipeCancel">Nevermind</button>
-                <form method="POST" action="/recipes/<%= recipe._id %>?_method=DELETE">
-                    <button type="submit">Confirm Delete</button>
-                </form>
-            </span>
+        <div class="recipeEditContainer mb10">
+            <form action="/recipes/<%= recipe._id %>/edit"><button class="mr5" type="submit">Edit</button></form>
+            <button class="openDeleteRecipeDialogue">Delete</button>
+            <div hidden class="deleteRecipeDialogueContainer">
+                <span class="deleteRecipeDialogue">
+                    <p class="recipeDeleteQuestion mr5 ml10">Are you sure?</p>
+                    <button class="deleteRecipeCancel mr5">Nevermind</button>
+                    <form method="POST" action="/recipes/<%= recipe._id %>?_method=DELETE">
+                        <button class="deleteRecipe" type="submit">Confirm Delete</button>
+                    </form>
+                </span>
+            </div>
         </div>
     <% } %>
 <% } %>
 
 <div class="favoriteAndRatingContainer">
-    <div class="ratingContainer">
+    <div class="ratingContainer mr10">
         <% if (recipe.rating > 0) { %>
-            <span class="userRating"> <%= "★".repeat(recipe.rating) %></span> <span>(<%= ratingsCount %>)</span>
+            <span class="userRating vaMiddle"> <%= "★".repeat(recipe.rating) %></span> <span class="ml5">(<%= ratingsCount %>)</span>
         <% } else { %>
-            <span class="userRating"> <%= "☆".repeat(5) %></span> <span>(<%= 0 %>)</span>
+            <span class="userRating vaMiddle"> <%= "☆".repeat(5) %></span> <span class="ml5">(<%= 0 %>)</span>
         <% } %>
     </div>
-    
-    <div class="favoriteContainer">
+    |
+    <div class="favoriteContainer ml10">
         <% if (isFavorited) { %>
-            <form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite?_method=DELETE"><input class="favoriteButton" type="image" name="submit" src="../images/icon_heart.svg" border="0" alt="Submit" /></form>
+            <form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite?_method=DELETE"><input class="favoriteButton vaMiddle" type="image" name="submit" src="../images/icon_heart.svg" border="0" alt="Submit" /></form>
             <!-- <form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite?_method=DELETE"><button class="favoriteButton" type="submit">UnFav</button></form> -->
         <% } else { %>
-            <form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite"><input class="favoriteButton" type="image" name="submit" src="../images/icon_heart_add.png" border="0" alt="Submit" / <% if (!sessionUser) { %> disabled="disabled" title="Please log in to add to favorites." <% } %> ></form>
+            <form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite"><input class="favoriteButton vaMiddle" type="image" name="submit" src="../images/icon_heart_add.png" border="0" alt="Submit" / <% if (!sessionUser) { %> disabled="disabled" title="Please log in to add to favorites." <% } %> ></form>
         <% } %>
         
         <% if (favoriteCount > 0) { %>
-            <p>(<%= favoriteCount %>)</p>
+            <p class="ml5">(<%= favoriteCount %>)</p>
         <% } %>
     </div>
 </div>
 
+<img id="recipeImage" src="<%= recipe.imageUrl %>">
+
 <h2>Summary</h2>
 
-<p> <%= recipe.description %> </p>
 
+<% if (recipe.description) { %><p class="mb10"><%= recipe.description %></p><% } %>
 <% if (recipe.skillLevel) { %><p><strong>Skill Level:</strong> <%= recipe.skillLevel %></p><% } %>
 <% if (recipe.timePrep) { %><p><strong>Prep Time:</strong> <%= recipe.timePrep %></p><% } %>
 <% if (recipe.timeCook) { %><p><strong>Cook Time:</strong> <%= recipe.timeCook %></p><% } %>
@@ -95,30 +97,32 @@
         <% } %>
 
         <textarea id"addCommentForm" name="comment" rows="4" cols="50" <% if (!sessionUser) { %> disabled="disabled" title="Please log in to leave a comment or review." <% } %> ><% if (!sessionUser) { %> Please log in to leave a comment or review. <% } %></textarea>
-        <button class="mb" type="submit" <% if (!sessionUser) { %> disabled="disabled" title="Please log in to leave a comment or review." <% } %> >Add Comment</button>
+        <button class="mb10" type="submit" <% if (!sessionUser) { %> disabled="disabled" title="Please log in to leave a comment or review." <% } %> >Add Comment</button>
     </form>
 </div>
 
 <div class="commentSection">
     <% if (comments) { %>
         <% comments.forEach(function(c) { %>
-            <div class="commentContainer mb">
+            <div class="commentContainer mb10">
                 <span class="addedBy"><a href="/users/<%= c.userId %>"><%= c.addedBy %></a></span><span class="addedOn"> on <%= c.createdAt %></span>
                 <p class="userRating"> <%= "★".repeat(c.rating) %> </p> 
                 <p class="commentBody"> <%= c.commentBody %> </p>
                 <% if(sessionUser) { %>
 
                     <% if (sessionUser._id == c.userId) { %>
-                        <div class="commentEditContainer">
-                            <a href="/comment/<%= c._id %>/edit?<%= recipe._id %>"><button>Edit</button></a>
-                            <button class="deleteComment">Delete</button>
-                            <span hidden class="deleteCommentConfirm">
-                                <p class="deleteConfirmDialogue">Are you sure?</p>
-                                <button class="deleteCommentCancel">Nevermind</button>
-                                <form method="POST" action="/comment/<%= c._id %>?_method=DELETE">
-                                    <button type="submit">Confirm Delete</button>
-                                </form>
-                            </span>
+                        <div class="commentEditContainer mb10">
+                            <a href="/comment/<%= c._id %>/edit?<%= recipe._id %>"><button class="mr5" type="submit">Edit</button></a>
+                            <button class="openDeleteCommentDialogue">Delete</button>
+                            <div hidden class="deleteCommentDialogueContainer">
+                                <span class="deleteCommentDialogue">
+                                    <p class="commentDeleteQuestion mr5 ml10">Are you sure?</p>
+                                    <button class="deleteCommentCancel mr5">Nevermind</button>
+                                    <form method="POST" action="/comment/<%= c._id %>?_method=DELETE">
+                                        <button class="deleteComment" type="submit">Confirm Delete</button>
+                                    </form>
+                                </span>
+                            </div>
                         </div>
                     <% } %>
                 <% } %>
@@ -126,4 +130,8 @@
         <% }); %>
     <% } %>
 </div>
+
+
+
+
 <div class="creditAttribution">UL chef-hat icon made by <a href="https://www.flaticon.com/authors/smalllikeart" title="smalllikeart">smalllikeart</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>

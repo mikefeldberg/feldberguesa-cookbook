@@ -64,6 +64,12 @@ fieldset {
 
 p {
   margin: 10px 0;
+  margin-block-end: 0;
+  margin-block-start: 0;
+}
+
+form {
+  margin-block-end: 0;
 }
 
 .rowButton {
@@ -106,11 +112,7 @@ p {
   font-size: 18px;
 }
 
-.mb {
-  margin-bottom: 10px;
-}
-
-.deleteConfirmDialogue {
+.recipeDeleteQuestion, .commentDeleteQuestion {
   color: red;
 }
 
@@ -126,8 +128,47 @@ input:disabled {
   text-decoration: none;
 }
 
+.favoriteAndRatingContainer, .recipeEditContainer, .deleteRecipeDialogue, .commentEditContainer, .deleteCommentDialogue {
+  display: flex;
+  align-items: center;
+  height: 25px;
+}
+
+.byLine {
+  text-decoration: none;
+  height: 25px;
+  color: #777;
+}
+
 .favoriteContainer, .ratingContainer {
-  display: inline;
+  display: flex;
+  align-items: center;
+}
+
+
+
+.vaMiddle {
+  vertical-align: super;
+}
+
+.ml10 {
+  margin-left: 10px;
+}
+
+.mr10 {
+  margin-right: 10px;
+}
+
+.ml5 {
+  margin-left: 5px;
+}
+
+.mr5 {
+  margin-right: 5px;
+}
+
+.mb10 {
+  margin-bottom: 10px;
 }
 
 .creditAttribution {
@@ -156,3 +197,4 @@ input:disabled {
   top: 50%;
   transform: translateY(-50%);
 }
+

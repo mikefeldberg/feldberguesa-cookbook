@@ -40,20 +40,43 @@ $(".removeEditInstruction").click(function() {
     return false;
 });
 
-$("#deleteRecipe").click(function() {
-    $(this).attr("hidden", "");
-    $('#deleteRecipeConfirm').removeAttr("hidden");
+$(".openDeleteRecipeDialogue").click(function() {
+    $(this).attr("disabled", "disabled"); /* This is good */
+    $('.deleteRecipeDialogueContainer').removeAttr("hidden"); 
 });
 
-$("#deleteRecipeCancel").click(function() {
-    $('#deleteRecipeConfirm').attr("hidden", "");
-    $('#deleteRecipe').removeAttr("hidden");
+$(".deleteRecipeCancel").click(function() {
+    $('.deleteRecipeDialogueContainer').attr("hidden", "");
+    $('.openDeleteRecipeDialogue').removeAttr("disabled"); /* This is good */
 });
 
-$(".deleteComment").click(function() {
-    $(this).attr("hidden", "");
+// $(".openDeleteCommentDialogue").click(function() {
+//     $(this).attr("disabled", "disabled"); /* This is good */
+//     $('.deleteCommentDialogueContainer').removeAttr("hidden"); 
+// });
+
+$(".deleteCommentCancel").click(function() {
+    $('.deleteCommentDialogueContainer').attr("hidden", "");
+    $('.openDeleteCommentDialogue').removeAttr("disabled"); /* This is good */
+});
+
+$(".openDeleteCommentDialogue").click(function() {
+    $(this).attr("disabled", "disabled");
     $(this).parent().children().removeAttr("hidden");
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 $(".deleteCommentCancel").click(function() {
     $('.deleteCommentConfirm').attr("hidden", "");
