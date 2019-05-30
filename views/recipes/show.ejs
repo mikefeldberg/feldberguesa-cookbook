@@ -81,46 +81,58 @@
 <h2>Instructions</h2>
 
 <ol>
-<% recipe.instructions.forEach(function(instruction) { %>
-    <li class="recipeRow"><%= instruction %></li>
-<% }); %>
-</ol>
+    <% recipe.instructions.forEach(function(instruction) { %>
+        <li class="recipeRow"><%= instruction %></li>
+        <% }); %>
+    </ol>
+    
+    <h2>Comments</h2>
+    
+    <div class="addCommentForm">
+        <form action="/recipes/<%= recipe._id %>/comment" method="POST">
+            <% if (sessionUser) { %>
+                <%- include ../partials/starRating.ejs %>
+                <% } else { %>
+                    <%- include ../partials/starRatingDisabled.ejs %>
+                    <% } %>
+                    
+                    <textarea id"addCommentForm" name="comment" rows="4" cols="50" <% if (!sessionUser) { %> disabled="disabled" title="Please log in to leave a comment or review." <% } %> ><% if (!sessionUser) { %> Please log in to leave a comment or review. <% } %></textarea>
+                    <button class="mb10" type="submit" <% if (!sessionUser) { %> disabled="disabled" title="Please log in to leave a comment or review." <% } %> >Add Comment</button>
+                </form>
+            </div>
+            
+            
+            
+            <div class="commentSection">
+                <% if (comments) { %>
+                    <% comments.forEach(function(c) { %>
 
-<h2>Comments</h2>
+                        <% var commentAuthorId = c.userId %>
+                        <% var commentAuthor = users.filter(obj => { return obj._id == commentAuthorId }) %>
+                        <% var avatar = commentAuthor[0].avatar %>
 
-<div class="addCommentForm">
-    <form action="/recipes/<%= recipe._id %>/comment" method="POST">
-        <% if (sessionUser) { %>
-            <%- include ../partials/starRating.ejs %>
-        <% } else { %>
-            <%- include ../partials/starRatingDisabled.ejs %>
-        <% } %>
-
-        <textarea id"addCommentForm" name="comment" rows="4" cols="50" <% if (!sessionUser) { %> disabled="disabled" title="Please log in to leave a comment or review." <% } %> ><% if (!sessionUser) { %> Please log in to leave a comment or review. <% } %></textarea>
-        <button class="mb10" type="submit" <% if (!sessionUser) { %> disabled="disabled" title="Please log in to leave a comment or review." <% } %> >Add Comment</button>
-    </form>
-</div>
-
-
-
-<div class="commentSection">
-    <% if (comments) { %>
-        <% comments.forEach(function(c) { %>
-            <div class="commentContainer mb10">
-                <p class="byLine mb5"><a href="/users/<%= c.userId %>"><%= c.addedBy %></a>  <%= c.createdAt %></p>
-                <p class="userRating mb10"> <%= "★".repeat(c.rating) %> </p> 
-                <p class="commentBody mb10"> <%= c.commentBody %> </p>
-                <% if(sessionUser) { %>
-
-                    <% if (sessionUser._id == c.userId) { %>
-                        <div class="commentEditContainer mb10">
-                            <a href="/comment/<%= c._id %>/edit?<%= recipe._id %>"><button class="mr5" type="submit">Edit</button></a>
-                            <button class="openDeleteCommentDialogue">Delete</button>
-                            <div hidden class="deleteCommentDialogueContainer">
-                                <span class="deleteCommentDialogue">
-                                    <p class="commentDeleteQuestion mr5 ml10">Are you sure?</p>
-                                    <button class="deleteCommentCancel mr5">Nevermind</button>
-                                    <form method="POST" action="/comment/<%= c._id %>?_method=DELETE">
+                        <div class="commentContainer mb10">
+                            <div class="byLine mb5">
+                                <img class="profilePicComment" src="<%= avatar %>">
+                                <a href="/users/<%= c.userId %>">
+                                    <%= c.addedBy %>
+                                </a>
+                                <%= c.createdAt %>
+                                <p class="userRating mb10"> <%= "★".repeat(c.rating) %> </p> 
+                            </div>
+                            
+                            <p class="commentBody mb10"> <%= c.commentBody %> </p>
+                            <% if(sessionUser) { %>
+                                
+                                <% if (sessionUser._id == c.userId) { %>
+                                    <div class="commentEditContainer">
+                                        <a href="/comment/<%= c._id %>/edit?<%= recipe._id %>"><button class="mr5" type="submit">Edit</button></a>
+                                        <button class="openDeleteCommentDialogue">Delete</button>
+                                        <div hidden class="deleteCommentDialogueContainer">
+                                            <span class="deleteCommentDialogue">
+                                                <p class="commentDeleteQuestion mr5 ml10">Are you sure?</p>
+                                                <button class="deleteCommentCancel mr5">Nevermind</button>
+                                                <form method="POST" action="/comment/<%= c._id %>?_method=DELETE">
                                         <button class="deleteComment" type="submit">Confirm Delete</button>
                                     </form>
                                 </span>
@@ -137,3 +149,14 @@
 
 
 <div class="creditAttribution">UL chef-hat icon made by <a href="https://www.flaticon.com/authors/smalllikeart" title="smalllikeart">smalllikeart</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
+
+<% function getFormattedDate(unparsedDate) { %>
+    <% var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] %>
+    <% var monthNumber = unparsedDate.getMonth(); %>
+    <% var month = months[monthNumber]; %>
+    <% var day = unparsedDate.getDate(); %>
+    <% var year = unparsedDate.getFullYear(); %>
+    <% var displayDate = month + " " + day + ", " + year %>
+    <% return displayDate; %>
+<% } %>

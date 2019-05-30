@@ -26,54 +26,58 @@ function index(req, res) {
 function show(req, res) {
     Recipe.findById(req.params.id).exec(function(err, recipe) {
         Comment.find({ recipeId: recipe._id, deletedAt: null }).exec(function(err, comments) {
-            User.findById(recipe.userId).exec(function(err, author) {
-                Favorite.find({ recipeId: recipe._id, deletedAt: null }).exec(function(err, favorites) {
+            User.find({}).exec(function(err, users) {    
+                User.findById(recipe.userId).exec(function(err, recipeAuthor) {
+                    Favorite.find({ recipeId: recipe._id, deletedAt: null }).exec(function(err, favorites) {
 
-                    function getFormattedDate(unparsedDate) {
-                        var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-                        var monthNumber = unparsedDate.getMonth();
-                        var month = months[monthNumber];
-                        var day = unparsedDate.getDate();
-                        var year = unparsedDate.getFullYear();
-                        var displayDate = month + " " + day + ", " + year
-                        return displayDate;
-                    }
+                        function getFormattedDate(unparsedDate) {
+                            var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+                            var monthNumber = unparsedDate.getMonth();
+                            var month = months[monthNumber];
+                            var day = unparsedDate.getDate();
+                            var year = unparsedDate.getFullYear();
+                            var displayDate = month + " " + day + ", " + year
+                            return displayDate;
+                        }
 
-                    var dateCreated = getFormattedDate(recipe.createdAt);
-                    var dateUpdated = null;
+                        var dateCreated = getFormattedDate(recipe.createdAt);
+                        var dateUpdated = null;
 
-                    console.log(dateCreated)
+                        console.log(dateCreated)
 
 
-                    if (recipe.updatedAt) {
-                        var dateUpdated = getFormattedDate(recipe.updatedAt);
-                    }
+                        if (recipe.updatedAt) {
+                            var dateUpdated = getFormattedDate(recipe.updatedAt);
+                        }
 
-                    var recipeRatingNew
-                    var recipeAllRatings = [];
-                    var recipeAllRatingsSum = 0;
+                        var recipeRatingNew
+                        var recipeAllRatings = [];
+                        var recipeAllRatingsSum = 0;
 
-                    comments.forEach(function(c) {
-                        if (c.rating) recipeAllRatings.push(c.rating)
-                    });
-
-                    for(var i = 0; i < recipeAllRatings.length; i++) {
-                        recipeAllRatingsSum += recipeAllRatings[i];
-                    }
-                    recipeRatingNew = recipeAllRatingsSum / recipeAllRatings.length;
-
-                    recipe.rating = recipeRatingNew
-                    recipe.save();
-
-                    var favoriteCount = favorites.length;
-                    var isFavorited = false;
-                    if (req.user) {
-                        Favorite.findOne({ userId: req.user._id, recipeId: req.params.id, deletedAt: null }, function(err, favorite) {
-                            res.render('recipes/show', { recipe, author, dateCreated, dateUpdated, sessionUser: req.user, comments, ratingsCount: recipeAllRatings.length, favoriteCount, isFavorited: !!favorite,  });
+                        comments.forEach(function(c) {
+                            if (c.rating) recipeAllRatings.push(c.rating)
                         });
-                    } else {
-                        res.render('recipes/show', { recipe, author, dateCreated, dateUpdated, sessionUser: null, comments, ratingsCount: recipeAllRatings.length, favoriteCount, isFavorited,  });
-                    }
+
+                        for(var i = 0; i < recipeAllRatings.length; i++) {
+                            recipeAllRatingsSum += recipeAllRatings[i];
+                        }
+                        recipeRatingNew = recipeAllRatingsSum / recipeAllRatings.length;
+
+                        recipe.rating = recipeRatingNew
+                        recipe.save();
+                        
+                        console.log(users);
+
+                        var favoriteCount = favorites.length;
+                        var isFavorited = false;
+                        if (req.user) {
+                            Favorite.findOne({ userId: req.user._id, recipeId: req.params.id, deletedAt: null }, function(err, favorite) {
+                                res.render('recipes/show', { recipe, users, recipeAuthor, dateCreated, dateUpdated, sessionUser: req.user, comments, ratingsCount: recipeAllRatings.length, favoriteCount, isFavorited: !!favorite,  });
+                            });
+                        } else {
+                            res.render('recipes/show', { recipe, users, recipeAuthor, dateCreated, dateUpdated, sessionUser: null, comments, ratingsCount: recipeAllRatings.length, favoriteCount, isFavorited,  });
+                        }
+                    });
                 });
             });
         });
