@@ -145,19 +145,20 @@ input:disabled {
   color: #777;
 }
 
-.byLineComment {
-  display: flex;
-  align-items: center;
+.commentByLineContainer {
+  display: grid;
+  grid-template-columns: 2;
+  grid-auto-rows: 2;
   text-decoration: none;
   color: #777;
 }
+
+
 
 .favoriteContainer, .ratingContainer {
   display: flex;
   align-items: center;
 }
-
-
 
 .vaMiddle {
   vertical-align: super;
