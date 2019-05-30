@@ -8,7 +8,7 @@
 
 <h1><%= recipe.name %></h1>
 
-<p class="byLine">Added by: <a href="/users/<%= recipe.userId %>"><%= recipe.addedBy %></a> on <%= recipe.createdAt %> <% if (recipe.updatedAt) { %> (Updated <%= recipe.updatedAt %>) <% } %></p>
+<p class="byLine">Added by <a href="/users/<%= recipe.userId %>"><%= recipe.addedBy %></a> on <%= dateCreated %> <% if (recipe.updatedAt) { %> (Updated <%= dateUpdated %>) <% } %></p>
 
 <% if (sessionUser) { %> 
     <% if (sessionUser._id == recipe.userId) { %>
@@ -100,6 +100,8 @@
         <button class="mb10" type="submit" <% if (!sessionUser) { %> disabled="disabled" title="Please log in to leave a comment or review." <% } %> >Add Comment</button>
     </form>
 </div>
+
+
 
 <div class="commentSection">
     <% if (comments) { %>
