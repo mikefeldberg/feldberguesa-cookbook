@@ -16,11 +16,6 @@ header {
   z-index: 2;
 }
 
-.profilePicComment {
-  width: 50px;
-  height: 50px;
-}
-
 header li {
   margin: 20px;
 }
@@ -77,6 +72,38 @@ form {
   margin-block-end: 0;
 }
 
+.recipeByline {
+  text-decoration: none;
+  height: 25px;
+  color: #777;
+}
+
+.favoriteButton {
+  width: 18px;
+}
+
+.customList {
+  list-style: none;
+  padding-left: 0;
+}
+.customList li {
+  position: relative;
+  padding-left: 20px;
+  left: 18px;
+}
+.customList li:before {
+  content: '';
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  background-image: url("../images/chef_hat.svg");
+  background-size: cover;
+  background-position: center;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 .rowButton {
   border-radius: 50%;
   height: 20px;
@@ -112,7 +139,7 @@ form {
   padding: 8px;
 }
 
-.userRating {
+.userRating, .commenterRating {
   color: gold;
   font-size: 18px;
 }
@@ -125,34 +152,53 @@ input:disabled {
   opacity: .5;
 }
 
-.favoriteButton {
-  width: 18px;
-}
-
-.creditAttribution > a {
-  text-decoration: none;
-}
-
 .favoriteAndRatingContainer, .recipeEditContainer, .deleteRecipeDialogue, .commentEditContainer, .deleteCommentDialogue {
   display: flex;
   align-items: center;
   height: 25px;
 }
 
-.byLineRecipe {
-  text-decoration: none;
-  height: 25px;
-  color: #777;
-}
-
-.commentByLineContainer {
+.commentBylineContainer {
   display: grid;
   grid-template-columns: 2;
   grid-auto-rows: 2;
   text-decoration: none;
   color: #777;
+  align-items: center;
+  justify-content: start;
+  grid-template-areas: 
+    "avatar, byline"
+    "avatar, rating";
 }
 
+.commenterAvatar {
+  grid-area: avatar;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  border-radius: 5px;
+  width: 50px;
+  height: 50px;
+}
+
+.commenterByline {
+  grid-area: byline;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  align-items: start;
+  justify-content: center;
+}
+
+.commenterRating {
+  grid-area: rating;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
 
 
 .favoriteContainer, .ratingContainer {
@@ -184,33 +230,11 @@ input:disabled {
   margin-bottom: 10px;
 }
 
+.creditAttribution > a {
+  text-decoration: none;
+}
+
 .creditAttribution {
   font-size: 10px;
   color: #aaa;
-}
-
-.customList {
-  list-style: none;
-  padding-left: 0;
-}
-.customList li {
-  position: relative;
-  padding-left: 20px;
-  left: 18px;
-}
-.customList li:before {
-  content: '';
-  width: 15px;
-  height: 15px;
-  position: absolute;
-  background-image: url("../images/chef_hat.svg");
-  background-size: cover;
-  background-position: center;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.profilePicComment {
-  border-radius: 5px;
 }
