@@ -1,7 +1,10 @@
 <%- include ../partials/header.ejs %>
 
-<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 <script defer src="../../public/javascripts/formHandler.js"></script>
+
+
 
 <div class="editCommentForm">
     <form action="/comment/<%= comment._id %>?_recipeId=<%= recipeId %>&_method=PUT" method="POST">
@@ -12,5 +15,11 @@
     <form action="/recipes/<%= recipeId %>">
         <button type="submit">Cancel</button>
     </form>
-    
-</div> 
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#star<%= comment.rating %>").trigger('click');
+    });
+</script>
