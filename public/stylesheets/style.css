@@ -318,8 +318,21 @@ input:disabled {
   margin-right: 5px;
 }
 
+.mb5 {
+  margin-bottom: 5px;
+}
+
 .mb10 {
   margin-bottom: 10px;
+}
+
+.mb15 {
+  margin-bottom: 15px;
+}
+
+.tbpad10 {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .thumb15 {
@@ -344,6 +357,34 @@ input:disabled {
 
 .buff50 {
   height: 50px;
+}
+
+.w100 {
+  width: 100px;
+}
+
+.w300 {
+  width: 300px;
+}
+
+.w710 {
+  width: 710px;
+}
+
+.h20 {
+  height: 20px;
+}
+
+.h25 {
+  height: 25px;
+}
+
+.ib {
+  display: inline-block;
+}
+
+.center {
+  text-align: center;
 }
 
 .creditAttribution {

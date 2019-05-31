@@ -7,50 +7,47 @@
 
 <form action="/recipes/<%= recipe._id %>?_method=PUT" method="POST">
 
-    <fieldset>
+    <fieldset class="mb10 tbpad10">
 
         <legend>Recipe Name</legend>
 
-        <input name="name" type="text" value="<%= recipe.name %>">
+        <input class="h25 w300" name="name" type="text" value="<%= recipe.name %>">
 
     </fieldset>
 
-    <fieldset>
+    <fieldset class="mb10 tbpad10">
 
         <legend>Recipe Description</legend>
 
-        <textarea rows="5" cols="33" name="description" type="text"><%= recipe.description %></textarea>
+        <textarea rows="5" cols="65" name="description" type="text"><%= recipe.description %></textarea>
 
     </fieldset>
 
-    <fieldset id="recipeInstructions">
+    <fieldset class="mb10 tbpad10" id="recipeInstructions">
 
         <legend>Ingredients</legend>
 
-        <thead>
-            <tr class="tableHeader">
-                <th></th>
-                <th>Qty</th>
-                <th>Ingredient</th>
-                <th>Preparation</th>
-            </tr>
-        </thead>
+        <div class="mb5">
+            <p class="w100 ib center">Qty</p>
+            <p class="w300 ib center">Ingredient</p>
+            <p class="w300 ib center">Preparation</p>
+        </div>
 
         <div class="ingredientsSection">
             <div class="ingredientRow">
             <% for (var i = 0; i < recipe.ingredients.length; i++) { %>
-                <p>
-                    <input name="qty" type="text" value="<%= recipe.ingredients[i].qty %>">
-                    <input name="ingredient" type="text" value="<%= recipe.ingredients[i].name %>">
-                    <input name="preparation" type="text" value="<%= recipe.ingredients[i].prep %>">
-                    <button type="button" class="removeEditIngredient"> - </button>
+                <p class="mb5">
+                    <input class="w100 h25" name="qty" type="text" value="<%= recipe.ingredients[i].qty %>">
+                    <input class="w300 h25" name="ingredient" type="text" value="<%= recipe.ingredients[i].name %>">
+                    <input class="w300 h25" name="preparation" type="text" value="<%= recipe.ingredients[i].prep %>">
+                    <button type="button" class="removeEditIngredient rowButton"> - </button>
                 </p>
             <% }; %>
                 <p>
-                    <input name="qty" type="text">
-                    <input name="ingredient" type="text">
-                    <input name="preparation" type="text">
-                    <button type="button" class="removeEditIngredient"> - </button>
+                    <input class="w100 h25" name="qty" type="text">
+                    <input class="w300 h25" name="ingredient" type="text">
+                    <input class="w300 h25" name="preparation" type="text">
+                    <button type="button" class="removeEditIngredient rowButton"> - </button>
                 </p>
             </div>
             <button type="button" class="addEditIngredient"> + </button>
@@ -58,7 +55,7 @@
 
     </fieldset>
 
-    <fieldset id="recipeInstructions">
+    <fieldset class="mb10 tbpad10" id="recipeInstructions">
 
         <legend>Instructions</legend>
 
@@ -66,39 +63,49 @@
             <div class="instructionRow">
             <% for (var i = 0; i < recipe.instructions.length; i++) { %>
                 <p>
-                    <input name="instructions" type="text" value="<%= recipe.instructions[i] %>">
-                    <button type="button" class="removeEditInstruction"> - </button>
+                    <input class="w710 h25" name="instructions" type="text" value="<%= recipe.instructions[i] %>">
+                    <button type="button" class="removeEditInstruction rowButton"> - </button>
                 </p>
             <% } %>
                 <p>
-                    <input name="instructions" type="text">
-                    <button type="button" class="removeEditInstruction"> - </button>
+                    <input class="w710 h25" name="instructions" type="text">
+                    <button type="button" class="removeEditInstruction rowButton"> - </button>
                 </p>
             </div>
-            <button type="button" class="addEditInstruction"> + </button>
+            <button type="button" class="addEditInstruction rowButton"> + </button>
         </div>
 
     </fieldset>
 
-    <fieldset id="recipeAdditionalInfo">
+    <fieldset class="mb10 tbpad10" id="recipeAdditionalInfo">
 
         <legend>Additional Info</legend>
 
-        <p>Skill Level: </p>
-        <select name="skillLevel" type="text">
+        <span>Skill Level: </span>
+        <select class="mb10" name="skillLevel" type="text">
             <option <% if (recipe.skillLevel == "Easy") { %> `option selected="selected" `<% } %> value="Easy">Easy
             </option>
             <option <% if (recipe.skillLevel == "Medium") { %> `option selected="selected" `<% } %> value="Medium">
                 Medium</option>
             <option <% if (recipe.skillLevel == "Difficult") { %> `option selected="selected" `<% } %>
                 value="Difficult">Difficult</option>
-        </select>
+        </select><br>
 
-        <p>Sevings: </p><input name="servings" type="number" value="<%= recipe.servings %>">
-        <p>Prep Time (minutes): </p><input name="timePrep" type="number" value="<%= recipe.timePrep %>">
-        <p>Cook Time (minutes): </p><input name="timeCook" type="number" value="<%= recipe.timeCook %>">
-        <p>Wait Time (minutes): </p><input name="timeWait" type="number" value="<%= recipe.timeWait %>">
-        <p>Upload an image</p><input name="imageUrl" type="text" value="<%= recipe.imageUrl %>">
+        <div class="mb10">
+            <span>Sevings: </span><input class="h25" required class="numberOnlyInput" name="servings" type="text" pattern="[0-9]" value="<%= recipe.servings %>"><br>
+        </div>
+        <div class="mb10">
+            <span>Prep Time (minutes): </span><input class="h25" required class="numberOnlyInput mb10" name="timePrep" type="text" pattern="[0-9]" value="<%= recipe.timePrep %>"><br>
+        </div>
+        <div class="mb10">
+            <span>Cook Time (minutes): </span><input class="h25" required class="numberOnlyInput mb10" name="timeCook" type="text" pattern="[0-9]" value="<%= recipe.timeCook %>"><br>
+        </div>
+        <div class="mb10">
+            <span>Wait Time (minutes): </span><input class="h25" required class="numberOnlyInput mb10" name="timeWait" type="text" pattern="[0-9]" value="<%= recipe.timeWait %>"><br>
+        </div>
+        <div class="mb10">
+            <span>Upload an image: </span><input class="h25" name="imageUrl" type="text" value="<%= recipe.imageUrl %>"><br>
+        </div>
 
     </fieldset>
 
