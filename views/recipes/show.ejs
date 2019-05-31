@@ -31,18 +31,18 @@
 <div class="favoriteAndRatingContainer">
     <div class="ratingContainer mr10">
         <% if (recipe.rating > 0) { %>
-            <span class="userRating vaMiddle"> <%= "★".repeat(recipe.rating) %></span> <span class="ml5">(<%= ratingsCount %>)</span>
+            <span class="userRating"> <%= "★".repeat(recipe.rating) %></span> <span class="ml5">(<%= ratingsCount %>)</span>
         <% } else { %>
-            <span class="userRating vaMiddle"> <%= "☆".repeat(5) %></span> <span class="ml5">(<%= 0 %>)</span>
+            <span class="userRating"> <%= "☆".repeat(5) %></span> <span class="ml5">(<%= 0 %>)</span>
         <% } %>
     </div>
     |
     <div class="favoriteContainer ml10">
         <% if (isFavorited) { %>
-            <form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite?_method=DELETE"><input class="favoriteButton vaMiddle" type="image" name="submit" src="../images/icon_heart.svg" border="0" alt="Submit" /></form>
+            <form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite?_method=DELETE"><input class="favoriteButton" type="image" name="submit" src="../images/icon_heart.svg" border="0" alt="Submit" /></form>
             <!-- <form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite?_method=DELETE"><button class="favoriteButton" type="submit">UnFav</button></form> -->
         <% } else { %>
-            <form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite"><input class="favoriteButton vaMiddle" type="image" name="submit" src="../images/icon_heart_add.png" border="0" alt="Submit" / <% if (!sessionUser) { %> disabled="disabled" title="Please log in to add to favorites." <% } %> ></form>
+            <form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite"><input class="favoriteButton" type="image" name="submit" src="../images/icon_heart_add.png" border="0" alt="Submit" / <% if (!sessionUser) { %> disabled="disabled" title="Please log in to add to favorites." <% } %> ></form>
         <% } %>
         
         <% if (favoriteCount > 0) { %>

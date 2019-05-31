@@ -19,7 +19,7 @@ function index(req, res) {
     User.find({}).exec(function(err, users){
         Recipe.find({}).exec(function(err, recipes) {
             Favorite.find({}).exec(function(err, favorites) {
-                res.render('recipes/index', { recipes, sessionUser: req.user });
+                res.render('recipes/index', { recipes, users, favorites, sessionUser: req.user });
             });
         });
     });

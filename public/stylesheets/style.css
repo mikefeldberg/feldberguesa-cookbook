@@ -302,10 +302,6 @@ input:disabled {
   color: #777
 }
 
-.vaMiddle {
-  vertical-align: super;
-}
-
 .ml10 {
   margin-left: 10px;
 }
@@ -324,6 +320,11 @@ input:disabled {
 
 .mb10 {
   margin-bottom: 10px;
+}
+
+.thumb15 {
+  width: 15px;
+  height: 15px;
 }
 
 .thumb50 {
