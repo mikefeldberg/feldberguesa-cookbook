@@ -137,14 +137,6 @@ form {
   color: #777;
 }
 
-.favoriteButton {
-  color: #da1a1a;
-  font-size: 1.5em;
-}
-
-.favoriteButton:hover {
-  color: red;
-}
 
 .unfavoriteButton {
   width: 18px;

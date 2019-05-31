@@ -49,13 +49,18 @@ function update(req, res) {
     var recipeId = req.query._recipeId;
     Comment.findById(req.params.id).exec(function (err, comment) {
         comment.commentBody = req.body.comment;
+        
+        incrementRating = !comment.rating && req.body.rated ? true : false;
+        
         comment.rating = req.body.rated;
         comment.save(function (err) {
             Recipe.findById(recipeId).exec(function(err, recipe) {
                 if (comment.rating) {
                     Comment.find({ recipeId: recipe._id, deletedAt: null }).exec(function(err, comments) {
                         recipe.rating = calculateRating(comments)
-                        recipe.ratingCount += 1
+                        if (incrementRating) {
+                            recipe.ratingCount += 1;
+                        }
                         recipe.save(function(err) {
                             res.redirect(`/recipes/${recipeId}`);
                         });

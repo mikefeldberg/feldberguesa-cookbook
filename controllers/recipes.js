@@ -75,26 +75,44 @@ function create(req, res) {
     var ingredientQty = req.body.qty;
     var ingredientName = req.body.ingredient;
     var ingredientPrep = req.body.preparation;
-        
     var ingredients = [];
-    
-    for (var i = 0; i < ingredientQty.length; i++) {
+
+    if (ingredientQty.length > 1) {
+        for (var i = 0; i < ingredientQty.length; i++) {
+            var ingredient = {
+                qty: ingredientQty[i],
+                name: ingredientName[i],
+                prep: ingredientPrep[i],
+            };   
+
+            if (ingredient.qty) {
+                ingredients.push(ingredient)
+            };
+        }
+
+    } else {
         var ingredient = {
-            qty: ingredientQty[i],
-            name: ingredientName[i],
-            prep: ingredientPrep[i],
+            qty: ingredientQty,
+            name: ingredientName,
+            prep: ingredientPrep,
         };
-        if (ingredient.qty) {ingredients.push(ingredient)};
+
+        if (ingredient.qty) {
+            ingredients.push(ingredient)
+        };
     }
+
     recipe.ingredients = ingredients;
     
     recipe.name = req.body.name;
     recipe.description = req.body.description;
-    
-    for (var i = 0; i < req.body.instructions.length; i++) {
-        if (req.body.instructions[i]) {recipe.instructions.push(req.body.instructions[i])};
+    if (req.body.instructions.length > 1) {
+        for (var i = 0; i < req.body.instructions.length; i++) {
+           if (req.body.instructions[i]) {recipe.instructions.push(req.body.instructions[i])};
+        }
+    } else {
+        if (req.body.instructions) {recipe.instructions.push(req.body.instructions)};
     }
-    
     recipe.skillLevel = req.body.skillLevel;
     recipe.timePrep = req.body.timePrep;
     recipe.timeWait = req.body.timeWait;
@@ -118,27 +136,49 @@ function edit(req, res) {
 
 function update(req, res) {
     Recipe.findById(req.params.id).exec(function (err, recipe) {
+
         var ingredientQty = req.body.qty;
         var ingredientName = req.body.ingredient;
         var ingredientPrep = req.body.preparation;
         var ingredients = [];
-        for (var i = 0; i < ingredientQty.length; i++) {
+        
+        if (ingredientQty.length > 1) {
+            for (var i = 0; i < ingredientQty.length; i++) {
+                var ingredient = {
+                    qty: ingredientQty[i],
+                    name: ingredientName[i],
+                    prep: ingredientPrep[i],
+                };   
+
+                if (ingredient.qty) {
+                    ingredients.push(ingredient)
+                };
+            }
+
+        } else {
             var ingredient = {
-                qty: ingredientQty[i],
-                name: ingredientName[i],
-                prep: ingredientPrep[i],
+                qty: ingredientQty,
+                name: ingredientName,
+                prep: ingredientPrep,
             };
-            if (ingredient.qty) {ingredients.push(ingredient)};
+
+            if (ingredient.qty) {
+                ingredients.push(ingredient)
+            };
         }
 
         recipe.name = req.body.name;
         recipe.description = req.body.description;
         recipe.ingredients = ingredients;
-        
+
         recipe.instructions = []
 
-        for (var i = 0; i < req.body.instructions.length; i++) {
-            if (req.body.instructions[i]) {recipe.instructions.push(req.body.instructions[i])};
+        if (req.body.instructions.length > 1) {
+            for (var i = 0; i < req.body.instructions.length; i++) {
+               if (req.body.instructions[i]) {recipe.instructions.push(req.body.instructions[i])};
+            }
+        } else {
+            if (req.body.instructions) {recipe.instructions.push(req.body.instructions)};
         }
 
         recipe.skillLevel = req.body.skillLevel;
