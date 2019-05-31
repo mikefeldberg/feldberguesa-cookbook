@@ -57,7 +57,7 @@
 <div id="recipeSummaryContainer">
 
     <% if (recipe.imageUrl) { %>
-        <img id="recipeImage" class="thumbNail thumb400" src="<%= recipe.imageUrl %>">
+        <img id="recipeImage" class="thumbnail thumb400" src="<%= recipe.imageUrl %>">
     <% } %>
 
 <h2>Summary</h2>
@@ -116,7 +116,7 @@
 
             <div class="commentContainer mb10">
                 <div class="commentBylineContainer mb10 noDecoration grey">
-                    <img class="commenterPhoto thumbNail mr10 thumb50" src="<%= avatar %>">
+                    <img class="commenterPhoto thumbnail mr10 thumb50" src="<%= avatar %>">
                     <div class="commenterByline">
                         <a href="/users/<%= c.userId %>">
                             <%= c.addedBy %>

@@ -14,7 +14,7 @@
 
 <div class="userGreetingContainer">
     <h2><%= greeting %></h2>
-    <img class="thumb100 userPhoto thumbNail rightAlign" src="<%= user.avatar %>">
+    <img class="thumb100 userPhoto thumbnail rightAlign" src="<%= user.avatar %>">
 </div>
 
 <% if (sessionUser && favorites) { %>
@@ -22,10 +22,15 @@
     <div class="userFavoritesContainer">
         <% favorites.forEach(function(f) { %>
             <% if (f.deletedAt == null) { %>
+                
+                <% var favoritedRecipeId = f.recipeId %>
+                <% var favoritedRecipe = recipes.filter(obj => { return obj._id == favoritedRecipeId }) %>
+                <% var recipeThumbnail = favoritedRecipe[0].imageUrl %>
 
-
-                <div class="favoriteContainer">
-                    <a href="/recipes/<%= f.recipeId %>"> <%= f.addedTo %> </a>
+                <div class="favoriteContainer mb10">
+                    <% if (recipeThumbnail) { %>
+                        <a href="/recipes/<%= f.recipeId %>"><img class="thumbnail thumb50 mr10" src="<%= recipeThumbnail %>"></a>
+                    <% } %>
                     <a href="/recipes/<%= f.recipeId %>"> <%= f.addedTo %> </a>
                 </div>
             <% } %>
@@ -37,13 +42,14 @@
     <h3><%= author %> Recipes</h3>
     <div class="userRecipeContainer">
         <% userRecipes.forEach(function(ur) { %>
-            <ul>
             <% if (ur.deletedAt == null) { %>
-                <li>
-                    <a href="/recipes/<%= ur._id %>"><%= ur.name %> </a>
-                </li>
+
+                <div class="recipeContainer mb10">
+                        <a href="/recipes/<%= ur._id %>"><img class="thumbnail thumb50 mr10" src="<%=  %>"></a>
+                        <a href="/recipes/<%= ur._id %>"><%= ur.name %> </a>
+                </div>
+                
             <% } %>
-            </ul>
         <% }) %>
     </div>
 <% } %>
@@ -69,20 +75,24 @@
     <% }) %>
 <% } %>
 
-
-
-<% if (!sessionUser && favorites) { %>
+<% if (favorites && !sessionUser) { %>
     <h3><%= author %> Favorites</h3>
     <div class="userFavoritesContainer">
-        <ul>
         <% favorites.forEach(function(f) { %>
             <% if (f.deletedAt == null) { %>
-                <li>
+                
+                <% var favoritedRecipeId = f.recipeId %>
+                <% var favoritedRecipe = recipes.filter(obj => { return obj._id == favoritedRecipeId }) %>
+                <% var recipeThumbnail = favoritedRecipe[0].imageUrl %>
+
+                <div class="favoriteContainer mb10">
+                    <% if (recipeThumbnail) { %>
+                        <a href="/recipes/<%= f.recipeId %>"><img class="thumbnail thumb50 mr10" src="<%= recipeThumbnail %>"></a>
+                    <% } %>
                     <a href="/recipes/<%= f.recipeId %>"> <%= f.addedTo %> </a>
-                </li>
+                </div>
             <% } %>
         <% }) %>
-        </ul>
     </div>
 <% } %>
 

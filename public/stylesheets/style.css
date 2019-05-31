@@ -248,7 +248,7 @@ input:disabled {
   grid-row-end: 3;
 }
 
-.thumbNail {
+.thumbnail {
   border-radius: 5px;
   border: 1px #ccc solid;
 }
