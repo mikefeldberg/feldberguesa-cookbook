@@ -167,13 +167,13 @@ input:disabled {
   grid-auto-rows: 2;
   align-items: center;
   justify-content: start;
-  grid-template-areas: 
+  /* grid-template-areas: 
     "commenterPic, commenterBy"
-    "commenterPic, commenterRate";
+    "commenterPic, commenterRate"; */
 }
 
 .commenterPhoto {
-  grid-area: commenterPic;
+  /* grid-area: commenterPic; */
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 1;
@@ -185,7 +185,7 @@ input:disabled {
 }
 
 .commenterByline {
-  grid-area: commenterBy;
+  /* grid-area: commenterBy; */
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 1;
@@ -195,7 +195,7 @@ input:disabled {
 }
 
 .commenterRating {
-  grid-area: commenterRate;
+  /* grid-area: commenterRate; */
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 2;
@@ -213,22 +213,21 @@ input:disabled {
   grid-auto-rows: 5;
   align-items: center;
   justify-content: start;
-  grid-template-areas: 
+  /* grid-template-areas: 
     "memberPic, memberName"
-    "memberPic, memberRecs";
+    "memberPic, memberRecs"; */
 }
 
 .memberPhoto {
-  grid-area: memberPic;
+  /* grid-area: memberPic; */
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 1;
   grid-row-end: 6;
-  border-radius: 5px;
 }
 
 .memberName {
-  grid-area: memberName;
+  /* grid-area: memberName; */
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 2;
@@ -238,11 +237,65 @@ input:disabled {
 }
 
 .memberRecipes {
-  grid-area: memberRecs;
+  /* grid-area: memberRecs; */
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 4;
   grid-row-end: 5;
+}
+
+.recipeContainer {
+  display: grid;
+  grid-template-columns: 3;
+  grid-auto-rows: 7;
+  align-items: center;
+  justify-content: start;
+  grid-template-areas: 
+    "recPic, "
+    "recPic, recName, recName"
+    "recPic, recAuth, recAuth"
+    "recPic, recRat, recFav"
+    "recPic, ";
+}
+
+.recipePhoto {
+  grid-area: recPic;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 8;
+}
+
+.recipeName {
+  grid-area: recName;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+.recipeAuthor {
+  grid-area: recAuth;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
+
+.recipeRating {
+  grid-area: recRat;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 6;
+  grid-row-end: 7;
+}
+
+.recipeFavorited {
+  grid-area: recFav;
+  grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 6;
+  grid-row-end: 7;
 }
 
 .grey {

@@ -16,8 +16,12 @@ module.exports = {
 };
 
 function index(req, res) {
-    Recipe.find({}).exec(function (err, recipes) {
-        res.render('recipes/index', { recipes, sessionUser: req.user });
+    User.find({}).exec(function(err, users){
+        Recipe.find({}).exec(function(err, recipes) {
+            Favorite.find({}).exec(function(err, favorites) {
+                res.render('recipes/index', { recipes, sessionUser: req.user });
+            });
+        });
     });
 }
 

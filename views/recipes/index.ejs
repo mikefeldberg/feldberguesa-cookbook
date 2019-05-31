@@ -1,16 +1,25 @@
 <%- include ../partials/header.ejs %> 
 
-<body>
-    <div>
-        <% recipes.forEach(function(r) { %>
-            <% if (r.deletedAt == null) {%>
-            <div class="recipeContainer">
-                <img class="recipeImage" src="<%= r.imageUrl %>">
-                <a class="recipeName" href="/recipes/<%= r._id %>"><%= r.name %></a>
-                <a class="recipeDescription"  href="/recipes/<%= r._id %>"><%= r.description %></a>
+
+<div id="allRecipesContainer">
+    <% recipes.forEach(function(r) { %>
+        <% if (r.deletedAt == null) {%>
+
+            <div class="recipeContainer mb10">
+                <div class="recipePhoto">
+                    <a class="noDecoration" href="/recipes/<%= r._id %>"><img class="thumbNail mr10 thumb100" src="<%= r.imageUrl %>"></a>
+                </div>
+                <div class="recipeName">
+                    <a class="noDecoration" href="/recipes/<%= r._id %>"><%= r.name %></a>
+                </div>
+                <div class="recipeAuthor">
+                    <a class="noDecoration" href="/users/">By USERNAME HERE</a>
+                </div>
+                <div class="recipeFavorited">FAVORITES HERE</div>
+                <div class="recipeRating">RATING HERE</div>
             </div>
-            <% } %>
-        <% }); %>
-    </div>
-</body>
-</html>
+        <% } %>
+    <% }); %>
+</div>
+
+
