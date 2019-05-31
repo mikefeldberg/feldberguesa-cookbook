@@ -1,15 +1,12 @@
 <%- include ../partials/header.ejs %> 
 
-<body>
-    <div>
-        <% users.forEach(function(u) { %>
-            <% if (u.deletedAt == null) {%>
-            <div class="membersContainer">
-                <img class="memberImage" src="<%= u.imageUrl %>">
-                <a class="memberName" href="/users/<%= u._id %>"><%= u.name %></a>
-            </div>
-            <% } %>
-        <% }); %>
-    </div>
-</body>
-</html>
+<div class="buff20">
+    <% users.forEach(function(u) { %>
+        <% if (u.deletedAt == null) {%>
+        <div class="membersContainer mb10">
+            <img class="userPhoto mr10" src="<%= u.avatar %>">
+            <a class="memberName" href="/users/<%= u._id %>"><%= u.name %></a>
+        </div>
+        <% } %>
+    <% }); %>
+</div>

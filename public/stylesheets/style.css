@@ -174,7 +174,7 @@ input:disabled {
   color: #777
 }
 
-.commenterAvatar {
+.userPhoto {
   grid-area: avatar;
   grid-column-start: 1;
   grid-column-end: 2;
@@ -204,7 +204,7 @@ input:disabled {
 }
 
 
-.favoriteContainer, .ratingContainer {
+.favoriteContainer, .ratingContainer, .membersContainer {
   display: flex;
   align-items: center;
 }
@@ -240,4 +240,8 @@ input:disabled {
 .creditAttribution {
   font-size: 10px;
   color: #aaa;
+}
+
+.buff20 {
+  padding: 20px;
 }
