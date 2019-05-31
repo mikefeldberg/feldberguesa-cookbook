@@ -369,6 +369,33 @@ input:disabled {
   grid-row-end: 6;
 }
 
+.recipeSummaryContainer {
+  display: grid;
+  grid-template-columns: 2;
+  grid-template-rows: 1;
+  align-items: top;
+  grid-template-areas: 
+    "recThumb, recSum"
+}
+
+.recipeThumbnail {
+  /* display: flex;
+  align-items: center; */
+  grid-area: recThumb;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
+.recipeSummary {
+  grid-area: recSum;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+
 .grey {
   color: #777
 }
@@ -379,6 +406,10 @@ input:disabled {
 
 .mr10 {
   margin-right: 10px;
+}
+
+.mr30 {
+  margin-right: 30px;
 }
 
 .ml5 {
@@ -399,6 +430,14 @@ input:disabled {
 
 .mb15 {
   margin-bottom: 15px;
+}
+
+.mb20 {
+  margin-bottom: 20px;
+}
+
+.mb25 {
+  margin-bottom: 25px;
 }
 
 .tbpad10 {

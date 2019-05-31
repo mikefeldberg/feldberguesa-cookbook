@@ -30,7 +30,7 @@
     <% } %>
 <% } %>
 
-<div class="favoriteAndRatingContainer">
+<div class="favoriteAndRatingContainer mb10">
     <div class="ratingContainer mr10">
         <% if (recipe.rating > 0) { %>
             <span class="userRating"> <%= "★".repeat(recipe.rating) %></span> <span class="ml5">(<%= recipe.ratingCount %>)</span>
@@ -54,22 +54,27 @@
     </div>
 </div>
 
-<div id="recipeSummaryContainer">
+<div class="recipeSummaryContainer">
 
-    <% if (recipe.imageUrl) { %>
-        <img id="recipeImage" class="thumbnail thumb400" src="<%= recipe.imageUrl %>">
-    <% } %>
+    <div class="recipeThumbnail mr30">
+        <% if (recipe.imageUrl) { %>
+            <img id="recipeImage" class="thumbnail thumb400" src="<%= recipe.imageUrl %>">
+        <% } %>
+    </div>
 
-<h2>Summary</h2>
+    <div class="recipeSummary">
+        <h2>Summary</h2>
 
-<% if (recipe.description) { %><p class="mb10"><%= recipe.description %></p><% } %>
-<% if (recipe.skillLevel) { %><p><strong>Skill Level:</strong> <%= recipe.skillLevel %></p><% } %>
-<% if (recipe.timePrep) { %><p><strong>Prep Time:</strong> <%= recipe.timePrep %> minutes</p><% } %>
-<% if (recipe.timeCook) { %><p><strong>Cook Time:</strong> <%= recipe.timeCook %> minutes</p><% } %>
-<% if (recipe.timeWait) { %><p><strong>Wait Time:</strong> <%= recipe.timeWait %> minutes</p><% } %>
-<% if (recipe.timeTotal) { %><p><strong>Total Time:</strong> <%= recipe.timeTotal %> minutes</p><% } %>
-<% if (recipe.servings) { %><p><strong>Servings Yield:</strong> <%= recipe.servings %></p><% } %>
+        <% if (recipe.description) { %><p class="mb25"><%= recipe.description %></p><% } %>
+        <% if (recipe.skillLevel) { %><p class="mb10"><strong>Skill Level:</strong> <%= recipe.skillLevel %></p><% } %>
+        <% if (recipe.timePrep) { %><p class="mb10"><strong>Prep Time:</strong> <%= recipe.timePrep %> minutes</p><% } %>
+        <% if (recipe.timeCook) { %><p class="mb10"><strong>Cook Time:</strong> <%= recipe.timeCook %> minutes</p><% } %>
+        <% if (recipe.timeWait) { %><p class="mb10"><strong>Wait Time:</strong> <%= recipe.timeWait %> minutes</p><% } %>
+        <% if (recipe.timeTotal) { %><p class="mb10"><strong>Total Time:</strong> <%= recipe.timeTotal %> minutes</p><% } %>
+        <% if (recipe.servings) { %><p class="mb10"><strong>Servings Yield:</strong> <%= recipe.servings %></p><% } %>
+    </div>
 </div>
+
 <h2>Ingredients</h2>
 
 <ul class="noBullet customList">
