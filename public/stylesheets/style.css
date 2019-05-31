@@ -20,6 +20,10 @@ header li {
   margin: 20px;
 }
 
+.noDecoration {
+  text-decoration: none;
+}
+
 header li a {
   color: white;
   text-decoration: none;
@@ -73,7 +77,6 @@ form {
 }
 
 .recipeByline {
-  text-decoration: none;
   height: 25px;
   color: #777;
 }
@@ -152,7 +155,7 @@ input:disabled {
   opacity: .5;
 }
 
-.favoriteAndRatingContainer, .recipeEditContainer, .deleteRecipeDialogue, .commentEditContainer, .deleteCommentDialogue {
+.favoriteAndRatingContainer, .recipeEditContainer, .deleteRecipeDialogue, .commentEditContainer, .deleteCommentDialogue, .userGreetingContainer {
   display: flex;
   align-items: center;
   height: 25px;
@@ -162,31 +165,27 @@ input:disabled {
   display: grid;
   grid-template-columns: 2;
   grid-auto-rows: 2;
-  text-decoration: none;
   align-items: center;
   justify-content: start;
   grid-template-areas: 
-    "avatar, byline"
-    "avatar, rating";
+    "commenterPic, commenterBy"
+    "commenterPic, commenterRate";
 }
 
-.grey {
-  color: #777
-}
-
-.userPhoto {
-  grid-area: avatar;
+.commenterPhoto {
+  grid-area: commenterPic;
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 1;
   grid-row-end: 3;
+}
+
+.thumbNail {
   border-radius: 5px;
-  width: 50px;
-  height: 50px;
 }
 
 .commenterByline {
-  grid-area: byline;
+  grid-area: commenterBy;
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 1;
@@ -196,17 +195,58 @@ input:disabled {
 }
 
 .commenterRating {
-  grid-area: rating;
+  grid-area: commenterRate;
   grid-column-start: 2;
   grid-column-end: 3;
   grid-row-start: 2;
   grid-row-end: 3;
 }
 
-
-.favoriteContainer, .ratingContainer, .membersContainer {
+.favoriteContainer, .ratingContainer {
   display: flex;
   align-items: center;
+}
+
+.memberContainer {
+  display: grid;
+  grid-template-columns: 2;
+  grid-auto-rows: 5;
+  align-items: center;
+  justify-content: start;
+  grid-template-areas: 
+    "memberPic, memberName"
+    "memberPic, memberRecs";
+}
+
+.memberPhoto {
+  grid-area: memberPic;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 6;
+  border-radius: 5px;
+}
+
+.memberName {
+  grid-area: memberName;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  align-items: start;
+  justify-content: center;
+}
+
+.memberRecipes {
+  grid-area: memberRecs;
+  grid-column-start: 2;
+  grid-column-end: 3;
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
+
+.grey {
+  color: #777
 }
 
 .vaMiddle {
@@ -233,8 +273,23 @@ input:disabled {
   margin-bottom: 10px;
 }
 
-.creditAttribution > a {
-  text-decoration: none;
+.thumb50 {
+  width: 50px;
+  height: 50px;
+}
+
+.thumb100 {
+  width: 100px;
+  height: 100px;
+}
+
+.thumb200 {
+  width: 200px;
+  height: 200px;
+}
+
+.buff50 {
+  height: 50px;
 }
 
 .creditAttribution {
@@ -242,6 +297,8 @@ input:disabled {
   color: #aaa;
 }
 
-.buff20 {
-  padding: 20px;
+.rightAlign {
+  float: right;
+  margin-left: auto; 
+  margin-right: 0;
 }

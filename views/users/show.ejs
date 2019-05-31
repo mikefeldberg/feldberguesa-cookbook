@@ -10,7 +10,10 @@
     <% } %>
 <% } %>
 
-<h2><%= greeting %></h2>
+<div class="userGreetingContainer">
+    <h2><%= greeting %></h2>
+    <img class="thumb100 userPhoto thumbNail rightAlign" src="<%= user.avatar %>">
+</div>
 
 <% if (sessionUser && favorites) { %>
     <h3><%= author %> Favorites</h3>

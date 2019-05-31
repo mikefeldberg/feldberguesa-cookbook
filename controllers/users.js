@@ -9,17 +9,17 @@ module.exports = {
 };
 
 function index(req, res) {
-    if (req.user) {
+    Recipe.find({}).exec(function(err, recipes) {
         User.find({}).exec(function(err, users) {
-            User.findById(req.user._id).exec(function(err, sessionUser) {
-                res.render('users/index', { users, sessionUser });
-            });
+            if (req.user) {
+                User.findById(req.user._id).exec(function(err, sessionUser) {
+                    res.render('users/index', { users, recipes, sessionUser });
+                });
+            } else {
+                res.render('users/index', { users, recipes, sessionUser: null });
+            };
         });
-    } else {
-        User.find({}).exec(function(err, users) {
-            res.render('users/index', { users, sessionUser: null });
-        });
-    }
+    });
 }
 
 function show(req, res, next) {
