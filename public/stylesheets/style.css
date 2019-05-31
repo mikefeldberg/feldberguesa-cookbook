@@ -49,6 +49,15 @@ header * {
   display: inline;
 }
 
+textarea {
+  display: block;
+  font-size: 1.2em;
+}
+
+input {
+  font-size: 1.1em;
+}
+
 .pageHero {
   margin-left: -10px;
   margin-right: -10px;
@@ -101,10 +110,8 @@ h3 {
   font-size: 1.4em;
 }
 
-
-
 ol > .recipeRow {
-  margin: 10px 0;
+  margin: 30px 0;
 }
 
 ul > .recipeRow {
@@ -155,10 +162,10 @@ form {
 }
 .customList li:before {
   content: '';
-  width: 15px;
-  height: 15px;
+  width: 20px;
+  height: 20px;
   position: absolute;
-  background-image: url("../images/chef_hat.svg");
+  background-image: url("https://i.imgur.com/iglbWQ5.png");
   background-size: cover;
   background-position: center;
   left: 0;
@@ -487,13 +494,13 @@ input:disabled {
 }
 
 .ingredientQty {
-  font-size: 1.4em;
-  font-weight: 800;
-  margin-right: 10px;
+  font-size: 1.2em;
+  font-weight: 600;
+  margin-right: 7px;
+  margin-left: 14px;
 }
 
 .ingredientName {
-  font-weight: 600;
   font-size: 1.1em;
   letter-spacing: 0.5px;
   margin-right: 10px;
@@ -502,4 +509,9 @@ input:disabled {
 .ingredientPrep {
   font-size: 0.85em;
   color: #666;
+}
+
+.medText {
+  font-size: 1.2em;
+  line-height: 1.4;
 }

@@ -9,9 +9,9 @@
             <% var recipeAuthor = users.filter(obj => { return obj._id == recipeAuthorId }) %>
             <% var recipeAuthorName = recipeAuthor[0].name %>
 
-
             <% var favorited = favorites.filter(obj => { return obj.recipeId == r._id }) %>
             <% var favoritedCount = favorited.length %>
+
 
 
             <div class="recipeContainer mb10">
@@ -29,7 +29,7 @@
                 </div>
                 <div class="recipeRating">
                     <% if (r.rating > 0) { %>
-                        <span class="userRating"> <%= "★".repeat(r.rating) %></span> <span class="ml5">(RATINGS COUNT)</span>
+                        <span class="userRating"> <%= "★".repeat(r.rating) %></span> <span class="ml5">(<%= r.ratingCount %>)</span>
                     <% } else { %>
                         <span class="userRating"> <%= "☆".repeat(5) %></span> <span class="ml5">(<%= 0 %>)</span>
                     <% } %>

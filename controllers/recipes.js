@@ -25,8 +25,6 @@ function index(req, res) {
     });
 }
 
-//  PRETTY SURE I DONT NEED AUTHOR QUERIED OR PASSED BELOW. DELETE LATER IF FIND NO USE FOR IT.
-
 function show(req, res) {
     Recipe.findById(req.params.id).exec(function(err, recipe) {
         Comment.find({ recipeId: recipe._id, deletedAt: null }).exec(function(err, comments) {
@@ -47,39 +45,18 @@ function show(req, res) {
                         var dateCreated = getFormattedDate(recipe.createdAt);
                         var dateUpdated = null;
 
-                        console.log(dateCreated)
-
-
                         if (recipe.updatedAt) {
                             var dateUpdated = getFormattedDate(recipe.updatedAt);
                         }
-
-                        var recipeRatingNew
-                        var recipeAllRatings = [];
-                        var recipeAllRatingsSum = 0;
-
-                        comments.forEach(function(c) {
-                            if (c.rating) recipeAllRatings.push(c.rating)
-                        });
-
-                        for(var i = 0; i < recipeAllRatings.length; i++) {
-                            recipeAllRatingsSum += recipeAllRatings[i];
-                        }
-                        recipeRatingNew = recipeAllRatingsSum / recipeAllRatings.length;
-
-                        recipe.rating = recipeRatingNew
-                        recipe.save();
-                        
-                        console.log(users);
 
                         var favoriteCount = favorites.length;
                         var isFavorited = false;
                         if (req.user) {
                             Favorite.findOne({ userId: req.user._id, recipeId: req.params.id, deletedAt: null }, function(err, favorite) {
-                                res.render('recipes/show', { recipe, users, recipeAuthor, dateCreated, dateUpdated, sessionUser: req.user, comments, ratingsCount: recipeAllRatings.length, favoriteCount, isFavorited: !!favorite,  });
+                                res.render('recipes/show', { recipe, users, recipeAuthor, dateCreated, dateUpdated, sessionUser: req.user, comments, favoriteCount, isFavorited: !!favorite,  });
                             });
                         } else {
-                            res.render('recipes/show', { recipe, users, recipeAuthor, dateCreated, dateUpdated, sessionUser: null, comments, ratingsCount: recipeAllRatings.length, favoriteCount, isFavorited,  });
+                            res.render('recipes/show', { recipe, users, recipeAuthor, dateCreated, dateUpdated, sessionUser: null, comments, favoriteCount, isFavorited,  });
                         }
                     });
                 });

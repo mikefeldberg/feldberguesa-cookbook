@@ -4,6 +4,8 @@
 
 <%- include ../partials/header.ejs %>
 
+<div class="pageContainer">
+
 <img id="heroImage" src="<%= recipe.heroImage %>">
 
 <h1><%= recipe.name %></h1>
@@ -31,7 +33,7 @@
 <div class="favoriteAndRatingContainer">
     <div class="ratingContainer mr10">
         <% if (recipe.rating > 0) { %>
-            <span class="userRating"> <%= "★".repeat(recipe.rating) %></span> <span class="ml5">(<%= ratingsCount %>)</span>
+            <span class="userRating"> <%= "★".repeat(recipe.rating) %></span> <span class="ml5">(<%= recipe.ratingCount %>)</span>
             
         <% } else { %>
             <span class="userRating"> <%= "☆".repeat(5) %></span> <span class="ml5">(<%= 0 %>)</span>
@@ -43,7 +45,7 @@
             <form id="unheartForm" method="POST" action="/recipes/<%= recipe._id %>/favorite?_method=DELETE"><input class="unfavoriteButton thumb15" type="image" name="submit" src="../images/icon_heart.svg" border="0" alt="Submit" /></form>
             <!-- <form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite?_method=DELETE"><button class="favoriteButton" type="submit">UnFav</button></form> -->
         <% } else { %>
-            <form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite"><input class="favoriteButton thumb15" type="image" name="submit" src="../images/icon_heart_add.png" border="0" alt="Submit" / <% if (!sessionUser) { %> disabled="disabled" title="Please log in to add to favorites." <% } %> ></form>
+            <form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite"><input class="favoriteButton thumb15" type="image" name="submit" src="https://i.imgur.com/XMLm13M.png" border="0" alt="Submit" / <% if (!sessionUser) { %> disabled="disabled" title="Please log in to add to favorites." <% } %> ></form>
         <% } %>
         
         <% if (favoriteCount > 0) { %>
@@ -52,23 +54,24 @@
     </div>
 </div>
 
-<img id="recipeImage" class="thumbNail thumb300" src="<%= recipe.imageUrl %>">
+<div id="recipeSummaryContainer">
+<img id="recipeImage" class="thumbNail thumb400" src="<%= recipe.imageUrl %>">
 
 <h2>Summary</h2>
 
 <% if (recipe.description) { %><p class="mb10"><%= recipe.description %></p><% } %>
 <% if (recipe.skillLevel) { %><p><strong>Skill Level:</strong> <%= recipe.skillLevel %></p><% } %>
-<% if (recipe.timePrep) { %><p><strong>Prep Time:</strong> <%= recipe.timePrep %></p><% } %>
-<% if (recipe.timeCook) { %><p><strong>Cook Time:</strong> <%= recipe.timeCook %></p><% } %>
-<% if (recipe.timeWait) { %><p><strong>Wait Time:</strong> <%= recipe.timeWait %></p><% } %>
-<% if (recipe.timeTotal) { %><p><strong>Total Time:</strong> <%= recipe.timeTotal %></p><% } %>
+<% if (recipe.timePrep) { %><p><strong>Prep Time:</strong> <%= recipe.timePrep %> minutes</p><% } %>
+<% if (recipe.timeCook) { %><p><strong>Cook Time:</strong> <%= recipe.timeCook %> minutes</p><% } %>
+<% if (recipe.timeWait) { %><p><strong>Wait Time:</strong> <%= recipe.timeWait %> minutes</p><% } %>
+<% if (recipe.timeTotal) { %><p><strong>Total Time:</strong> <%= recipe.timeTotal %> minutes</p><% } %>
 <% if (recipe.servings) { %><p><strong>Servings Yield:</strong> <%= recipe.servings %></p><% } %>
-
+</div>
 <h2>Ingredients</h2>
 
 <ul class="noBullet customList">
 <% recipe.ingredients.forEach(function(ingredient) { %>
-    <li class="recipeRow chef">
+    <li class="recipeRow">
         <span class="ingredientQty"><%= ingredient.qty %></span>
         <span class="ingredientName"><%= ingredient.name %></span>
         <% if (ingredient.prep) { %>
@@ -82,7 +85,7 @@
 
 <ol>
 <% recipe.instructions.forEach(function(instruction) { %>
-    <li class="recipeRow"><%= instruction %></li>
+    <li class="recipeRow medText mb20"><%= instruction %></li>
 <% }); %>
 </ol>
 
@@ -96,7 +99,7 @@
             <%- include ../partials/starRatingDisabled.ejs %>
         <% } %>
 
-        <textarea id"addCommentForm" name="comment" rows="4" cols="50" <% if (!sessionUser) { %> disabled="disabled" title="Please log in to leave a comment or review." <% } %> ><% if (!sessionUser) { %> Please log in to leave a comment or review. <% } %></textarea>
+        <textarea id"addCommentForm" name="comment" rows="4" cols="100" <% if (!sessionUser) { %> disabled="disabled" title="Please log in to leave a comment or review." <% } %> ><% if (!sessionUser) { %> Please log in to leave a comment or review. <% } %></textarea>
         <button class="mb10" type="submit" <% if (!sessionUser) { %> disabled="disabled" title="Please log in to leave a comment or review." <% } %> >Add Comment</button>
     </form>
 </div>
@@ -147,8 +150,6 @@
     <% } %>
 </div>
 
-<div class="creditAttribution">UL chef-hat icon made by <a class="noDecoration" href="https://www.flaticon.com/authors/smalllikeart" title="smalllikeart">smalllikeart</a> from <a href="https://www.flaticon.com/" 			    title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" 			    title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
-
 <% function getFormattedCommentDate(unparsedDate) { %>
     <% var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] %>
     <% var monthNumber = unparsedDate.getMonth(); %>
@@ -158,3 +159,4 @@
     <% var displayDate = month + " " + day + ", " + year %>
     <% return displayDate; %>
 <% } %>
+</div>

@@ -1,6 +1,7 @@
 <%- include ../partials/header.ejs %> 
 
-<div id="allMembersContainer">
+<div id="allMembersContainer" class="pageContainer">
+    <h2>All Cooks</h2>
     <% users.forEach(function(u) { %>
         <% if (u.deletedAt == null) {%>
             <% var recipeAuthorId = u._id %>

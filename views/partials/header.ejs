@@ -3,19 +3,19 @@
 
 <header>
     <img src="">
-    <nav>
+    <nav class="rightAlign">
         <ul>
             <% if (sessionUser) { %>
             <li><a href="/">Home</a></li>
             <li><a href="/users/<%= sessionUser._id %>">My Account</a></li>
             <li><a href="/recipes/new">Add Recipe</a></li>
-            <li><a href="/recipes">All Recipes</a></li>
-            <li><a href="/users">All Users</a></li>
+            <!-- <li><a href="/recipes">All Recipes</a></li> -->
+            <li><a href="/users">All Cooks</a></li>
             <li><a href="/logout"><i></i>Log Out</a></li>
             <% } else { %>
             <li><a href="/">Home</a></li>
-            <li><a href="/recipes">All Recipes</a></li>
-            <li><a href="/users">All Users</a></li>
+            <!-- <li><a href="/recipes">All Recipes</a></li> -->
+            <li><a href="/users">All Cooks</a></li>
             <li><a href="/auth/google"><i></i>Login with Google</a></li>
             <% } %>
         </ul>
@@ -23,7 +23,7 @@
 </header>
 <div class="buff50"></div>
 <div class="pageHero">
-    <img src="https://i.imgur.com/KFxEdVV.png">
+    <img src="https://i.imgur.com/6qqdwwH.png">
     <div class="pageTitle">
         <h2>Feldberguesa's</h2>
         <h1>CookBook</h1>

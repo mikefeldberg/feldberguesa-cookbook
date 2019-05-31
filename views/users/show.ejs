@@ -1,5 +1,7 @@
 <%- include ../partials/header.ejs %> 
 
+<div class="pageContainer">
+
 <% var greeting = user.name %>
 <% var author = `${user.name}'s` %>
 
@@ -94,3 +96,5 @@
     <% var displayDate = month + " " + day + ", " + year + " at " + hour +":"+ minute %>
     <% return displayDate; %>
 <% } %>
+
+</div>
