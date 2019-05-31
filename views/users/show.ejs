@@ -21,25 +21,26 @@
     <h3><%= author %> Favorites</h3>
     <div class="userFavoritesContainer">
         <% favorites.forEach(function(f) { %>
-            <ul>
             <% if (f.deletedAt == null) { %>
-                <li>
+
+
+                <div class="favoriteContainer">
                     <a href="/recipes/<%= f.recipeId %>"> <%= f.addedTo %> </a>
-                </li>
+                    <a href="/recipes/<%= f.recipeId %>"> <%= f.addedTo %> </a>
+                </div>
             <% } %>
-            </ul>
         <% }) %>
     </div>
 <% } %>
 
-<% if (recipes) { %>
+<% if (userRecipes) { %>
     <h3><%= author %> Recipes</h3>
     <div class="userRecipeContainer">
-        <% recipes.forEach(function(r) { %>
+        <% userRecipes.forEach(function(ur) { %>
             <ul>
-            <% if (r.deletedAt == null) { %>
+            <% if (ur.deletedAt == null) { %>
                 <li>
-                    <a href="/recipes/<%= r._id %>"><%= r.name %> </a>
+                    <a href="/recipes/<%= ur._id %>"><%= ur.name %> </a>
                 </li>
             <% } %>
             </ul>

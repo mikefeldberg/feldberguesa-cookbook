@@ -28,9 +28,11 @@ function show(req, res, next) {
             User.findById(req.params.id).exec(function(err, user) {
                 User.findById(req.user._id).exec(function(err, sessionUser) {
                     Comment.find({ userId: req.user._id }).exec(function(err, comments) {
-                        Recipe.find({ userId: req.user._id }).exec(function(err, recipes) {
-                            Favorite.find({ userId: req.user._id }).exec(function(err, favorites) {
-                                res.render('users/show', { comments, recipes, favorites, user, sessionUser });
+                        Recipe.find({}).exec(function(err, recipes) {
+                            Recipe.find({ userId: req.user._id }).exec(function(err, userRecipes) {
+                                Favorite.find({ userId: req.user._id }).exec(function(err, favorites) {
+                                    res.render('users/show', { comments, userRecipes, recipes, favorites, user, sessionUser });
+                                });
                             });
                         });
                     });
@@ -40,9 +42,11 @@ function show(req, res, next) {
             User.findById(req.params.id).exec(function(err, user) {
                 User.findById(req.user._id).exec(function(err, sessionUser) {
                     Comment.find({ userId: req.params.id }).exec(function(err, comments) {
-                        Recipe.find({ userId: req.params.id }).exec(function(err, recipes) {
-                            Favorite.find({ userId: req.params.id }).exec(function(err, favorites) {
-                                res.render('users/show', { comments, recipes, favorites, user, sessionUser });
+                        Recipe.find({}).exec(function(err, recipes) {
+                            Recipe.find({ userId: req.params.id }).exec(function(err, userRecipes) {
+                                Favorite.find({ userId: req.params.id }).exec(function(err, favorites) {
+                                    res.render('users/show', { comments, userRecipes, recipes, favorites, user, sessionUser });
+                                });
                             });
                         });
                     });
@@ -52,9 +56,11 @@ function show(req, res, next) {
     } else {
         User.findById(req.params.id).exec(function(err, user) {
             Comment.find({ userId: req.params.id }).exec(function(err, comments) {
-                Recipe.find({ userId: req.params.id }).exec(function(err, recipes) {
-                    Favorite.find({ userId: req.params.id }).exec(function(err, favorites) {
-                        res.render('users/show', { comments, recipes, favorites, user, sessionUser: null });
+                Recipe.find({}).exec(function(err, recipes) {
+                    Recipe.find({ userId: req.params.id }).exec(function(err, userRecipes) {
+                        Favorite.find({ userId: req.params.id }).exec(function(err, favorites) {
+                            res.render('users/show', { comments, userRecipes, recipes, favorites, user, sessionUser: null });
+                        });
                     });
                 });
             });
