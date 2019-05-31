@@ -204,7 +204,7 @@ form {
   display: none;
 } 
 
-.commentContainer, .userRecipeContainer, .userFavoritesContainer {
+.commentContainer, .userRecipesContainer, .userFavoritesContainer {
   border: 1px solid #aaa;
   border-radius: 10px;
   padding: 8px;
@@ -271,7 +271,7 @@ input:disabled {
   grid-row-end: 3;
 }
 
-.favoriteContainer, .ratingContainer {
+.favoriteContainer, .ratingContainer, .userRecipeContainer {
   display: flex;
   align-items: center;
 }

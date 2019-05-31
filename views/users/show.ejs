@@ -40,15 +40,13 @@
 
 <% if (userRecipes) { %>
     <h3><%= author %> Recipes</h3>
-    <div class="userRecipeContainer">
+    <div class="userRecipesContainer">
         <% userRecipes.forEach(function(ur) { %>
             <% if (ur.deletedAt == null) { %>
-
-                <div class="recipeContainer mb10">
-                        <a href="/recipes/<%= ur._id %>"><img class="thumbnail thumb50 mr10" src="<%=  %>"></a>
-                        <a href="/recipes/<%= ur._id %>"><%= ur.name %> </a>
+                <div class="userRecipeContainer mb10">
+                    <a href="/recipes/<%= ur._id %>"><img class="thumbnail thumb50 mr10" src="<%= ur.imageUrl %>"></a>
+                    <a href="/recipes/<%= ur._id %>"><%= ur.name %> </a>
                 </div>
-                
             <% } %>
         <% }) %>
     </div>
