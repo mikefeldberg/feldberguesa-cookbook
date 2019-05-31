@@ -3,13 +3,15 @@
 <script defer src="../../javascripts/formHandler.js"></script>
 
 <%- include ../partials/header.ejs %>
+<div class="pageContainer">
+
 <h1>Edit Your Recipe</h1>
 
 <form action="/recipes/<%= recipe._id %>?_method=PUT" method="POST">
 
     <fieldset class="mb10 tbpad10">
 
-        <legend>Recipe Name</legend>
+        <legend><h3>Recipe Name</h3></legend>
 
         <input class="h25 w300" name="name" type="text" value="<%= recipe.name %>">
 
@@ -17,7 +19,7 @@
 
     <fieldset class="mb10 tbpad10">
 
-        <legend>Recipe Description</legend>
+        <legend><h3>Recipe Description</h3></legend>
 
         <textarea rows="5" cols="65" name="description" type="text"><%= recipe.description %></textarea>
 
@@ -25,7 +27,7 @@
 
     <fieldset class="mb10 tbpad10" id="recipeInstructions">
 
-        <legend>Ingredients</legend>
+        <legend><h3>Ingredients</h3></legend>
 
         <div class="mb5">
             <p class="w100 ib center">Qty</p>
@@ -40,48 +42,48 @@
                     <input class="w100 h25" name="qty" type="text" value="<%= recipe.ingredients[i].qty %>">
                     <input class="w300 h25" name="ingredient" type="text" value="<%= recipe.ingredients[i].name %>">
                     <input class="w300 h25" name="preparation" type="text" value="<%= recipe.ingredients[i].prep %>">
-                    <button type="button" class="removeEditIngredient rowButton"> - </button>
+                    <button type="button" class="removeEditIngredient rowButton red"> - </button>
                 </p>
             <% }; %>
                 <p>
                     <input class="w100 h25" name="qty" type="text">
                     <input class="w300 h25" name="ingredient" type="text">
                     <input class="w300 h25" name="preparation" type="text">
-                    <button type="button" class="removeEditIngredient rowButton"> - </button>
+                    <button type="button" class="removeEditIngredient rowButton red"> - </button>
                 </p>
             </div>
-            <button type="button" class="addEditIngredient rowButton"> + </button>
+            <button type="button" class="addEditIngredient rowButton green"> + </button>
         </div>
 
     </fieldset>
 
     <fieldset class="mb10 tbpad10" id="recipeInstructions">
 
-        <legend>Instructions</legend>
+        <legend><h3>Instructions</h3></legend>
 
         <div class="instructionsSection">
             <div class="instructionRow">
             <% for (var i = 0; i < recipe.instructions.length; i++) { %>
                 <p>
-                    <input class="w710 h25" name="instructions" type="text" value="<%= recipe.instructions[i] %>">
-                    <button type="button" class="removeEditInstruction rowButton"> - </button>
+                    <input class="width100 h25" name="instructions" type="text" value="<%= recipe.instructions[i] %>">
+                    <button type="button" class="removeEditInstruction rowButton red"> - </button>
                 </p>
             <% } %>
                 <p>
-                    <input class="w710 h25" name="instructions" type="text">
-                    <button type="button" class="removeEditInstruction rowButton"> - </button>
+                    <input class="width100 h25" name="instructions" type="text">
+                    <button type="button" class="removeEditInstruction rowButton red"> - </button>
                 </p>
             </div>
-            <button type="button" class="addEditInstruction rowButton"> + </button>
+            <button type="button" class="addEditInstruction rowButton green"> + </button>
         </div>
 
     </fieldset>
 
     <fieldset class="mb10 tbpad10" id="recipeAdditionalInfo">
 
-        <legend>Additional Info</legend>
+        <legend><h3>Additional Info</h3></legend>
 
-        <span>Skill Level: </span>
+        <span><strong>Skill Level:</strong></span>
         <select class="mb10" name="skillLevel" type="text">
             <option <% if (recipe.skillLevel == "Easy") { %> `option selected="selected" `<% } %> value="Easy">Easy
             </option>
@@ -92,19 +94,19 @@
         </select><br>
 
         <div class="mb10">
-            <span>Sevings: </span><input class="h25" required class="numberOnlyInput" name="servings" type="text" pattern="[0-9]" value="<%= recipe.servings %>"><br>
+            <span><strong>Sevings:</strong> </span><input class="h25" required class="numberOnlyInput" name="servings" type="text" pattern="[0-9]" value="<%= recipe.servings %>"><br>
         </div>
         <div class="mb10">
-            <span>Prep Time (minutes): </span><input class="h25" required class="numberOnlyInput mb10" name="timePrep" type="text" pattern="[0-9]" value="<%= recipe.timePrep %>"><br>
+            <span><strong>Prep Time</strong> (minutes): </span><input class="h25" required class="numberOnlyInput mb10" name="timePrep" type="text" pattern="[0-9]" value="<%= recipe.timePrep %>"><br>
         </div>
         <div class="mb10">
-            <span>Cook Time (minutes): </span><input class="h25" required class="numberOnlyInput mb10" name="timeCook" type="text" pattern="[0-9]" value="<%= recipe.timeCook %>"><br>
+            <span><strong>Cook Time</strong> (minutes): </span><input class="h25" required class="numberOnlyInput mb10" name="timeCook" type="text" pattern="[0-9]" value="<%= recipe.timeCook %>"><br>
         </div>
         <div class="mb10">
-            <span>Wait Time (minutes): </span><input class="h25" required class="numberOnlyInput mb10" name="timeWait" type="text" pattern="[0-9]" value="<%= recipe.timeWait %>"><br>
+            <span><strong>Wait Time</strong> (minutes): </span><input class="h25" required class="numberOnlyInput mb10" name="timeWait" type="text" pattern="[0-9]" value="<%= recipe.timeWait %>"><br>
         </div>
         <div class="mb10">
-            <span>Upload an image: </span><input class="h25" name="imageUrl" type="text" value="<%= recipe.imageUrl %>"><br>
+            <span><strong>Add image URL:</strong> </span><input class="h25" name="imageUrl" type="text" value="<%= recipe.imageUrl %>"><br>
         </div>
 
     </fieldset>
@@ -115,3 +117,5 @@
     </div>
 
 </form>
+
+</div>

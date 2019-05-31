@@ -32,6 +32,7 @@
     <div class="ratingContainer mr10">
         <% if (recipe.rating > 0) { %>
             <span class="userRating"> <%= "★".repeat(recipe.rating) %></span> <span class="ml5">(<%= ratingsCount %>)</span>
+            
         <% } else { %>
             <span class="userRating"> <%= "☆".repeat(5) %></span> <span class="ml5">(<%= 0 %>)</span>
         <% } %>
@@ -39,10 +40,10 @@
     |
     <div class="favoriteContainer ml10">
         <% if (isFavorited) { %>
-            <form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite?_method=DELETE"><input class="favoriteButton" type="image" name="submit" src="../images/icon_heart.svg" border="0" alt="Submit" /></form>
+            <form id="unheartForm" method="POST" action="/recipes/<%= recipe._id %>/favorite?_method=DELETE"><input class="unfavoriteButton thumb15" type="image" name="submit" src="../images/icon_heart.svg" border="0" alt="Submit" /></form>
             <!-- <form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite?_method=DELETE"><button class="favoriteButton" type="submit">UnFav</button></form> -->
         <% } else { %>
-            <form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite"><input class="favoriteButton" type="image" name="submit" src="../images/icon_heart_add.png" border="0" alt="Submit" / <% if (!sessionUser) { %> disabled="disabled" title="Please log in to add to favorites." <% } %> ></form>
+            <form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite"><input class="favoriteButton thumb15" type="image" name="submit" src="../images/icon_heart_add.png" border="0" alt="Submit" / <% if (!sessionUser) { %> disabled="disabled" title="Please log in to add to favorites." <% } %> ></form>
         <% } %>
         
         <% if (favoriteCount > 0) { %>
@@ -68,10 +69,10 @@
 <ul class="noBullet customList">
 <% recipe.ingredients.forEach(function(ingredient) { %>
     <li class="recipeRow chef">
-        <span class=""><%= ingredient.qty %></span>
-        <span class=""><%= ingredient.name %></span>
+        <span class="ingredientQty"><%= ingredient.qty %></span>
+        <span class="ingredientName"><%= ingredient.name %></span>
         <% if (ingredient.prep) { %>
-            <span class="">(<%= ingredient.prep %>)</span>
+            <span class="ingredientPrep">(<%= ingredient.prep %>)</span>
         <% } %>
     </li>
 <% }); %>

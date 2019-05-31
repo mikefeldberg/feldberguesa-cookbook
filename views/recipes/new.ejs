@@ -3,13 +3,15 @@
 <script defer src="../javascripts/formHandler.js"></script>
 
 <%- include ../partials/header.ejs %>
+<div class="pageContainer">
+
 <h1>Add a Recipe</h1>
 
 <form id="newRecipeForm" action="/recipes" method="POST">
 
     <fieldset class="mb10 tbpad10">
 
-        <legend>Recipe Name</legend>
+        <legend><h3>Recipe Name</h3></legend>
 
         <input class="h25 w300" required name="name" type="text">
 
@@ -17,7 +19,7 @@
 
     <fieldset class="mb10 tbpad10">
 
-        <legend>Recipe Description</legend>
+        <legend><h3>Recipe Description</h3></legend>
 
         <textarea rows="5" cols="65" name="description" type="text"></textarea>
 
@@ -25,7 +27,7 @@
 
     <fieldset class="mb10 tbpad10" id="recipeInstructions">
 
-        <legend>Ingredients</legend>
+        <legend><h3>Ingredients</h3></legend>
 
         <div class="mb5">
             <p class="w100 ib center">Qty</p>
@@ -39,10 +41,10 @@
                     <input class="w100 h25" required name="qty" type="text">
                     <input class="w300 h25" required name="ingredient" type="text">
                     <input class="w300 h25" name="preparation" type="text">
-                    <button type="button" class="removeIngredient rowButton"> - </button>
+                    <button type="button" class="removeIngredient rowButton red"> - </button>
                 </p>
                 <p>
-                    <button type="button" class="addIngredient rowButton"> + </button>
+                    <button type="button" class="addIngredient rowButton green"> + </button>
                 </p>
             </div>
         </div>
@@ -51,16 +53,16 @@
 
     <fieldset class="mb10 tbpad10" id="recipeInstructions">
 
-        <legend>Instructions</legend>
+        <legend><h3>Instructions</h3></legend>
 
         <div class="instructionsSection">
             <div class="instructionRow">
                 <p class="mb5">
-                    <input class="w710 h25" required name="instructions" type="text">
-                    <button type="button" class="removeInstruction rowButton"> - </button>
+                    <input class="width100 h25" required name="instructions" type="text">
+                    <button type="button" class="removeInstruction rowButton red"> - </button>
                 </p>
                 <p>
-                    <button type="button" class="addInstruction rowButton"> + </button>
+                    <button type="button" class="addInstruction rowButton green"> + </button>
                 </p>
             </div>
         </div>
@@ -69,9 +71,9 @@
 
     <fieldset class="mb10 tbpad10" id="recipeAdditionalInfo">
 
-        <legend>Additional Info</legend>
+        <legend><h3>Additional Info</h3></legend>
 
-        <span>Skill Level: </span>
+        <span><strong>Skill Level:</strong></span>
         <select class="mb10" name="skillLevel" type="text">
             <option value="Easy">Easy</option>
             <option value="Medium">Medium</option>
@@ -79,19 +81,19 @@
         </select><br>
 
         <div class="mb10">
-            <span>Sevings: </span><input class="h25" required class="numberOnlyInput" name="servings" type="text" pattern="[0-9]"><br>
+            <span><strong>Sevings:</strong> </span><input class="h25" required class="numberOnlyInput" name="servings" type="text" pattern="[0-9]"><br>
         </div>
         <div class="mb10">
-            <span>Prep Time (minutes): </span><input class="h25" required class="numberOnlyInput mb10" name="timePrep" type="text" pattern="[0-9]"><br>
+            <span><strong>Prep Time</strong> (minutes): </span><input class="h25" required class="numberOnlyInput mb10" name="timePrep" type="text" pattern="[0-9]"><br>
         </div>
         <div class="mb10">
-            <span>Cook Time (minutes): </span><input class="h25" required class="numberOnlyInput mb10" name="timeCook" type="text" pattern="[0-9]"><br>
+            <span><strong>Cook Time</strong> (minutes): </span><input class="h25" required class="numberOnlyInput mb10" name="timeCook" type="text" pattern="[0-9]"><br>
         </div>
         <div class="mb10">
-            <span>Wait Time (minutes): </span><input class="h25" required class="numberOnlyInput mb10" name="timeWait" type="text" pattern="[0-9]"><br>
+            <span><strong>Wait Time</strong> (minutes): </span><input class="h25" required class="numberOnlyInput mb10" name="timeWait" type="text" pattern="[0-9]"><br>
         </div>
         <div class="mb10">
-            <span>Upload an image: </span><input class="h25" name="imageUrl" type="text"><br>
+            <span><strong>Add image URL:</strong> </span><input class="h25" name="imageUrl" type="text"><br>
         </div>
 
     </fieldset>
@@ -102,3 +104,5 @@
     </div>
 
 </form>
+
+</div>

@@ -2,10 +2,7 @@
 
 
 
-
-
-
-<div id="allRecipesContainer">
+<div id="allRecipesContainer" class="pageContainer">
     <% recipes.forEach(function(r) { %>
         <% if (r.deletedAt == null) {%>
             <% var recipeAuthorId = r.userId %>
@@ -19,10 +16,10 @@
 
             <div class="recipeContainer mb10">
                 <div class="recipePhoto">
-                    <a class="noDecoration" href="/recipes/<%= r._id %>"><img class="thumbNail mr10 thumb100" src="<%= r.imageUrl %>"></a>
+                    <a class="noDecoration" href="/recipes/<%= r._id %>"><img class="thumbNail mr10 thumb300" src="<%= r.imageUrl %>"></a>
                 </div>
                 <div class="recipeName">
-                    <a class="noDecoration" href="/recipes/<%= r._id %>"><%= r.name %></a>
+                    <h2><a class="noDecoration" href="/recipes/<%= r._id %>"><%= r.name %></a><h2>
                 </div>
                 <div class="recipeAuthor">
                     <a class="noDecoration" href="/users/">By <%= recipeAuthorName %></a>
@@ -36,6 +33,9 @@
                     <% } else { %>
                         <span class="userRating"> <%= "☆".repeat(5) %></span> <span class="ml5">(<%= 0 %>)</span>
                     <% } %>
+                </div>
+                <div class="recipeDescription">
+                    <a class="noDecoration" href="/recipes/<%= r._id %>"><%= r.description %></a>
                 </div>
             </div>
         <% } %>

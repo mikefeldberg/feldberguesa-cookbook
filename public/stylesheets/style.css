@@ -1,6 +1,18 @@
 body {
-  padding: 50px;
+  /* padding: 50px; */
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
+}
+
+a:hover {
+  text-emphasis: none;
+  cursor: pointer;
+  color: initial;
+}
+
+a {
+  text-emphasis: none;
+  color: initial;
 }
 
 header {
@@ -37,6 +49,37 @@ header * {
   display: inline;
 }
 
+.pageHero {
+  margin-left: -10px;
+  margin-right: -10px;
+  color: white;
+  margin-bottom: 80px;
+}
+
+.pageHero img {
+  min-width: 100%;
+}
+.pageTitle {
+  position: absolute;
+  top: 0;
+  text-shadow: -10px 10px 0px #00e6e6,
+                 -20px 20px 0px #01cccc,
+                 -30px 30px 0px #00bdbd;
+}
+.pageTitle > h1 {
+  font-size: 10em;
+  margin: 0 230px 0;
+}
+.pageTitle > h2 {
+  font-size: 5em;
+  margin: 100px 150px 0;
+}
+
+.pageContainer {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
 h1, h2, h3, h4 {
   font-family: 'Fugaz One', cursive;
   font-weight: 300;
@@ -53,6 +96,12 @@ h1 {
 h2 {
   font-size: 2em;
 }
+
+h3 {
+  font-size: 1.4em;
+}
+
+
 
 ol > .recipeRow {
   margin: 10px 0;
@@ -82,7 +131,17 @@ form {
 }
 
 .favoriteButton {
+  color: #da1a1a;
+  font-size: 1.5em;
+}
+
+.favoriteButton:hover {
+  color: red;
+}
+
+.unfavoriteButton {
   width: 18px;
+  text-shadow: 0 0 1px #000;
 }
 
 .customList {
@@ -113,6 +172,16 @@ form {
   width: 20px;
   padding: 0;
   text-align: center;
+  color: white;
+  font-weight: 800;
+}
+
+.green {
+  background-color: #59d85e;
+}
+
+.red {
+  background-color: #a30b00;
 }
 
 .row {
@@ -182,6 +251,7 @@ input:disabled {
 
 .thumbNail {
   border-radius: 5px;
+  border: 1px #ccc solid;
 }
 
 .commenterByline {
@@ -269,7 +339,7 @@ input:disabled {
 .recipeName {
   grid-area: recName;
   grid-column-start: 2;
-  grid-column-end: 3;
+  grid-column-end: 4;
   grid-row-start: 2;
   grid-row-end: 3;
 }
@@ -277,22 +347,30 @@ input:disabled {
 .recipeAuthor {
   grid-area: recAuth;
   grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 4;
-  grid-row-end: 5;
+  grid-column-end: 4;
+  grid-row-start: 3;
+  grid-row-end: 4;
 }
 
 .recipeRating {
   grid-area: recRat;
   grid-column-start: 2;
   grid-column-end: 3;
-  grid-row-start: 6;
-  grid-row-end: 7;
+  grid-row-start: 5;
+  grid-row-end: 6;
 }
 
 .recipeFavorited {
   grid-area: recFav;
   grid-column-start: 3;
+  grid-column-end: 4;
+  grid-row-start: 5;
+  grid-row-end: 6;
+}
+
+.recipeDescription {
+  grid-area: recDesc;
+  grid-column-start: 2;
   grid-column-end: 4;
   grid-row-start: 6;
   grid-row-end: 7;
@@ -360,6 +438,11 @@ input:disabled {
   height: 300px;
 }
 
+.thumb400 {
+  width: 400px;
+  height: 400px;
+}
+
 .buff50 {
   height: 50px;
 }
@@ -372,8 +455,8 @@ input:disabled {
   width: 300px;
 }
 
-.w710 {
-  width: 710px;
+.width100 {
+  width: 95%;
 }
 
 .h20 {
@@ -401,4 +484,22 @@ input:disabled {
   float: right;
   margin-left: auto; 
   margin-right: 0;
+}
+
+.ingredientQty {
+  font-size: 1.4em;
+  font-weight: 800;
+  margin-right: 10px;
+}
+
+.ingredientName {
+  font-weight: 600;
+  font-size: 1.1em;
+  letter-spacing: 0.5px;
+  margin-right: 10px;
+}
+
+.ingredientPrep {
+  font-size: 0.85em;
+  color: #666;
 }
