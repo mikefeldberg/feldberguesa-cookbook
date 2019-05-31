@@ -133,7 +133,7 @@ form {
   display: none;
 } 
 
-.commentContainer {
+.commentContainer, .userRecipeContainer, .userFavoritesContainer {
   border: 1px solid #aaa;
   border-radius: 10px;
   padding: 8px;
@@ -163,12 +163,15 @@ input:disabled {
   grid-template-columns: 2;
   grid-auto-rows: 2;
   text-decoration: none;
-  color: #777;
   align-items: center;
   justify-content: start;
   grid-template-areas: 
     "avatar, byline"
     "avatar, rating";
+}
+
+.grey {
+  color: #777
 }
 
 .commenterAvatar {

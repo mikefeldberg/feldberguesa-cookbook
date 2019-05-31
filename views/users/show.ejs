@@ -5,47 +5,89 @@
 
 <% if (sessionUser) { %>
     <% if (user.id == sessionUser._id) { %>
-        <% greeting = `Holla, ${sessionUser.name}` %>
+        <% greeting = `Welcome back, ${sessionUser.name}!` %>
         <% author = `Your` %>
     <% } %>
 <% } %>
 
 <h2><%= greeting %></h2>
 
+<% if (sessionUser && favorites) { %>
+    <h3><%= author %> Favorites</h3>
+    <div class="userFavoritesContainer">
+        <% favorites.forEach(function(f) { %>
+            <ul>
+            <% if (f.deletedAt == null) { %>
+                <li>
+                    <a href="/recipes/<%= f.recipeId %>"> <%= f.addedTo %> </a>
+                </li>
+            <% } %>
+            </ul>
+        <% }) %>
+    </div>
+<% } %>
+
 <% if (recipes) { %>
     <h3><%= author %> Recipes</h3>
-    <% recipes.forEach(function(r) { %>
-        <% if (r.deletedAt == null) { %>
-            <div class="userRecipeContainer">
-                <a href="/recipes/<%= r._id %>"><%= r.name %> </a>
-            </div>
-        <% } %>
-    <% }) %>
+    <div class="userRecipeContainer">
+        <% recipes.forEach(function(r) { %>
+            <ul>
+            <% if (r.deletedAt == null) { %>
+                <li>
+                    <a href="/recipes/<%= r._id %>"><%= r.name %> </a>
+                </li>
+            <% } %>
+            </ul>
+        <% }) %>
+    </div>
 <% } %>
 
 <% if (comments) { %>
     <h3><%= author %> Comments</h3>
     <% comments.forEach(function(c) { %>
         <% if (c.deletedAt == null) { %>
-            <fieldset>
-                <div class="userCommentContainer">
-                    <a href="/recipes/<%= c.recipeId %>"> <%= c.addedTo %> </a>
-                    <p class="userRating"> <%= "★".repeat(c.rating) %> </p>
-                    <p> <%= c.commentBody %> </p>
-                    <p> <%= c.createdAt %> </p>
+            <div class="commentContainer mb10">
+                <div class="userCommentByline">
+                    <a class="mb5" href="/recipes/<%= c.recipeId %>"> <%= c.addedTo %> </a>
+                    <p class="mb10">
+                        <%= getFormattedCommentDate(c.createdAt) %> 
+                        <% if (c.updatedAt) { %>
+                            <span class="grey">(Edited on <%= getFormattedCommentDate(c.updatedAt) %>)</span>
+                        <% } %>
+                    </p>
                 </div>
-            </fieldset>
+                <p class="userRating mb10"> <%= "★".repeat(c.rating) %> </p>
+                <p> <%= c.commentBody %> </p>
+            </div>
         <% } %>
     <% }) %>
 <% } %>
 
-<% if (favorites) { %>
+
+
+<% if (!sessionUser && favorites) { %>
     <h3><%= author %> Favorites</h3>
-    <% favorites.forEach(function(f) { %>
-        <% if (f.deletedAt == null) { %>
-            <div class="userFavoritesContainer">
-                <a href="/recipes/<%= f.recipeId %>"> <%= f.addedTo %> </a>
-            </div>
-        <% } %>
-    <% }) %>
+    <div class="userFavoritesContainer">
+        <ul>
+        <% favorites.forEach(function(f) { %>
+            <% if (f.deletedAt == null) { %>
+                <li>
+                    <a href="/recipes/<%= f.recipeId %>"> <%= f.addedTo %> </a>
+                </li>
+            <% } %>
+        <% }) %>
+        </ul>
+    </div>
+<% } %>
+
+<% function getFormattedCommentDate(unparsedDate) { %>
+    <% var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] %>
+    <% var monthNumber = unparsedDate.getMonth(); %>
+    <% var month = months[monthNumber]; %>
+    <% var day = unparsedDate.getDate(); %>
+    <% var year = unparsedDate.getFullYear(); %>
+    <% var hour = unparsedDate.getHours(); %>
+    <% var minute = (unparsedDate.getMinutes() < 10 ? '0' : '') + unparsedDate.getMinutes() %>
+    <% var displayDate = month + " " + day + ", " + year + " at " + hour +":"+ minute %>
+    <% return displayDate; %>
 <% } %>

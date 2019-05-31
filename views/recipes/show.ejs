@@ -108,7 +108,7 @@
             <% var avatar = commentAuthor[0].avatar %>
 
             <div class="commentContainer mb10">
-                <div class="commentBylineContainer mb10">
+                <div class="commentBylineContainer mb10 grey">
                     <img class="commenterAvatar mr10" src="<%= avatar %>">
                     <div class="commenterByline">
                         <a href="/users/<%= c.userId %>">
@@ -121,7 +121,7 @@
                     </div>
                     <p class="commenterRating mb10"> <%= "★".repeat(c.rating) %> </p> 
                 </div>
-                        
+
                 <p class="commentBody mb10"> <%= c.commentBody %> </p>
                 <% if(sessionUser) { %>
 
@@ -154,8 +154,6 @@
     <% var month = months[monthNumber]; %>
     <% var day = unparsedDate.getDate(); %>
     <% var year = unparsedDate.getFullYear(); %>
-    <% var hour = unparsedDate.getHours(); %>
-    <% var minute = (unparsedDate.getMinutes() < 10 ? '0' : '') + unparsedDate.getMinutes() %>
-    <% var displayDate = month + " " + day + ", " + year + " at " + hour +":"+ minute %>
+    <% var displayDate = month + " " + day + ", " + year %>
     <% return displayDate; %>
 <% } %>
