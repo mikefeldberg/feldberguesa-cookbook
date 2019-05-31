@@ -1,6 +1,8 @@
 <%- include ../partials/header.ejs %> 
 
 
+
+
 <div id="allRecipesContainer">
     <% recipes.forEach(function(r) { %>
         <% if (r.deletedAt == null) {%>
@@ -16,7 +18,9 @@
                     <a class="noDecoration" href="/users/">By USERNAME HERE</a>
                 </div>
                 <div class="recipeFavorited">FAVORITES HERE</div>
-                <div class="recipeRating">RATING HERE</div>
+                <div class="recipeRating">
+                    <span class="userRating"> <%= "★".repeat(r.rating) %> </span>
+                </div>
             </div>
         <% } %>
     <% }); %>
