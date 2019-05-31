@@ -12,8 +12,6 @@
             <% var favorited = favorites.filter(obj => { return obj.recipeId == r._id }) %>
             <% var favoritedCount = favorited.length %>
 
-
-
             <div class="recipeContainer mb10">
                 <div class="recipePhoto">
                     <a class="noDecoration" href="/recipes/<%= r._id %>"><img class="thumbNail mr10 thumb300" src="<%= r.imageUrl %>"></a>
@@ -24,15 +22,18 @@
                 <div class="recipeAuthor">
                     <a class="noDecoration" href="/users/">By <%= recipeAuthorName %></a>
                 </div>
-                <div class="recipeFavorited ml10">
-                    <img class="thumb15 mr10" src="../images/icon_heart.svg">(<%= favoritedCount %>)
-                </div>
-                <div class="recipeRating">
+                <div class="recipeStats">
+                    <div class="recipeRating">
                     <% if (r.rating > 0) { %>
-                        <span class="userRating"> <%= "★".repeat(r.rating) %></span> <span class="ml5">(<%= r.ratingCount %>)</span>
+                        <span class="userRating mr10"> <%= "★".repeat(r.rating) %></span> <span class="ml5">(<%= r.ratingCount %>)</span>
                     <% } else { %>
-                        <span class="userRating"> <%= "☆".repeat(5) %></span> <span class="ml5">(<%= 0 %>)</span>
+                        <span class="userRating mr10"> <%= "☆".repeat(5) %></span> <span class="ml5">(<%= 0 %>)</span>
                     <% } %>
+                    <span class="ml5 mr5"> | </span>
+                    </div>
+                    <div class="recipeFavorited">
+                        <img class="thumb15 mr10" src="../images/icon_heart.svg">(<%= favoritedCount %>)
+                    </div>
                 </div>
                 <div class="recipeDescription">
                     <a class="noDecoration" href="/recipes/<%= r._id %>"><%= r.description %></a>

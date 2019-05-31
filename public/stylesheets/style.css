@@ -315,15 +315,15 @@ input:disabled {
 
 .recipeContainer {
   display: grid;
-  grid-template-columns: 3;
+  grid-template-columns: 2;
   grid-auto-rows: 7;
   align-items: center;
   justify-content: start;
   grid-template-areas: 
     "recPic, "
-    "recPic, recName, recName"
-    "recPic, recAuth, recAuth"
-    "recPic, recRat, recFav"
+    "recPic, recName"
+    "recPic, recAuth"
+    "recPic, recStats"
     "recPic, ";
 }
 
@@ -351,28 +351,22 @@ input:disabled {
   grid-row-end: 4;
 }
 
-.recipeRating {
-  grid-area: recRat;
+.recipeStats {
+  display: flex;
+  align-items: center;
+  grid-area: recStats;
   grid-column-start: 2;
   grid-column-end: 3;
-  grid-row-start: 5;
-  grid-row-end: 6;
-}
-
-.recipeFavorited {
-  grid-area: recFav;
-  grid-column-start: 3;
-  grid-column-end: 4;
-  grid-row-start: 5;
-  grid-row-end: 6;
+  grid-row-start: 4;
+  grid-row-end: 5;
 }
 
 .recipeDescription {
   grid-area: recDesc;
   grid-column-start: 2;
   grid-column-end: 4;
-  grid-row-start: 6;
-  grid-row-end: 7;
+  grid-row-start: 5;
+  grid-row-end: 6;
 }
 
 .grey {
