@@ -355,6 +355,11 @@ input:disabled {
   height: 200px;
 }
 
+.thumb300 {
+  width: 300px;
+  height: 300px;
+}
+
 .buff50 {
   height: 50px;
 }
