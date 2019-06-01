@@ -13,12 +13,14 @@ module.exports = {
     delete: deleteRecipe,
     favorite,
     unfavorite,
+    upload,
+    images,
 };
 
 function index(req, res) {
-    User.find({}).exec(function(err, users){
-        Recipe.find({}).exec(function(err, recipes) {
-            Favorite.find({}).exec(function(err, favorites) {
+    User.find({}).exec(function (err, users) {
+        Recipe.find({}).exec(function (err, recipes) {
+            Favorite.find({}).exec(function (err, favorites) {
                 res.render('recipes/index', { recipes, users, favorites, sessionUser: req.user });
             });
         });
@@ -26,11 +28,11 @@ function index(req, res) {
 }
 
 function show(req, res) {
-    Recipe.findById(req.params.id).exec(function(err, recipe) {
-        Comment.find({ recipeId: recipe._id, deletedAt: null }).exec(function(err, comments) {
-            User.find({}).exec(function(err, users) {    
-                User.findById(recipe.userId).exec(function(err, recipeAuthor) {
-                    Favorite.find({ recipeId: recipe._id, deletedAt: null }).exec(function(err, favorites) {
+    Recipe.findById(req.params.id).exec(function (err, recipe) {
+        Comment.find({ recipeId: recipe._id, deletedAt: null }).exec(function (err, comments) {
+            User.find({}).exec(function (err, users) {
+                User.findById(recipe.userId).exec(function (err, recipeAuthor) {
+                    Favorite.find({ recipeId: recipe._id, deletedAt: null }).exec(function (err, favorites) {
 
                         function getFormattedDate(unparsedDate) {
                             var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
@@ -52,11 +54,11 @@ function show(req, res) {
                         var favoriteCount = favorites.length;
                         var isFavorited = false;
                         if (req.user) {
-                            Favorite.findOne({ userId: req.user._id, recipeId: req.params.id, deletedAt: null }, function(err, favorite) {
-                                res.render('recipes/show', { recipe, users, recipeAuthor, dateCreated, dateUpdated, sessionUser: req.user, comments, favoriteCount, isFavorited: !!favorite,  });
+                            Favorite.findOne({ userId: req.user._id, recipeId: req.params.id, deletedAt: null }, function (err, favorite) {
+                                res.render('recipes/show', { recipe, users, recipeAuthor, dateCreated, dateUpdated, sessionUser: req.user, comments, favoriteCount, isFavorited: !!favorite, });
                             });
                         } else {
-                            res.render('recipes/show', { recipe, users, recipeAuthor, dateCreated, dateUpdated, sessionUser: null, comments, favoriteCount, isFavorited,  });
+                            res.render('recipes/show', { recipe, users, recipeAuthor, dateCreated, dateUpdated, sessionUser: null, comments, favoriteCount, isFavorited, });
                         }
                     });
                 });
@@ -71,7 +73,7 @@ function newRecipe(req, res) {
 
 function create(req, res) {
     var recipe = new Recipe;
-    
+
     var ingredientQty = req.body.qty;
     var ingredientName = req.body.ingredient;
     var ingredientPrep = req.body.preparation;
@@ -83,7 +85,7 @@ function create(req, res) {
                 qty: ingredientQty[i],
                 name: ingredientName[i],
                 prep: ingredientPrep[i],
-            };   
+            };
 
             if (ingredient.qty) {
                 ingredients.push(ingredient)
@@ -103,15 +105,15 @@ function create(req, res) {
     }
 
     recipe.ingredients = ingredients;
-    
+
     recipe.name = req.body.name;
     recipe.description = req.body.description;
     if (req.body.instructions.length > 1) {
         for (var i = 0; i < req.body.instructions.length; i++) {
-           if (req.body.instructions[i]) {recipe.instructions.push(req.body.instructions[i])};
+            if (req.body.instructions[i]) { recipe.instructions.push(req.body.instructions[i]) };
         }
     } else {
-        if (req.body.instructions) {recipe.instructions.push(req.body.instructions)};
+        if (req.body.instructions) { recipe.instructions.push(req.body.instructions) };
     }
     recipe.skillLevel = req.body.skillLevel;
     recipe.timePrep = req.body.timePrep;
@@ -122,7 +124,7 @@ function create(req, res) {
     recipe.imageUrl = req.body.imageUrl;
     recipe.addedBy = req.user.name;
     recipe.userId = req.user._id;
-    
+
     recipe.save(function (err) {
         res.redirect('/recipes');
     });
@@ -141,14 +143,14 @@ function update(req, res) {
         var ingredientName = req.body.ingredient;
         var ingredientPrep = req.body.preparation;
         var ingredients = [];
-        
+
         if (ingredientQty.length > 1) {
             for (var i = 0; i < ingredientQty.length; i++) {
                 var ingredient = {
                     qty: ingredientQty[i],
                     name: ingredientName[i],
                     prep: ingredientPrep[i],
-                };   
+                };
 
                 if (ingredient.qty) {
                     ingredients.push(ingredient)
@@ -175,10 +177,10 @@ function update(req, res) {
 
         if (req.body.instructions.length > 1) {
             for (var i = 0; i < req.body.instructions.length; i++) {
-               if (req.body.instructions[i]) {recipe.instructions.push(req.body.instructions[i])};
+                if (req.body.instructions[i]) { recipe.instructions.push(req.body.instructions[i]) };
             }
         } else {
-            if (req.body.instructions) {recipe.instructions.push(req.body.instructions)};
+            if (req.body.instructions) { recipe.instructions.push(req.body.instructions) };
         }
 
         recipe.skillLevel = req.body.skillLevel;
@@ -223,5 +225,15 @@ function unfavorite(req, res) {
         favorite.deletedAt = new Date();
         favorite.save();
         res.redirect(`/recipes/${req.params.id}`);
+    });
+}
+
+function upload(req, res, next) {
+    res.render('recipes/upload', { user: req.user })
+}
+
+function images(req, res, next) {
+    Recipe.findById(req.params.id, function (err, recipe) {
+        res.render('recipes/images', { user: student });
     });
 }

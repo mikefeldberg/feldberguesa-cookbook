@@ -359,6 +359,7 @@ input:disabled {
   grid-column-end: 3;
   grid-row-start: 4;
   grid-row-end: 5;
+  justify-content: center;
 }
 
 .recipeDescription {
