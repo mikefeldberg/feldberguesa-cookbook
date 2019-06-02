@@ -124,6 +124,5 @@ function calculateRating(comments) {
         recipeAllRatingsSum += recipeAllRatings[i];
     }
 
-    console.log(recipeAllRatingsSum / recipeAllRatings.length)
     return recipeAllRatingsSum / recipeAllRatings.length || 0;
 }
