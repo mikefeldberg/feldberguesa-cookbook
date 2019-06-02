@@ -13,7 +13,10 @@ var recipeSchema = new mongoose.Schema({
     servings: Number,
     categories: Array,
     heroImageUrl: String,
-    imageUrl: String,
+    imageUrl: {
+        type: String,
+        default: "https://i.imgur.com/xKqTrkS.jpg"
+    },
     images: [String],
     rating: {
         type: Number,

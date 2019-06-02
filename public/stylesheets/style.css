@@ -374,6 +374,9 @@ input:disabled {
   grid-template-columns: 2;
   grid-template-rows: 1;
   align-items: top;
+  align-content: start;
+  grid-auto-columns: minmax(max-content, auto);
+  max-width: 1000px;
   grid-template-areas: 
     "recThumb, recSum"
 }
@@ -386,6 +389,8 @@ input:disabled {
   grid-column-end: 2;
   grid-row-start: 1;
   grid-row-end: 2;
+  align-content: start;
+  /* grid-auto-columns: auto; */
 }
 
 .recipeSummary {
@@ -394,6 +399,8 @@ input:disabled {
   grid-column-end: 3;
   grid-row-start: 1;
   grid-row-end: 2;
+  align-content: start;
+  /* grid-auto-columns: auto; */
 }
 
 .grey {
@@ -446,57 +453,57 @@ input:disabled {
 }
 
 .thumb15 {
-  width: 15px;
-  height: 15px;
+  max-width: 15px;
+  max-height: 15px;
 }
 
 .thumb50 {
-  width: 50px;
-  height: 50px;
+  max-width: 50px;
+  max-height: 50px;
 }
 
 .thumb100 {
-  width: 100px;
-  height: 100px;
+  max-width: 100px;
+  max-height: 100px;
 }
 
 .thumb200 {
-  width: 200px;
-  height: 200px;
+  max-width: 200px;
+  max-height: 200px;
 }
 
 .thumb300 {
-  width: 300px;
-  height: 300px;
+  max-width: 300px;
+  max-height: 300px;
 }
 
 .thumb400 {
-  width: 400px;
-  height: 400px;
+  max-width: 400px;
+  max-height: 400px;
 }
 
 .buff50 {
-  height: 50px;
+  max-height: 50px;
 }
 
 .w100 {
-  width: 100px;
+  max-width: 100px;
 }
 
 .w300 {
-  width: 300px;
+  max-width: 300px;
 }
 
-.width100 {
-  width: 95%;
+.max-width100 {
+  max-width: 95%;
 }
 
 .h20 {
-  height: 20px;
+  max-height: 20px;
 }
 
 .h25 {
-  height: 25px;
+  max-height: 25px;
 }
 
 .ib {

@@ -17,8 +17,10 @@
     <img class="thumb100 userPhoto thumbnail rightAlign" src="<%= user.avatar %>">
 </div>
 
-<% if (sessionUser && favorites) { %>
+<% if (favorites.length > 0 && sessionUser) { %>
     <h3><%= author %> Favorites</h3>
+
+
     <div class="userFavoritesContainer">
         <% favorites.forEach(function(f) { %>
             <% if (f.deletedAt == null) { %>
@@ -38,8 +40,17 @@
     </div>
 <% } %>
 
-<% if (userRecipes) { %>
-    <h3><%= author %> Recipes</h3>
+<h3><%= author %> Recipes</h3>
+
+<% if (userRecipes.length < 1) { %>
+    <% if (sessionUser) { %>
+        <% if (sessionUser._id == user._id) { %>
+            <p>You have not added any recipes yet.</p>
+        <% } %>
+    <% } else { %>
+            <p><%= user.name %> has not added any recipes yet.</p>
+    <% } %>
+<% } else { %>
     <div class="userRecipesContainer">
         <% userRecipes.forEach(function(ur) { %>
             <% if (ur.deletedAt == null) { %>
@@ -52,28 +63,40 @@
     </div>
 <% } %>
 
-<% if (comments) { %>
-    <h3><%= author %> Comments</h3>
-    <% comments.forEach(function(c) { %>
-        <% if (c.deletedAt == null) { %>
-            <div class="commentContainer mb10">
-                <div class="userCommentByline">
-                    <a class="mb5" href="/recipes/<%= c.recipeId %>"> <%= c.addedTo %> </a>
-                    <p class="mb10">
-                        <%= getFormattedCommentDate(c.createdAt) %> 
-                        <% if (getFormattedCommentDate(c.createdAt) !== getFormattedCommentDate(c.updatedAt)) { %>
-                            <span class="grey">(Edited on <%= getFormattedCommentDate(c.updatedAt) %>)</span>
-                        <% } %>
-                    </p>
-                </div>
-                <p class="userRating mb10"> <%= "★".repeat(c.rating) %> </p>
-                <p> <%= c.commentBody %> </p>
-            </div>
+
+<h3><%= author %> Comments</h3>
+
+<% if (comments.length < 1) { %>
+    <% if (sessionUser) { %>
+        <% if (sessionUser._id == user._id) { %>
+            <p>You have not left any comments yet.</p>
         <% } %>
-    <% }) %>
+    <% } else { %>
+            <p><%= user.name %> has not left any comments yet.</p>
+    <% } %>
+<% } else { %>
+    <div class="commentsContainer">
+        <% comments.forEach(function(c) { %>
+            <% if (c.deletedAt == null) { %>
+                <div class="commentContainer mb10">
+                    <div class="userCommentByline">
+                        <a class="mb5" href="/recipes/<%= c.recipeId %>"> <%= c.addedTo %> </a>
+                        <p class="mb10">
+                            <%= getFormattedCommentDate(c.createdAt) %> 
+                            <% if (getFormattedCommentDate(c.createdAt) !== getFormattedCommentDate(c.updatedAt)) { %>
+                                <span class="grey">(Edited on <%= getFormattedCommentDate(c.updatedAt) %>)</span>
+                            <% } %>
+                        </p>
+                    </div>
+                    <p class="userRating mb10"> <%= "★".repeat(c.rating) %> </p>
+                    <p> <%= c.commentBody %> </p>
+                </div>
+            <% } %>
+        <% }) %>
+    </div>
 <% } %>
 
-<% if (favorites && !sessionUser) { %>
+<% if (favorites.length > 0 && !sessionUser) { %>
     <h3><%= author %> Favorites</h3>
     <div class="userFavoritesContainer">
         <% favorites.forEach(function(f) { %>
