@@ -206,11 +206,7 @@ function update(req, res) {
 
                 recipe.skillLevel = req.body.skillLevel;
                 recipe.timePrep = req.body.timePrep;
-                console.log('req.body.timeWait')
-                console.log(req.body.timeWait)
-                console.log(typeof req.body.timeWait)
                 recipe.timeWait = req.body.timeWait || 0;
-                console.log(recipe.timeWait)
                 recipe.timeCook = req.body.timeCook;
                 recipe.timeTotal = parseInt(req.body.timePrep) + parseInt(req.body.timeWait) + parseInt(req.body.timeCook);
                 recipe.servings = req.body.servings;
