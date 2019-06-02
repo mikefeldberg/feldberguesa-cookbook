@@ -4,11 +4,17 @@
 
 <% var greeting = user.name %>
 <% var author = `${user.name}'s` %>
+<% var youRecipes = `${user.name} has` %>
+<% var youComments = `${user.name} has` %>
+<% var youFavorites = `${user.name} does` %>
 
 <% if (sessionUser) { %>
     <% if (user.id == sessionUser._id) { %>
         <% greeting = `Welcome back, ${sessionUser.name}!` %>
         <% author = `Your` %>
+        <% youRecipes = 'You have' %>
+        <% youComments = 'You have' %>
+        <% youFavorites = 'You do' %>
     <% } %>
 <% } %>
 
@@ -17,39 +23,35 @@
     <img class="thumb100 userPhoto thumbnail rightAlign" src="<%= user.avatar %>">
 </div>
 
-<% if (favorites.length > 0 && sessionUser) { %>
+<% if (sessionUser) { %>
     <h3><%= author %> Favorites</h3>
+    <% if (favorites.length < 1) { %>
+        <p><%= youFavorites %> not have any favorites yet.</p>
+    <% } else { %>
+        <div class="userFavoritesContainer">
+            <% favorites.forEach(function(f) { %>
+                <% if (f.deletedAt == null) { %>
+                    
+                    <% var favoritedRecipeId = f.recipeId %>
+                    <% var favoritedRecipe = recipes.filter(obj => { return obj._id == favoritedRecipeId }) %>
+                    <% var recipeThumbnail = favoritedRecipe[0].imageUrl %>
 
-
-    <div class="userFavoritesContainer">
-        <% favorites.forEach(function(f) { %>
-            <% if (f.deletedAt == null) { %>
-                
-                <% var favoritedRecipeId = f.recipeId %>
-                <% var favoritedRecipe = recipes.filter(obj => { return obj._id == favoritedRecipeId }) %>
-                <% var recipeThumbnail = favoritedRecipe[0].imageUrl %>
-
-                <div class="favoriteContainer mb10">
-                    <% if (recipeThumbnail) { %>
-                        <a href="/recipes/<%= f.recipeId %>"><img class="thumbnail thumb50 mr10" src="<%= recipeThumbnail %>"></a>
-                    <% } %>
-                    <a href="/recipes/<%= f.recipeId %>"> <%= f.addedTo %> </a>
-                </div>
-            <% } %>
-        <% }) %>
-    </div>
+                    <div class="favoriteContainer mb10">
+                        <% if (recipeThumbnail) { %>
+                            <a href="/recipes/<%= f.recipeId %>"><img class="thumbnail thumb50 mr10" src="<%= recipeThumbnail %>"></a>
+                        <% } %>
+                        <a href="/recipes/<%= f.recipeId %>"> <%= f.addedTo %> </a>
+                    </div>
+                <% } %>
+            <% }) %>
+        </div>
+    <% } %>
 <% } %>
 
 <h3><%= author %> Recipes</h3>
 
 <% if (userRecipes.length < 1) { %>
-    <% if (sessionUser) { %>
-        <% if (sessionUser._id == user._id) { %>
-            <p>You have not added any recipes yet.</p>
-        <% } %>
-    <% } else { %>
-            <p><%= user.name %> has not added any recipes yet.</p>
-    <% } %>
+    <p><%= youRecipes %> not shared any recipes yet.</p>
 <% } else { %>
     <div class="userRecipesContainer">
         <% userRecipes.forEach(function(ur) { %>
@@ -67,13 +69,7 @@
 <h3><%= author %> Comments</h3>
 
 <% if (comments.length < 1) { %>
-    <% if (sessionUser) { %>
-        <% if (sessionUser._id == user._id) { %>
-            <p>You have not left any comments yet.</p>
-        <% } %>
-    <% } else { %>
-            <p><%= user.name %> has not left any comments yet.</p>
-    <% } %>
+    <p><%= youComments %> not left any comments yet.</p>
 <% } else { %>
     <div class="commentsContainer">
         <% comments.forEach(function(c) { %>
@@ -96,25 +92,29 @@
     </div>
 <% } %>
 
-<% if (favorites.length > 0 && !sessionUser) { %>
+<% if (!sessionUser) { %>
     <h3><%= author %> Favorites</h3>
-    <div class="userFavoritesContainer">
-        <% favorites.forEach(function(f) { %>
-            <% if (f.deletedAt == null) { %>
-                
-                <% var favoritedRecipeId = f.recipeId %>
-                <% var favoritedRecipe = recipes.filter(obj => { return obj._id == favoritedRecipeId }) %>
-                <% var recipeThumbnail = favoritedRecipe[0].imageUrl %>
+    <% if (favorites.length < 1) { %>
+        <p><%= youFavorites %> not have any favorites yet.</p>
+    <% } else { %>
+        <div class="userFavoritesContainer">
+            <% favorites.forEach(function(f) { %>
+                <% if (f.deletedAt == null) { %>
+                    
+                    <% var favoritedRecipeId = f.recipeId %>
+                    <% var favoritedRecipe = recipes.filter(obj => { return obj._id == favoritedRecipeId }) %>
+                    <% var recipeThumbnail = favoritedRecipe[0].imageUrl %>
 
-                <div class="favoriteContainer mb10">
-                    <% if (recipeThumbnail) { %>
-                        <a href="/recipes/<%= f.recipeId %>"><img class="thumbnail thumb50 mr10" src="<%= recipeThumbnail %>"></a>
-                    <% } %>
-                    <a href="/recipes/<%= f.recipeId %>"> <%= f.addedTo %> </a>
-                </div>
-            <% } %>
-        <% }) %>
-    </div>
+                    <div class="favoriteContainer mb10">
+                        <% if (recipeThumbnail) { %>
+                            <a href="/recipes/<%= f.recipeId %>"><img class="thumbnail thumb50 mr10" src="<%= recipeThumbnail %>"></a>
+                        <% } %>
+                        <a href="/recipes/<%= f.recipeId %>"> <%= f.addedTo %> </a>
+                    </div>
+                <% } %>
+            <% }) %>
+        </div>
+    <% } %>
 <% } %>
 
 <% function getFormattedCommentDate(unparsedDate) { %>

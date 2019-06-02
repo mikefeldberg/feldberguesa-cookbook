@@ -29,13 +29,13 @@ function show(req, res, next) {
                 console.log(user)
                 User.findById(req.user._id).exec(function(err, sessionUser) {
                     console.log(sessionUser)
-                    Comment.find({ userId: req.user._id }).exec(function(err, comments) {
+                    Comment.find({ userId: req.user._id, deletedAt: null }).exec(function(err, comments) {
                         console.log(comments)
-                        Recipe.find({}).exec(function(err, recipes) {
+                        Recipe.find({ deletedAt: null }).exec(function(err, recipes) {
                             // console.log(recipes)
-                            Recipe.find({ userId: req.user._id }).exec(function(err, userRecipes) {
+                            Recipe.find({ userId: req.user._id, deletedAt: null }).exec(function(err, userRecipes) {
                                 console.log(userRecipes)
-                                Favorite.find({ userId: req.user._id }).exec(function(err, favorites) {
+                                Favorite.find({ userId: req.user._id, deletedAt: null }).exec(function(err, favorites) {
                                     console.log(favorites)
                                     res.render('users/show', { comments, userRecipes, recipes, favorites, user, sessionUser });
                                 });
@@ -49,13 +49,13 @@ function show(req, res, next) {
                 console.log(user)
                 User.findById(req.user._id).exec(function(err, sessionUser) {
                     console.log(sessionUser)
-                    Comment.find({ userId: req.params.id }).exec(function(err, comments) {
+                    Comment.find({ userId: req.params.id, deletedAt: null }).exec(function(err, comments) {
                         console.log(comments)
-                        Recipe.find({}).exec(function(err, recipes) {
+                        Recipe.find({deletedAt: null}).exec(function(err, recipes) {
                             // console.log(recipes)
-                            Recipe.find({ userId: req.params.id }).exec(function(err, userRecipes) {
+                            Recipe.find({ userId: req.params.id, deletedAt: null }).exec(function(err, userRecipes) {
                                 console.log(userRecipes)
-                                Favorite.find({ userId: req.params.id }).exec(function(err, favorites) {
+                                Favorite.find({ userId: req.params.id, deletedAt: null }).exec(function(err, favorites) {
                                     console.log(favorites)
                                     res.render('users/show', { comments, userRecipes, recipes, favorites, user, sessionUser });
                                 });
@@ -70,9 +70,9 @@ function show(req, res, next) {
             console.log(user)
             Comment.find({ userId: req.params.id }).exec(function(err, comments) {
                 console.log(comments)
-                Recipe.find({}).exec(function(err, recipes) {
+                Recipe.find({deletedAt: null}).exec(function(err, recipes) {
                     // console.log(recipes)
-                    Recipe.find({ userId: req.params.id }).exec(function(err, userRecipes) {
+                    Recipe.find({ userId: req.params.id, deletedAt: null }).exec(function(err, userRecipes) {
                         console.log(userRecipes)
                         Favorite.find({ userId: req.params.id, deletedAt: null }).exec(function(err, favorites) {
                             console.log(favorites)
