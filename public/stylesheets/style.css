@@ -452,59 +452,59 @@ input:disabled {
 }
 
 .thumb15 {
-  max-width: 15px;
-  max-height: 15px;
+  width: 15px;
+  height: 15px;
 }
 
 .thumb20 {
-  max-width: 20px;
-  max-height: 20px;
+  width: 20px;
+  height: 20px;
 }
 
 .thumb50 {
-  max-width: 50px;
-  max-height: 50px;
+  width: 50px;
+  height: 50px;
 }
 
 .thumb100 {
-  max-width: 100px;
-  max-height: 100px;
+  width: 100px;
+  height: 100px;
 }
 
 .thumb150 {
-  max-width: 150px;
-  max-height: 150px;
+  width: 150px;
+  height: 150px;
 }
 
 .thumb200 {
-  max-width: 200px;
-  max-height: 200px;
+  width: 200px;
+  height: 200px;
 }
 
 .thumb300 {
-  max-width: 300px;
-  max-height: 300px;
+  width: 300px;
+  height: 300px;
 }
 
 .thumb400 {
-  max-width: 400px;
-  max-height: 400px;
+  width: 400px;
+  height: 400px;
 }
 
 .buff50 {
-  max-height: 50px;
+  height: 50px;
 }
 
 .w100 {
-  max-width: 100px;
+  width: 100px;
 }
 
 .w300 {
-  max-width: 300px;
+  width: 300px;
 }
 
-.max-width100 {
-  max-width: 95%;
+.width100 {
+  width: 95%;
 }
 
 .h20 {
