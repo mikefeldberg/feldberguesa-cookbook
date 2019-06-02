@@ -34,7 +34,9 @@
                     
                     <% var favoritedRecipeId = f.recipeId %>
                     <% var favoritedRecipe = recipes.filter(obj => { return obj._id == favoritedRecipeId }) %>
-                    <% var recipeThumbnail = favoritedRecipe[0].imageUrl %>
+                    <% if (favoritedRecipe[0].imageUrl) { %>
+                        <% var recipeThumbnail = favoritedRecipe[0].imageUrl %>
+                    <% } %>
 
                     <div class="favoriteContainer mb10">
                         <% if (recipeThumbnail) { %>
