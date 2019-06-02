@@ -127,7 +127,7 @@
                             <%= c.addedBy %>
                         </a>
                         <%= getFormattedCommentDate(c.createdAt) %>
-                        <% if (c.updatedAt) { %>
+                        <% if (getFormattedCommentDate(c.createdAt) !== getFormattedCommentDate(c.updatedAt)) { %>
                             (Edited on <%= getFormattedCommentDate(c.updatedAt) %>)
                         <% } %>
                     </div>

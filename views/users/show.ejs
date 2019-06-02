@@ -61,7 +61,7 @@
                     <a class="mb5" href="/recipes/<%= c.recipeId %>"> <%= c.addedTo %> </a>
                     <p class="mb10">
                         <%= getFormattedCommentDate(c.createdAt) %> 
-                        <% if (c.updatedAt) { %>
+                        <% if (getFormattedCommentDate(c.createdAt) !== getFormattedCommentDate(c.updatedAt)) { %>
                             <span class="grey">(Edited on <%= getFormattedCommentDate(c.updatedAt) %>)</span>
                         <% } %>
                     </p>
