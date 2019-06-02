@@ -126,7 +126,7 @@ function create(req, res) {
         }
         recipe.skillLevel = req.body.skillLevel;
         recipe.timePrep = req.body.timePrep;
-        recipe.timeWait = req.body.timeWait;
+        recipe.timeWait = req.body.timeWait || 0;
         recipe.timeCook = req.body.timeCook;
         recipe.timeTotal = parseInt(req.body.timePrep) + parseInt(req.body.timeWait) + parseInt(req.body.timeCook);
         recipe.servings = req.body.servings;
@@ -160,8 +160,6 @@ function update(req, res) {
     } else {
         Recipe.findById(req.params.id).exec(function (err, recipe) {
             if (req.user._id == recipe.userId) {
-                console.log('here i am')
-                console.log(req.body)
                 var ingredientQty = req.body.qty;
                 var ingredientName = req.body.ingredient;
                 var ingredientPrep = req.body.preparation;
@@ -208,7 +206,11 @@ function update(req, res) {
 
                 recipe.skillLevel = req.body.skillLevel;
                 recipe.timePrep = req.body.timePrep;
-                recipe.timeWait = req.body.timeWait;
+                console.log('req.body.timeWait')
+                console.log(req.body.timeWait)
+                console.log(typeof req.body.timeWait)
+                recipe.timeWait = req.body.timeWait || 0;
+                console.log(recipe.timeWait)
                 recipe.timeCook = req.body.timeCook;
                 recipe.timeTotal = parseInt(req.body.timePrep) + parseInt(req.body.timeWait) + parseInt(req.body.timeCook);
                 recipe.servings = req.body.servings;

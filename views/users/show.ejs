@@ -38,9 +38,9 @@
                         <% var recipeThumbnail = favoritedRecipe[0].imageUrl %>
                     <% } %>
 
-                    <div class="favoriteContainer mb10">
+                    <div class="favoriteContainer mb15">
                         <% if (recipeThumbnail) { %>
-                            <a href="/recipes/<%= f.recipeId %>"><img class="thumbnail thumb50 mr10" src="<%= recipeThumbnail %>"></a>
+                            <a href="/recipes/<%= f.recipeId %>"><img class="thumbnail thumb150 mr15" src="<%= recipeThumbnail %>"></a>
                         <% } %>
                         <a href="/recipes/<%= f.recipeId %>"> <%= f.addedTo %> </a>
                     </div>
@@ -58,8 +58,8 @@
     <div class="userRecipesContainer">
         <% userRecipes.forEach(function(ur) { %>
             <% if (ur.deletedAt == null) { %>
-                <div class="userRecipeContainer mb10">
-                    <a href="/recipes/<%= ur._id %>"><img class="thumbnail thumb50 mr10" src="<%= ur.imageUrl %>"></a>
+                <div class="userRecipeContainer mb15">
+                    <a href="/recipes/<%= ur._id %>"><img class="thumbnail thumb150 mr15" src="<%= ur.imageUrl %>"></a>
                     <a href="/recipes/<%= ur._id %>"><%= ur.name %> </a>
                 </div>
             <% } %>
@@ -107,9 +107,9 @@
                     <% var favoritedRecipe = recipes.filter(obj => { return obj._id == favoritedRecipeId }) %>
                     <% var recipeThumbnail = favoritedRecipe[0].imageUrl %>
 
-                    <div class="favoriteContainer mb10">
+                    <div class="favoriteContainer mb15">
                         <% if (recipeThumbnail) { %>
-                            <a href="/recipes/<%= f.recipeId %>"><img class="thumbnail thumb50 mr10" src="<%= recipeThumbnail %>"></a>
+                            <a href="/recipes/<%= f.recipeId %>"><img class="thumbnail thumb150 mr15" src="<%= recipeThumbnail %>"></a>
                         <% } %>
                         <a href="/recipes/<%= f.recipeId %>"> <%= f.addedTo %> </a>
                     </div>

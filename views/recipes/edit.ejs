@@ -103,7 +103,7 @@
             <span><strong>Cook Time</strong> (minutes): </span><input class="h25" required class="numberOnlyInput mb10" name="timeCook" type="text" pattern="\d+" value="<%= recipe.timeCook %>"><br>
         </div>
         <div class="mb10">
-            <span><strong>Wait Time</strong> (minutes): </span><input class="h25" class="numberOnlyInput mb10" name="timeWait" type="text" pattern="\d+" value="<%= recipe.timeWait %>"><br>
+            <span><strong>Wait Time</strong> (minutes): </span><input class="h25" class="numberOnlyInput mb10" name="timeWait" type="text" pattern="\d+" value="<%= recipe.timeWait || 0%>"><br>
         </div>
         <div class="mb10">
             <span><strong>Add image URL:</strong> </span><input class="h25" name="imageUrl" type="text" value="<%= recipe.imageUrl %>"><br>
