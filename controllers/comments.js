@@ -40,12 +40,16 @@ function create(req, res) {
 }
 
 function edit(req, res) {
-    var recipeId = Object.keys(req.query)[0];
-    Comment.findById(req.params.id).exec(function (err, comment) {
-        User.findById(req.user._id).exec(function (err, sessionUser) {
-            res.render(`comments/edit`, { comment, sessionUser, recipeId });
+    if (!req.user) {
+        res.redirect(`/recipes/${req.params.id}`);
+    } else {
+        var recipeId = Object.keys(req.query)[0];
+        Comment.findById(req.params.id).exec(function (err, comment) {
+            User.findById(req.user._id).exec(function (err, sessionUser) {
+                res.render(`comments/edit`, { comment, sessionUser, recipeId });
+            });
         });
-    });
+    }
 }
 
 function update(req, res) {
@@ -85,20 +89,28 @@ function update(req, res) {
 }
 
 function deleteComment(req, res) {
-    Comment.findById(req.params.id).exec(function (err, comment) {
-        comment.deletedAt = new Date();
-        comment.save(function (err) {
-            Recipe.findById(comment.recipeId).exec(function(err, recipe) {
-                Comment.find({ recipeId: recipe._id, deletedAt: null }).exec(function(err, comments) {
-                    recipe.rating = calculateRating(comments)
-                    recipe.ratingCount -= 1
-                    recipe.save(function(err) {
-                        res.redirect(`/recipes/${comment.recipeId}`);
+    if (!req.user) {
+        res.redirect(`/recipes`);
+    } else {
+        Comment.findById(req.params.id).exec(function (err, comment) {
+            if (comment.userId !== req.user._id) {
+                res.redirect(`/recipes`);
+            } else {
+                comment.deletedAt = new Date();
+                comment.save(function (err) {
+                    Recipe.findById(comment.recipeId).exec(function(err, recipe) {
+                        Comment.find({ recipeId: recipe._id, deletedAt: null }).exec(function(err, comments) {
+                            recipe.rating = calculateRating(comments)
+                            recipe.ratingCount -= 1
+                            recipe.save(function(err) {
+                                res.redirect(`/recipes/${comment.recipeId}`);
+                            });
+                        });
                     });
                 });
-            });
+            }
         });
-    });
+    }
 }
 
 function calculateRating(comments) {
