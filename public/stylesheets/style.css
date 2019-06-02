@@ -374,23 +374,16 @@ input:disabled {
   grid-template-columns: 2;
   grid-template-rows: 1;
   align-items: top;
-  align-content: start;
-  grid-auto-columns: minmax(max-content, auto);
-  max-width: 1000px;
   grid-template-areas: 
     "recThumb, recSum"
 }
 
 .recipeThumbnail {
-  /* display: flex;
-  align-items: center; */
   grid-area: recThumb;
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 1;
   grid-row-end: 2;
-  align-content: start;
-  /* grid-auto-columns: auto; */
 }
 
 .recipeSummary {
@@ -399,8 +392,6 @@ input:disabled {
   grid-column-end: 3;
   grid-row-start: 1;
   grid-row-end: 2;
-  align-content: start;
-  /* grid-auto-columns: auto; */
 }
 
 .grey {

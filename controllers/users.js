@@ -26,17 +26,11 @@ function show(req, res, next) {
     if (req.user) {
         if (req.user._id == req.params.id) {
             User.findById(req.params.id).exec(function(err, user) {
-                console.log(user)
                 User.findById(req.user._id).exec(function(err, sessionUser) {
-                    console.log(sessionUser)
                     Comment.find({ userId: req.user._id, deletedAt: null }).exec(function(err, comments) {
-                        console.log(comments)
                         Recipe.find({ deletedAt: null }).exec(function(err, recipes) {
-                            // console.log(recipes)
                             Recipe.find({ userId: req.user._id, deletedAt: null }).exec(function(err, userRecipes) {
-                                console.log(userRecipes)
                                 Favorite.find({ userId: req.user._id, deletedAt: null }).exec(function(err, favorites) {
-                                    console.log(favorites)
                                     res.render('users/show', { comments, userRecipes, recipes, favorites, user, sessionUser });
                                 });
                             });
@@ -46,17 +40,11 @@ function show(req, res, next) {
             });
         } else {
             User.findById(req.params.id).exec(function(err, user) {
-                console.log(user)
                 User.findById(req.user._id).exec(function(err, sessionUser) {
-                    console.log(sessionUser)
                     Comment.find({ userId: req.params.id, deletedAt: null }).exec(function(err, comments) {
-                        console.log(comments)
                         Recipe.find({deletedAt: null}).exec(function(err, recipes) {
-                            // console.log(recipes)
                             Recipe.find({ userId: req.params.id, deletedAt: null }).exec(function(err, userRecipes) {
-                                console.log(userRecipes)
                                 Favorite.find({ userId: req.params.id, deletedAt: null }).exec(function(err, favorites) {
-                                    console.log(favorites)
                                     res.render('users/show', { comments, userRecipes, recipes, favorites, user, sessionUser });
                                 });
                             });
@@ -67,15 +55,10 @@ function show(req, res, next) {
         }
     } else {
         User.findById(req.params.id).exec(function(err, user) {
-            console.log(user)
             Comment.find({ userId: req.params.id }).exec(function(err, comments) {
-                console.log(comments)
                 Recipe.find({deletedAt: null}).exec(function(err, recipes) {
-                    // console.log(recipes)
                     Recipe.find({ userId: req.params.id, deletedAt: null }).exec(function(err, userRecipes) {
-                        console.log(userRecipes)
                         Favorite.find({ userId: req.params.id, deletedAt: null }).exec(function(err, favorites) {
-                            console.log(favorites)
                             res.render('users/show', { comments, userRecipes, recipes, favorites, user, sessionUser: null });
                         });
                     });
