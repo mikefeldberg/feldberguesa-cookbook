@@ -212,7 +212,7 @@ form {
 
 .userRating, .commenterRating {
   color: gold;
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .recipeDeleteQuestion, .commentDeleteQuestion {
@@ -271,7 +271,7 @@ input:disabled {
   grid-row-end: 3;
 }
 
-.favoriteContainer, .ratingContainer, .userRecipeContainer {
+.favoriteContainer, .ratingContainer, .userRecipeContainer, .recipeRating, .recipeFavorited {
   display: flex;
   align-items: center;
 }
@@ -454,6 +454,11 @@ input:disabled {
 .thumb15 {
   max-width: 15px;
   max-height: 15px;
+}
+
+.thumb20 {
+  max-width: 20px;
+  max-height: 20px;
 }
 
 .thumb50 {

@@ -60,3 +60,7 @@ label[for]:hover {
 .ratingDisabled [type="radio"]:nth-of-type(5):focus~.stars label:nth-of-type(5) {
     color: #888;
 }
+
+.rating, .ratingDisabled {
+    font-size: 20px;
+}

@@ -42,9 +42,9 @@
     |
     <div class="favoriteContainer ml10">
         <% if (isFavorited) { %>
-            <form id="unheartForm" method="POST" action="/recipes/<%= recipe._id %>/favorite?_method=DELETE"><input class="unfavoriteButton thumb15" type="image" name="submit" src="../images/icon_heart.svg" border="0" alt="Submit" /></form>
+            <form id="unheartForm" method="POST" action="/recipes/<%= recipe._id %>/favorite?_method=DELETE"><input class="unfavoriteButton thumb20" type="image" name="submit" src="../images/icon_heart.svg" border="0" alt="Submit" /></form>
         <% } else { %>
-            <form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite"><input class="favoriteButton thumb15" type="image" name="submit" src="https://i.imgur.com/XMLm13M.png" border="0" alt="Submit" / <% if (!sessionUser) { %> disabled="disabled" title="Please log in to add to favorites." <% } %> ></form>
+            <form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite"><input class="favoriteButton thumb20" type="image" name="submit" src="https://i.imgur.com/XMLm13M.png" border="0" alt="Submit" / <% if (!sessionUser) { %> disabled="disabled" title="Please log in to add to favorites." <% } %> ></form>
         <% } %>
         
         <% if (favoriteCount > 0) { %>
