@@ -76,30 +76,31 @@
     <div class="commentsContainer">
         <% comments.forEach(function(c) { %>
             <% if (c.deletedAt == null) { %>
-                
                 <% var commentRecipeId = c.recipeId %>
                 <% var commentRecipe = recipes.filter(obj => { return obj._id == commentRecipeId }) %>
-                <% var recipeAvatar = commentRecipe[0].imageUrl %>
-                <% var recipeName = commentRecipe[0].name %>
+                <% if (commentRecipe[0].deletedAt == null) { %>
+                    <% var recipeAvatar = commentRecipe[0].imageUrl %>
+                    <% var recipeName = commentRecipe[0].name %>
 
-                <div class="flex fdCol pl10 pt10 mb10 br10 greyBorder">
-                    <div class="flex mb10 noDecoration grey">
-                        <img class="thumbnail mr10 thumb50" src="<%= recipeAvatar %>">
-                        <div class="flex fdCol">
-                            <div class="flex">
-                                <span class="mr5 darkGrey"><a class="noDecoration darkGrey" href="/recipes/<%= commentRecipeId %>"><%= recipeName %></a></span>
-                                <%= getFormattedCommentDate(c.createdAt) %>
-                                <% if (getFormattedCommentDate(c.createdAt) !== getFormattedCommentDate(c.updatedAt)) { %>
-                                    <span class="grey">(Edited on <%= getFormattedCommentDate(c.updatedAt) %>)</span>
-                                <% } %>
+                    <div class="flex fdCol pl10 pt10 mb10 br10 greyBorder">
+                        <div class="flex mb10 noDecoration grey">
+                            <img class="thumbnail mr10 thumb50" src="<%= recipeAvatar %>">
+                            <div class="flex fdCol">
+                                <div class="flex">
+                                    <span class="mr5 darkGrey"><a class="noDecoration darkGrey" href="/recipes/<%= commentRecipeId %>"><%= recipeName %></a></span>
+                                    <%= getFormattedCommentDate(c.createdAt) %>
+                                    <% if (getFormattedCommentDate(c.createdAt) !== getFormattedCommentDate(c.updatedAt)) { %>
+                                        <span class="grey">(Edited on <%= getFormattedCommentDate(c.updatedAt) %>)</span>
+                                    <% } %>
+                                </div>
+                                <p class="userRating mb10"> <%= "★".repeat(c.rating) %> </p>
                             </div>
-                            <p class="userRating mb10"> <%= "★".repeat(c.rating) %> </p>
                         </div>
+                        <% if (c.commentBody) { %>
+                            <p class="commentBody mb10 mr10"> <%= c.commentBody %> </p>
+                        <% } %>
                     </div>
-                    <% if (c.commentBody) { %>
-                        <p class="commentBody mb10 mr10"> <%= c.commentBody %> </p>
-                    <% } %>
-                </div>
+                <% } %>
             <% } %>
         <% }); %>
     </div>
