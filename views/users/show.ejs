@@ -76,23 +76,35 @@
     <div class="commentsContainer">
         <% comments.forEach(function(c) { %>
             <% if (c.deletedAt == null) { %>
-                <div class="commentContainer mb10">
-                    <div class="userCommentByline">
-                        <a class="mb5" href="/recipes/<%= c.recipeId %>"> <%= c.addedTo %> </a>
-                        <p class="mb10">
-                            <%= getFormattedCommentDate(c.createdAt) %> 
-                            <% if (getFormattedCommentDate(c.createdAt) !== getFormattedCommentDate(c.updatedAt)) { %>
-                                <span class="grey">(Edited on <%= getFormattedCommentDate(c.updatedAt) %>)</span>
-                            <% } %>
-                        </p>
+                
+                <% var commentRecipeId = c.recipeId %>
+                <% var commentRecipe = recipes.filter(obj => { return obj._id == commentRecipeId }) %>
+                <% var recipeAvatar = commentRecipe[0].imageUrl %>
+
+                <div class="flex fdCol pl10 pt10 mb10 br10 greyBorder">
+                    <div class="flex mb10 noDecoration grey">
+                        <img class="thumbnail mr10 thumb50" src="<%= recipeAvatar %>">
+                        <div class="flex fdCol">
+                            <div class="flex">
+                                <span class="mr5"><a class="noDecoration darkGrey" href="/recipes/<%= commentRecipeId %>"><%= c.addedBy %></a></span>
+                                <%= getFormattedCommentDate(c.createdAt) %>
+                                <% if (getFormattedCommentDate(c.createdAt) !== getFormattedCommentDate(c.updatedAt)) { %>
+                                    <span class="grey">(Edited on <%= getFormattedCommentDate(c.updatedAt) %>)</span>
+                                <% } %>
+                            </div>
+                            <p class="userRating mb10"> <%= "★".repeat(c.rating) %> </p>
+                        </div>
                     </div>
-                    <p class="userRating mb10"> <%= "★".repeat(c.rating) %> </p>
-                    <p> <%= c.commentBody %> </p>
+                    <% if (c.commentBody) { %>
+                        <p class="commentBody mb10 mr10"> <%= c.commentBody %> </p>
+                    <% } %>
                 </div>
             <% } %>
-        <% }) %>
+        <% }); %>
     </div>
 <% } %>
+            
+
 
 <% if (!sessionUser) { %>
     <h3><%= author %> Favorites</h3>
@@ -114,7 +126,7 @@
                         <a href="/recipes/<%= f.recipeId %>"> <%= f.addedTo %> </a>
                     </div>
                 <% } %>
-            <% }) %>
+            <% }); %>
         </div>
     <% } %>
 <% } %>
