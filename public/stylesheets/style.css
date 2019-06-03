@@ -139,7 +139,6 @@ form {
   color: #777;
 }
 
-
 .unfavoriteButton {
   width: 18px;
   text-shadow: 0 0 1px #000;
@@ -206,7 +205,11 @@ form {
   display: none;
 } 
 
-.commentContainer, .userRecipesContainer, .userFavoritesContainer {
+.commentBody {
+  text-align: justify;
+}
+
+.commentContainer, .userFavoritesContainer {
   border: 1px solid #aaa;
   border-radius: 10px;
   padding: 15px;
@@ -224,7 +227,15 @@ form {
   padding-top: 10px;
 }
 
-.userRating, .commenterRating {
+.pl15 {
+  padding-left: 15px;
+}
+
+.pt15 {
+  padding-top: 15px;
+}
+
+.userRating {
   color: gold;
   font-size: 20px;
 }
@@ -237,18 +248,10 @@ input:disabled {
   opacity: .5;
 }
 
-.deleteRecipeDialogue, .commentEditContainer, .deleteCommentDialogue, .userGreetingContainer {
+.deleteRecipeDialogue, .commentEditContainer, .deleteCommentDialogue {
   display: flex;
   align-items: center;
   height: 25px;
-}
-
-.commenterPhoto {
-  /* grid-area: commenterPic; */
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 1;
-  grid-row-end: 3;
 }
 
 .thumbnail {
@@ -256,25 +259,7 @@ input:disabled {
   border: 1px #ccc solid;
 }
 
-.commenterByline {
-  /* grid-area: commenterBy; */
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 1;
-  grid-row-end: 2;
-  align-items: start;
-  justify-content: center;
-}
-
-.commenterRating {
-  /* grid-area: commenterRate; */
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 2;
-  grid-row-end: 3;
-}
-
-.userRecipeContainer, .recipeFavorited {
+.recipeFavorited {
   display: flex;
   align-items: center;
 }
@@ -282,8 +267,6 @@ input:disabled {
 .grey {
   color: #777
 }
-
-
 
 .darkGrey {
   color: #666777
@@ -323,10 +306,6 @@ input:disabled {
 
 .mb15 {
   margin-bottom: 15px;
-}
-
-.mb15:last-of-type {
-  margin-bottom: 0;
 }
 
 .mb20 {

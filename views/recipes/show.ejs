@@ -132,8 +132,10 @@
                         <p class="userRating mb10"> <%= "★".repeat(c.rating) %> </p>
                     </div>
                 </div>
-
-                <p class="commentBody mb10"> <%= c.commentBody %> </p>
+                <% if (c.commentBody) { %>
+                    <p class="commentBody mb10 mr10"> <%= c.commentBody %> </p>
+                <% } %>
+                
                 <% if(sessionUser) { %>
 
                     <% if (sessionUser._id == c.userId) { %>
