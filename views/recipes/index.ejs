@@ -1,8 +1,8 @@
-<%- include ../partials/header.ejs %> 
+<%- include ../partials/header.ejs %>
 
 
 
-<div id="allRecipesContainer" class="pageContainer">
+<div class="pageContainer">
     <% recipes.forEach(function(r) { %>
         <% if (r.deletedAt == null) {%>
             <% var recipeAuthorId = r.userId %>
@@ -12,35 +12,38 @@
             <% var favorited = favorites.filter(obj => { return obj.recipeId == r._id }) %>
             <% var favoritedCount = favorited.length %>
 
-            <div class="recipeContainer mb15">
-                <div class="recipePhoto">
-                    <a class="noDecoration" href="/recipes/<%= r._id %>"><img class="thumbnail mr15 thumb300" src="<%= r.imageUrl %>"></a>
-                </div>
-                <div class="recipeName">
-                    <h2><a class="noDecoration" href="/recipes/<%= r._id %>"><%= r.name %></a><h2>
-                </div>
-                <div class="recipeAuthor">
-                    <a class="noDecoration" href="/users/">By <%= recipeAuthorName %></a>
-                </div>
-                <div class="recipeStats">
-                    <div class="recipeRating">
+    <div class="flex mb15">
+        <div>
+            <a class="noDecoration" href="/recipes/<%= r._id %>"><img class="thumbnail mr15 thumb300"
+                    src="<%= r.imageUrl %>"></a>
+        </div>
+        <div class="flex fdCol jc-ctr">
+            <div class="mb10">
+                <h2><a class="noDecoration" href="/recipes/<%= r._id %>"><%= r.name %></a>
+                    <h2>
+            </div>
+            <div class="mb10">
+                <a class="noDecoration" href="/users/<%= r.userId %>">By <%= recipeAuthorName %></a>
+            </div>
+            <div class="flex ai-ctr mb10">
+                <div class="flex ai-ctr">
                     <% if (r.rating > 0) { %>
-                        <span class="userRating mr15"> <%= "★".repeat(r.rating) %></span> <span class="">(<%= r.ratingCount %>)</span>
+                        <span class="userRating mr10"> <%= "★".repeat(r.rating) %></span> <span
+                            class="">(<%= r.ratingCount %>)</span>
                     <% } else { %>
-                        <span class="userRating mr15"> <%= "☆".repeat(5) %></span> <span class="">(<%= 0 %>)</span>
+                        <span class="userRating mr10"> <%= "☆".repeat(5) %></span> <span class="">(<%= 0 %>)</span>
                     <% } %>
                     <span class="ml5 mr5"> | </span>
-                    </div>
-                    <div class="recipeFavorited">
-                        <img class="thumb15 mr15" src="../images/icon_heart.svg">(<%= favoritedCount %>)
-                    </div>
                 </div>
-                <div class="recipeDescription">
-                    <a class="noDecoration" href="/recipes/<%= r._id %>"><%= r.description %></a>
+                <div class="flex ai-ctr">
+                    <img class="thumb20 mr10" src="../images/icon_heart.svg">(<%= favoritedCount %>)
                 </div>
             </div>
-        <% } %>
+            <div>
+                <a class="noDecoration" href="/recipes/<%= r._id %>"><%= r.description %></a>
+            </div>
+        </div>
+    </div>
+            <% } %>
     <% }); %>
 </div>
-
-

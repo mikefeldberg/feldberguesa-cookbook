@@ -14,7 +14,7 @@
 
 <% if (sessionUser) { %> 
     <% if (sessionUser._id == recipe.userId) { %>
-        <div class="recipeEditContainer mb10">
+        <div class="flex mb10">
             <form action="/recipes/<%= recipe._id %>/edit"><button class="mr5" type="submit">Edit</button></form>
             <button class="openDeleteRecipeDialogue">Delete</button>
             <div hidden class="deleteRecipeDialogueContainer">
@@ -30,8 +30,8 @@
     <% } %>
 <% } %>
 
-<div class="favoriteAndRatingContainer mb10">
-    <div class="ratingContainer mr10">
+<div class="flex flex ai-ctr mb10">
+    <div class="flex ai-ctr mr10">
         <% if (recipe.rating > 0) { %>
             <span class="userRating"> <%= "★".repeat(recipe.rating) %></span> <span class="ml5">(<%= recipe.ratingCount %>)</span>
             
@@ -40,7 +40,7 @@
         <% } %>
     </div>
     |
-    <div class="favoriteContainer ml10">
+    <div class="flex ai-ctr ml10">
         <% if (isFavorited) { %>
             <form id="unheartForm" method="POST" action="/recipes/<%= recipe._id %>/favorite?_method=DELETE"><input class="unfavoriteButton thumb20" type="image" name="submit" src="../images/icon_heart.svg" border="0" alt="Submit" /></form>
         <% } else { %>
@@ -53,15 +53,15 @@
     </div>
 </div>
 
-<div class="recipeSummaryContainer">
+<div class="flex mb20">
 
-    <div class="recipeThumbnail mr30">
+    <div class="flex mr30">
         <% if (recipe.imageUrl) { %>
             <img id="recipeImage" class="thumbnail thumb400" src="<%= recipe.imageUrl %>">
         <% } %>
     </div>
 
-    <div class="recipeSummary">
+    <div class="flex fdCol jc-ctr">
         <h2>Summary</h2>
 
         <% if (recipe.description) { %><p class="mb25"><%= recipe.description %></p><% } %>
@@ -98,7 +98,7 @@
 
 <h2>Comments</h2>
     
-<div class="addCommentForm">
+<div>
     <form action="/recipes/<%= recipe._id %>/comment" method="POST">
         <% if (sessionUser) { %>
             <%- include ../partials/starRating.ejs %>
@@ -106,34 +106,36 @@
             <%- include ../partials/starRatingDisabled.ejs %>
         <% } %>
 
-        <textarea id"addCommentForm" name="comment" rows="4" cols="100" <% if (!sessionUser) { %> disabled="disabled" title="Please log in to leave a comment or review." <% } %> ><% if (!sessionUser) { %> Please log in to leave a comment or review. <% } %></textarea>
+        <textarea name="comment" rows="4" cols="100" <% if (!sessionUser) { %> disabled="disabled" title="Please log in to leave a comment or review." <% } %> ><% if (!sessionUser) { %> Please log in to leave a comment or review. <% } %></textarea>
         <button class="mb10" type="submit" <% if (!sessionUser) { %> disabled="disabled" title="Please log in to leave a comment or review." <% } %> >Add Comment</button>
     </form>
 </div>
 
-<div class="commentSection">
+<div>
     <% if (comments) { %>
         <% comments.forEach(function(c) { %>
             <% var commentAuthorId = c.userId %>
             <% var commentAuthor = users.filter(obj => { return obj._id == commentAuthorId }) %>
             <% var avatar = commentAuthor[0].avatar %>
 
-            <div class="commentContainer mb10">
-                <div class="commentBylineContainer mb10 noDecoration grey">
-                    <img class="commenterPhoto thumbnail mr10 thumb50" src="<%= avatar %>">
-                    <div class="commenterByline">
-                        <a href="/users/<%= c.userId %>">
-                            <%= c.addedBy %>
-                        </a>
-                        <%= getFormattedCommentDate(c.createdAt) %>
-                        <% if (getFormattedCommentDate(c.createdAt) !== getFormattedCommentDate(c.updatedAt)) { %>
-                            (Edited on <%= getFormattedCommentDate(c.updatedAt) %>)
-                        <% } %>
+            <div class="flex fdCol pl10 pt10 mb10 br10 greyBorder">
+                <div class="flex mb10 noDecoration grey">
+                    <a href="/users/<%= commentAuthorId %>"><img class="thumbnail mr10 thumb50" src="<%= avatar %>"></a>
+                    <div class="flex fdCol">
+                        <div class="flex">
+                            <span class="mr5"><a class="noDecoration darkGrey" href="/users/<%= c.userId %>"><%= c.addedBy %></a></span>
+                            <%= getFormattedCommentDate(c.createdAt) %>
+                            <% if (getFormattedCommentDate(c.createdAt) !== getFormattedCommentDate(c.updatedAt)) { %>
+                                (Edited on <%= getFormattedCommentDate(c.updatedAt) %>)
+                            <% } %>
+                        </div>
+                        <p class="userRating mb10"> <%= "★".repeat(c.rating) %> </p>
                     </div>
-                    <p class="commenterRating mb10"> <%= "★".repeat(c.rating) %> </p> 
                 </div>
-
-                <p class="commentBody mb10"> <%= c.commentBody %> </p>
+                <% if (c.commentBody) { %>
+                    <p class="commentBody mb10 mr10"> <%= c.commentBody %> </p>
+                <% } %>
+                
                 <% if(sessionUser) { %>
 
                     <% if (sessionUser._id == c.userId) { %>
@@ -163,7 +165,9 @@
     <% var month = months[monthNumber]; %>
     <% var day = unparsedDate.getDate(); %>
     <% var year = unparsedDate.getFullYear(); %>
-    <% var displayDate = month + " " + day + ", " + year %>
+    <% var hour = unparsedDate.getHours(); %>
+    <% var minute = (unparsedDate.getMinutes() < 10 ? '0' : '') + unparsedDate.getMinutes() %>
+    <% var displayDate = month + " " + day + ", " + year + " at " + hour +":"+ minute %>
     <% return displayDate; %>
 <% } %>
 </div>

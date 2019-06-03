@@ -18,7 +18,7 @@
     <% } %>
 <% } %>
 
-<div class="userGreetingContainer">
+<div class="flex ai-ctr">
     <h2><%= greeting %></h2>
     <img class="thumb100 userPhoto thumbnail rightAlign" src="<%= user.avatar %>">
 </div>
@@ -28,7 +28,7 @@
     <% if (favorites.length < 1) { %>
         <p><%= youFavorites %> not have any favorites yet.</p>
     <% } else { %>
-        <div class="userFavoritesContainer">
+        <div class="flex fdCol greyBorder br10 pl15 pt15">
             <% favorites.forEach(function(f) { %>
                 <% if (f.deletedAt == null) { %>
                     
@@ -38,7 +38,7 @@
                         <% var recipeThumbnail = favoritedRecipe[0].imageUrl %>
                     <% } %>
 
-                    <div class="favoriteContainer mb15">
+                    <div class="flex ai-ctr mb15">
                         <% if (recipeThumbnail) { %>
                             <a href="/recipes/<%= f.recipeId %>"><img class="thumbnail thumb150 mr15" src="<%= recipeThumbnail %>"></a>
                         <% } %>
@@ -55,10 +55,10 @@
 <% if (userRecipes.length < 1) { %>
     <p><%= youRecipes %> not shared any recipes yet.</p>
 <% } else { %>
-    <div class="userRecipesContainer">
+    <div class="flex fdCol greyBorder br10 pl15 pt15">
         <% userRecipes.forEach(function(ur) { %>
             <% if (ur.deletedAt == null) { %>
-                <div class="userRecipeContainer mb15">
+                <div class="flex ai-ctr mb15">
                     <a href="/recipes/<%= ur._id %>"><img class="thumbnail thumb150 mr15" src="<%= ur.imageUrl %>"></a>
                     <a href="/recipes/<%= ur._id %>"><%= ur.name %> </a>
                 </div>
@@ -76,30 +76,44 @@
     <div class="commentsContainer">
         <% comments.forEach(function(c) { %>
             <% if (c.deletedAt == null) { %>
-                <div class="commentContainer mb10">
-                    <div class="userCommentByline">
-                        <a class="mb5" href="/recipes/<%= c.recipeId %>"> <%= c.addedTo %> </a>
-                        <p class="mb10">
-                            <%= getFormattedCommentDate(c.createdAt) %> 
-                            <% if (getFormattedCommentDate(c.createdAt) !== getFormattedCommentDate(c.updatedAt)) { %>
-                                <span class="grey">(Edited on <%= getFormattedCommentDate(c.updatedAt) %>)</span>
-                            <% } %>
-                        </p>
+                <% var commentRecipeId = c.recipeId %>
+                <% var commentRecipe = recipes.filter(obj => { return obj._id == commentRecipeId }) %>
+                <% if (commentRecipe[0].deletedAt == null) { %>
+                    <% var recipeAvatar = commentRecipe[0].imageUrl %>
+                    <% var recipeName = commentRecipe[0].name %>
+
+                    <div class="flex fdCol pl10 pt10 mb10 br10 greyBorder">
+                        <div class="flex mb10 noDecoration grey">
+                            <a href="/recipes/<%= commentRecipeId %>"><img class="thumbnail mr10 thumb50" src="<%= recipeAvatar %>"></a>
+                            <div class="flex fdCol">
+                                <div class="flex">
+                                    <span class="mr5 darkGrey"><a class="noDecoration darkGrey" href="/recipes/<%= commentRecipeId %>"><%= recipeName %></a></span>
+                                    <%= getFormattedCommentDate(c.createdAt) %>
+                                    <% if (getFormattedCommentDate(c.createdAt) !== getFormattedCommentDate(c.updatedAt)) { %>
+                                        <span class="grey">(Edited on <%= getFormattedCommentDate(c.updatedAt) %>)</span>
+                                    <% } %>
+                                </div>
+                                <p class="userRating mb10"> <%= "★".repeat(c.rating) %> </p>
+                            </div>
+                        </div>
+                        <% if (c.commentBody) { %>
+                            <p class="commentBody mb10 mr10"> <%= c.commentBody %> </p>
+                        <% } %>
                     </div>
-                    <p class="userRating mb10"> <%= "★".repeat(c.rating) %> </p>
-                    <p> <%= c.commentBody %> </p>
-                </div>
+                <% } %>
             <% } %>
-        <% }) %>
+        <% }); %>
     </div>
 <% } %>
+            
+
 
 <% if (!sessionUser) { %>
     <h3><%= author %> Favorites</h3>
     <% if (favorites.length < 1) { %>
         <p><%= youFavorites %> not have any favorites yet.</p>
     <% } else { %>
-        <div class="userFavoritesContainer">
+        <div class="flex fdCol greyBorder br10 pl15 pt15">
             <% favorites.forEach(function(f) { %>
                 <% if (f.deletedAt == null) { %>
                     
@@ -107,14 +121,14 @@
                     <% var favoritedRecipe = recipes.filter(obj => { return obj._id == favoritedRecipeId }) %>
                     <% var recipeThumbnail = favoritedRecipe[0].imageUrl %>
 
-                    <div class="favoriteContainer mb15">
+                    <div class="flex ai-ctr mb15">
                         <% if (recipeThumbnail) { %>
                             <a href="/recipes/<%= f.recipeId %>"><img class="thumbnail thumb150 mr15" src="<%= recipeThumbnail %>"></a>
                         <% } %>
                         <a href="/recipes/<%= f.recipeId %>"> <%= f.addedTo %> </a>
                     </div>
                 <% } %>
-            <% }) %>
+            <% }); %>
         </div>
     <% } %>
 <% } %>
