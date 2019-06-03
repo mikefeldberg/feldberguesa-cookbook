@@ -119,8 +119,8 @@ ul > .recipeRow {
   margin: 5px 0;
 }
 
-fieldset {
-  border-radius: 12px;
+.br10 {
+  border-radius: 10px;
 }
 
 p {
@@ -224,7 +224,7 @@ input:disabled {
   opacity: .5;
 }
 
-.favoriteAndRatingContainer, .recipeEditContainer, .deleteRecipeDialogue, .commentEditContainer, .deleteCommentDialogue, .userGreetingContainer {
+.deleteRecipeDialogue, .commentEditContainer, .deleteCommentDialogue, .userGreetingContainer {
   display: flex;
   align-items: center;
   height: 25px;
@@ -272,7 +272,7 @@ input:disabled {
   grid-row-end: 3;
 }
 
-.favoriteContainer, .ratingContainer, .userRecipeContainer, .recipeFavorited {
+.userRecipeContainer, .recipeFavorited {
   display: flex;
   align-items: center;
 }
@@ -291,23 +291,6 @@ input:disabled {
   grid-column-end: 4;
   grid-row-start: 5;
   grid-row-end: 6;
-}
-
-.recipeSummaryContainer {
-  display: grid;
-  grid-template-columns: 2;
-  grid-template-rows: 1;
-  align-items: top;
-  grid-template-areas: 
-    "recThumb, recSum"
-}
-
-.recipeThumbnail {
-  grid-area: recThumb;
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 1;
-  grid-row-end: 2;
 }
 
 .grey {

@@ -14,7 +14,7 @@
 
 <% if (sessionUser) { %> 
     <% if (sessionUser._id == recipe.userId) { %>
-        <div class="recipeEditContainer mb10">
+        <div class="flex mb10">
             <form action="/recipes/<%= recipe._id %>/edit"><button class="mr5" type="submit">Edit</button></form>
             <button class="openDeleteRecipeDialogue">Delete</button>
             <div hidden class="deleteRecipeDialogueContainer">
@@ -30,8 +30,8 @@
     <% } %>
 <% } %>
 
-<div class="favoriteAndRatingContainer mb10">
-    <div class="ratingContainer mr10">
+<div class="flex flex ai-ctr mb10">
+    <div class="flex ai-ctr mr10">
         <% if (recipe.rating > 0) { %>
             <span class="userRating"> <%= "★".repeat(recipe.rating) %></span> <span class="ml5">(<%= recipe.ratingCount %>)</span>
             
@@ -40,7 +40,7 @@
         <% } %>
     </div>
     |
-    <div class="favoriteContainer ml10">
+    <div class="flex ai-ctr ml10">
         <% if (isFavorited) { %>
             <form id="unheartForm" method="POST" action="/recipes/<%= recipe._id %>/favorite?_method=DELETE"><input class="unfavoriteButton thumb20" type="image" name="submit" src="../images/icon_heart.svg" border="0" alt="Submit" /></form>
         <% } else { %>
@@ -53,15 +53,15 @@
     </div>
 </div>
 
-<div class="recipeSummaryContainer">
+<div class="flex mb20">
 
-    <div class="recipeThumbnail mr30">
+    <div class="flex mr30">
         <% if (recipe.imageUrl) { %>
             <img id="recipeImage" class="thumbnail thumb400" src="<%= recipe.imageUrl %>">
         <% } %>
     </div>
 
-    <div class="recipeSummary">
+    <div class="flex fdCol jc-ctr">
         <h2>Summary</h2>
 
         <% if (recipe.description) { %><p class="mb25"><%= recipe.description %></p><% } %>
