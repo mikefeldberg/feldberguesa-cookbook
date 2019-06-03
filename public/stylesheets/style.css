@@ -104,6 +104,7 @@ h1 {
 
 h2 {
   font-size: 2em;
+  margin-top: 0;
 }
 
 h3 {
@@ -271,23 +272,9 @@ input:disabled {
   grid-row-end: 3;
 }
 
-.favoriteContainer, .ratingContainer, .userRecipeContainer, .recipeRating, .recipeFavorited {
+.favoriteContainer, .ratingContainer, .userRecipeContainer, .recipeFavorited {
   display: flex;
   align-items: center;
-}
-
-.recipeContainer {
-  display: grid;
-  grid-template-columns: 2;
-  grid-auto-rows: 7;
-  align-items: center;
-  justify-content: start;
-  grid-template-areas: 
-    "recPic, "
-    "recPic, recName"
-    "recPic, recAuth"
-    "recPic, recStats"
-    "recPic, ";
 }
 
 .recipePhoto {
@@ -296,32 +283,6 @@ input:disabled {
   grid-column-end: 2;
   grid-row-start: 1;
   grid-row-end: 8;
-}
-
-.recipeName {
-  grid-area: recName;
-  grid-column-start: 2;
-  grid-column-end: 4;
-  grid-row-start: 2;
-  grid-row-end: 3;
-}
-
-.recipeAuthor {
-  grid-area: recAuth;
-  grid-column-start: 2;
-  grid-column-end: 4;
-  grid-row-start: 3;
-  grid-row-end: 4;
-}
-
-.recipeStats {
-  display: flex;
-  align-items: center;
-  grid-area: recStats;
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 4;
-  grid-row-end: 5;
 }
 
 .recipeDescription {
@@ -345,14 +306,6 @@ input:disabled {
   grid-area: recThumb;
   grid-column-start: 1;
   grid-column-end: 2;
-  grid-row-start: 1;
-  grid-row-end: 2;
-}
-
-.recipeSummary {
-  grid-area: recSum;
-  grid-column-start: 2;
-  grid-column-end: 3;
   grid-row-start: 1;
   grid-row-end: 2;
 }
@@ -530,4 +483,16 @@ input:disabled {
 
 .jc-sE {
   justify-content: space-evenly;
+}
+
+.jc-sA {
+  justify-content: space-around;
+}
+
+.jc-ctr {
+  justify-content: center;
+}
+
+.ai-ctr {
+  align-items: center;
 }
