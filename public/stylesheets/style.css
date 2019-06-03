@@ -52,6 +52,7 @@ header * {
 textarea {
   display: block;
   font-size: 1.2em;
+  max-width: 100%;
 }
 
 input {
@@ -211,6 +212,18 @@ form {
   padding: 15px;
 }
 
+.greyBorder {
+  border: 1px solid #aaa;
+}
+
+.pl10 {
+  padding-left: 10px;
+}
+
+.pt10 {
+  padding-top: 10px;
+}
+
 .userRating, .commenterRating {
   color: gold;
   font-size: 20px;
@@ -228,17 +241,6 @@ input:disabled {
   display: flex;
   align-items: center;
   height: 25px;
-}
-
-.commentBylineContainer {
-  display: grid;
-  grid-template-columns: 2;
-  grid-auto-rows: 2;
-  align-items: center;
-  justify-content: start;
-  /* grid-template-areas: 
-    "commenterPic, commenterBy"
-    "commenterPic, commenterRate"; */
 }
 
 .commenterPhoto {
@@ -277,24 +279,14 @@ input:disabled {
   align-items: center;
 }
 
-.recipePhoto {
-  grid-area: recPic;
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 1;
-  grid-row-end: 8;
-}
-
-.recipeDescription {
-  grid-area: recDesc;
-  grid-column-start: 2;
-  grid-column-end: 4;
-  grid-row-start: 5;
-  grid-row-end: 6;
-}
-
 .grey {
   color: #777
+}
+
+
+
+.darkGrey {
+  color: #666777
 }
 
 .ml10 {
