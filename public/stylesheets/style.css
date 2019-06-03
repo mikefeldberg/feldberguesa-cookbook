@@ -276,43 +276,6 @@ input:disabled {
   align-items: center;
 }
 
-.memberContainer {
-  display: grid;
-  grid-template-columns: 2;
-  grid-auto-rows: 5;
-  align-items: center;
-  justify-content: start;
-  /* grid-template-areas: 
-    "memberPic, memberName"
-    "memberPic, memberRecs"; */
-}
-
-.memberPhoto {
-  /* grid-area: memberPic; */
-  grid-column-start: 1;
-  grid-column-end: 2;
-  grid-row-start: 1;
-  grid-row-end: 6;
-}
-
-.memberName {
-  /* grid-area: memberName; */
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 2;
-  grid-row-end: 3;
-  align-items: start;
-  justify-content: center;
-}
-
-.memberRecipes {
-  /* grid-area: memberRecs; */
-  grid-column-start: 2;
-  grid-column-end: 3;
-  grid-row-start: 4;
-  grid-row-end: 5;
-}
-
 .recipeContainer {
   display: grid;
   grid-template-columns: 2;
@@ -557,3 +520,14 @@ input:disabled {
   line-height: 1.4;
 }
 
+.flex {
+  display: flex;
+}
+
+.fdCol{
+  flex-direction: column;
+}
+
+.jc-sE {
+  justify-content: space-evenly;
+}

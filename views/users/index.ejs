@@ -1,6 +1,6 @@
 <%- include ../partials/header.ejs %> 
 
-<div id="allMembersContainer" class="pageContainer">
+<div id="flex" class="pageContainer">
     <h2>All Cooks</h2>
     <% users.forEach(function(u) { %>
         <% if (u.deletedAt == null) {%>
@@ -8,10 +8,12 @@
             <% var userRecipes = recipes.filter(obj => { return obj.userId == recipeAuthorId }) %>
             <% var userRecipeCount = userRecipes.length %>
 
-            <div class="memberContainer mb10">
-                <a class="memberPhoto" href="/users/<%= u._id %>"><img class="thumbnail mr15 thumb150" src="<%= u.avatar %>"></a>
-                <div class="memberName"><a href="/users/<%= u._id %>"><%= u.name %></a></div>
-                <div class="memberRecipes"><%= userRecipeCount %> Recipes</div>
+            <div class="flex mb10">
+                <a class="uiUserPhoto" href="/users/<%= u._id %>"><img class="thumbnail mr15 thumb150" src="<%= u.avatar %>"></a>
+                <div class="flex fdCol jc-sE">
+                    <div class="uiUserName"><a href="/users/<%= u._id %>"><%= u.name %></a></div>
+                    <div class="uiUserRecipes"><%= userRecipeCount %> Recipes</div>
+                </div>
             </div>
         <% } %>
     <% }); %>
