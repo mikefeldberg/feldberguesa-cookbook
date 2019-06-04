@@ -33,18 +33,17 @@
 <div class="flex flex ai-ctr mb10">
     <div class="flex ai-ctr mr10">
         <% if (recipe.rating > 0) { %>
-            <span class="userRating"> <%= "★".repeat(recipe.rating) %></span> <span class="ml5">(<%= recipe.ratingCount %>)</span>
-            
+            <span class="gold f175em"> <%= "★".repeat(recipe.rating) %></span> <span class="ml5">(<%= recipe.ratingCount %>)</span>
         <% } else { %>
-            <span class="userRating"> <%= "☆".repeat(5) %></span> <span class="ml5">(<%= 0 %>)</span>
+            <span class="gold f175em"> <%= "☆".repeat(5) %></span> <span class="ml5">(<%= 0 %>)</span>
         <% } %>
     </div>
     |
     <div class="flex ai-ctr ml10">
         <% if (isFavorited) { %>
-            <form id="unheartForm" method="POST" action="/recipes/<%= recipe._id %>/favorite?_method=DELETE"><input class="unfavoriteButton thumb20" type="image" name="submit" src="https://i.imgur.com/WAPZCzX.png" border="0" alt="Submit" /></form>
+            <form id="unheartForm" method="POST" action="/recipes/<%= recipe._id %>/favorite?_method=DELETE"><input class="unfavoriteButton w175em" type="image" name="submit" src="https://i.imgur.com/WAPZCzX.png" border="0" alt="Submit" /></form>
         <% } else { %>
-            <form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite"><input class="favoriteButton thumb20" type="image" name="submit" src="https://i.imgur.com/lENrp4z.png" border="0" alt="Submit" / <% if (!sessionUser) { %> disabled="disabled" title="Please log in to add to favorites." <% } %> ></form>
+            <form id="heart" method="POST" action="/recipes/<%= recipe._id %>/favorite"><input class="favoriteButton w175em" type="image" name="submit" src="https://i.imgur.com/lENrp4z.png" border="0" alt="Submit" / <% if (!sessionUser) { %> disabled="disabled" title="Please log in to add to favorites." <% } %> ></form>
         <% } %>
         
         <% if (favoriteCount > 0) { %>
@@ -64,19 +63,21 @@
     <div class="flex fdCol jc-ctr">
         <h2>Summary</h2>
 
-        <% if (recipe.description) { %><p class="mb25"><%= recipe.description %></p><% } %>
-        <% if (recipe.skillLevel) { %><p class="mb10"><strong>Skill Level:</strong> <%= recipe.skillLevel %></p><% } %>
-        <% if (recipe.timePrep) { %><p class="mb10"><strong>Prep Time:</strong> <%= recipe.timePrep %> minutes</p><% } %>
-        <% if (recipe.timeCook) { %><p class="mb10"><strong>Cook Time:</strong> <%= recipe.timeCook %> minutes</p><% } %>
-        <% if (recipe.timeWait) { %><p class="mb10"><strong>Wait Time:</strong> <%= recipe.timeWait %> minutes</p><% } %>
-        <% if (recipe.timeTotal) { %><p class="mb10"><strong>Total Time:</strong> <%= recipe.timeTotal %> minutes</p><% } %>
-        <% if (recipe.servings) { %><p class="mb10"><strong>Servings Yield:</strong> <%= recipe.servings %></p><% } %>
+        <div class="f110em">
+            <% if (recipe.description) { %><p class="mb25"><%= recipe.description %></p><% } %>
+            <% if (recipe.skillLevel) { %><p class="mb10"><strong>Skill Level:</strong> <%= recipe.skillLevel %></p><% } %>
+            <% if (recipe.timePrep) { %><p class="mb10"><strong>Prep Time:</strong> <%= recipe.timePrep %> minutes</p><% } %>
+            <% if (recipe.timeCook) { %><p class="mb10"><strong>Cook Time:</strong> <%= recipe.timeCook %> minutes</p><% } %>
+            <% if (recipe.timeWait) { %><p class="mb10"><strong>Wait Time:</strong> <%= recipe.timeWait %> minutes</p><% } %>
+            <% if (recipe.timeTotal) { %><p class="mb10"><strong>Total Time:</strong> <%= recipe.timeTotal %> minutes</p><% } %>
+            <% if (recipe.servings) { %><p class="mb10"><strong>Servings Yield:</strong> <%= recipe.servings %></p><% } %>
+        </div>
     </div>
 </div>
 
 <h2>Ingredients</h2>
 
-<ul class="noBullet customList">
+<ul class="noBullet customList mb25">
 <% recipe.ingredients.forEach(function(ingredient) { %>
     <li class="recipeRow">
         <span class="ingredientQty"><%= ingredient.qty %></span>
@@ -129,7 +130,7 @@
                                 (Edited on <%= getFormattedCommentDate(c.updatedAt) %>)
                             <% } %>
                         </div>
-                        <p class="userRating mb10"> <%= "★".repeat(c.rating) %> </p>
+                        <p class="gold starHeartSize mb10"> <%= "★".repeat(c.rating) %> </p>
                     </div>
                 </div>
                 <% if (c.commentBody) { %>

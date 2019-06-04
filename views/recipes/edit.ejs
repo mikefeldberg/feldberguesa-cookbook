@@ -12,7 +12,7 @@
 
     <fieldset class="br10 mb10 tbpad10">
 
-        <legend><h3>Recipe Name</h3></legend>
+        <legend><h4>Recipe Name</h4></legend>
 
         <input class="h25 w300" name="name" type="text" value="<%= recipe.name %>">
 
@@ -20,15 +20,15 @@
 
     <fieldset class="br10 mb10 tbpad10">
 
-        <legend><h3>Recipe Description</h3></legend>
+        <legend><h4>Recipe Description</h4></legend>
 
-        <textarea rows="5" cols="65" name="description" type="text"><%= recipe.description %></textarea>
+        <textarea rows="5" cols="65" class="f110em" name="description" type="text"><%= recipe.description %></textarea>
 
     </fieldset>
 
     <fieldset class="br10 mb10 tbpad10" id="recipeInstructions">
 
-        <legend><h3>Ingredients</h3></legend>
+        <legend><h4>Ingredients</h4></legend>
 
         <div class="mb5">
             <p class="w100 ib center">Qty</p>
@@ -60,7 +60,7 @@
 
     <fieldset class="br10 mb10 tbpad10" id="recipeInstructions">
 
-        <legend><h3>Instructions</h3></legend>
+        <legend><h4>Instructions</h4></legend>
 
         <div class="instructionsSection">
             <div class="instructionRow">
@@ -82,7 +82,7 @@
 
     <fieldset class="br10 mb10 tbpad10" id="recipeAdditionalInfo">
 
-        <legend><h3>Additional Info</h3></legend>
+        <legend><h4>Additional Info</h4></legend>
 
         <span><strong>Skill Level:</strong></span>
         <select class="mb10" name="skillLevel" type="text">
