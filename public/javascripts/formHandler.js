@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(function() {
     $("#newRecipeForm").keydown(function (event) {
         if (event.keyCode == 13) {
             event.preventDefault();
@@ -42,42 +42,42 @@ function addInstructionRow() {
     return false;
 }
 
-$(".removeIngredient").click(function () {
+$(".removeIngredient").click(function() {
     $(this).parent().remove();
     return false;
 });
 
-$(".removeInstruction").click(function () {
+$(".removeInstruction").click(function() {
     $(this).parent().remove();
     return false;
 });
 
 
-$(".addEditIngredient").click(function () {
+$(".addEditIngredient").click(function() {
     $(".ingredientRow > p:last-child").clone(true).insertBefore(".ingredientRow > p:last-child").find(":text").val("");
     return false;
 });
 
-$(".removeEditIngredient").click(function () {
+$(".removeEditIngredient").click(function() {
     $(this).parent().remove();
 });
 
-$(".addEditInstruction").click(function () {
+$(".addEditInstruction").click(function() {
     $(".instructionRow > p:last-child").clone(true).insertBefore(".instructionRow > p:last-child").find(":text").val("");
     return false;
 });
 
-$(".removeEditInstruction").click(function () {
+$(".removeEditInstruction").click(function() {
     $(this).parent().remove();
     return false;
 });
 
-$(".openDeleteRecipeDialogue").click(function () {
+$(".openDeleteRecipeDialogue").click(function() {
     $(this).attr("disabled", "disabled"); /* This is good */
     $('.deleteRecipeDialogueContainer').removeAttr("hidden");
 });
 
-$(".deleteRecipeCancel").click(function () {
+$(".deleteRecipeCancel").click(function() {
     $('.deleteRecipeDialogueContainer').attr("hidden", "");
     $('.openDeleteRecipeDialogue').removeAttr("disabled"); /* This is good */
 });
@@ -87,12 +87,12 @@ $(".deleteRecipeCancel").click(function () {
 //     $('.deleteCommentDialogueContainer').removeAttr("hidden"); 
 // });
 
-$(".deleteCommentCancel").click(function () {
+$(".deleteCommentCancel").click(function() {
     $('.deleteCommentDialogueContainer').attr("hidden", "");
     $('.openDeleteCommentDialogue').removeAttr("disabled"); /* This is good */
 });
 
-$(".openDeleteCommentDialogue").click(function () {
+$(".openDeleteCommentDialogue").click(function() {
     $(this).attr("disabled", "disabled");
     $(this).parent().children().removeAttr("hidden");
 });
@@ -110,7 +110,7 @@ $(".openDeleteCommentDialogue").click(function () {
 
 
 
-$(".deleteCommentCancel").click(function () {
+$(".deleteCommentCancel").click(function() {
     $('.deleteCommentConfirm').attr("hidden", "");
     $('.deleteComment').removeAttr("hidden");
 });
