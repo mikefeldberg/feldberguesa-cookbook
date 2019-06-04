@@ -21,17 +21,12 @@ $(".instruction").keydown(function(event) {
     }
 })
 
-// $(".qty, .name").keydown(function(event) {
-//     if (event.keyCode == 13) {
-//         advanceToNextField();
-//         return false;
-//     }
-// });
-
-// function advanceToNextField() {
-//     console.log('omg')
-//     this.next().focus()
-// }
+$(".qty, .name").keydown(function(event) {
+    if (event.keyCode == 13) {
+        $(this).next('input').focus();
+        return false;
+    }
+});
 
 function addIngredientRow() {
     $(".ingredientRow > p:first-child").clone(true).insertBefore(".ingredientRow > p:last-child").find(":text").val("");

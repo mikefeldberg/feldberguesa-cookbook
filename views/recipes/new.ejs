@@ -2,7 +2,6 @@
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 <script defer src="../javascripts/formHandler.js"></script>
 <script type="text/javascript">function noenter() {return !(window.event && window.event.keyCode == 13); }</script>
-<script type="text/javascript">function addRow {return !(window.event && window.event.keyCode == 13); }</script>
 
 <%- include ../partials/header.ejs %>
 <div class="pageContainer">
@@ -13,7 +12,7 @@
 
     <fieldset class="br10 mb10 tbpad10">
 
-        <legend><h3>Recipe Name</h3></legend>
+        <legend><h4>Recipe Name</h4></legend>
 
         <input onkeypress="return noenter()" class="h25 w300" required name="name" type="text">
 
@@ -21,7 +20,7 @@
 
     <fieldset class="br10 mb10 tbpad10">
 
-        <legend><h3>Recipe Description</h3></legend>
+        <legend><h4>Recipe Description</h4></legend>
 
         <textarea rows="5" cols="65" name="description" type="text"></textarea>
 
@@ -29,7 +28,7 @@
 
     <fieldset class="br10 mb10 tbpad10" id="recipeInstructions">
 
-        <legend><h3>Ingredients</h3></legend>
+        <legend><h4>Ingredients</h4></legend>
 
         <div class="mb5">
             <p class="w100 ib center">Qty</p>
@@ -40,9 +39,11 @@
         <div class="ingredientsSection">
             <div class="ingredientRow">
                 <p class="mb5">
-                    <input onkeypress="return advanceToNextField()" class="w100 h25 qty" required name="qty" type="text">
-                    <input onkeypress="return advanceToNextField()" class="w300 h25 name" required name="ingredient" type="text">
-                    <input onkeypress="return addIngredientRow()" class="w300 h25 prep" name="preparation" type="text">
+
+                    <input class="w100 h25 qty" required name="qty" type="text">
+                    <input class="w300 h25 name" required name="ingredient" type="text">
+                    <input class="w300 h25 prep" name="preparation" type="text">
+
                     <button type="button" class="removeIngredient rowButton red"> - </button>
                 </p>
                 <p>
@@ -55,7 +56,7 @@
 
     <fieldset class="br10 mb10 tbpad10" id="recipeInstructions">
 
-        <legend><h3>Instructions</h3></legend>
+        <legend><h4>Instructions</h4></legend>
 
         <div class="instructionsSection">
             <div class="instructionRow">
@@ -73,7 +74,7 @@
 
     <fieldset class="br10 mb10 tbpad10" id="recipeAdditionalInfo">
 
-        <legend><h3>Additional Info</h3></legend>
+        <legend><h4>Additional Info</h4></legend>
 
         <span><strong>Skill Level:</strong></span>
         <select class="mb10" name="skillLevel" type="text">

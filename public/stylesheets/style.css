@@ -107,11 +107,15 @@ h1 {
 }
 
 h2 {
-  font-size: 2em;
+  font-size: 2.8em;
   margin-top: 0;
 }
 
 h3 {
+  font-size: 2.5em;
+}
+
+h4 {
   font-size: 1.4em;
 }
 
@@ -238,10 +242,34 @@ form {
   padding-top: 15px;
 }
 
-.userRating {
+.gold {
   color: gold;
-  font-size: 20px;
 }
+
+.f175em {
+  font-size: 1.75em;
+}
+
+.f125em {
+  font-size: 1.25em;
+}
+
+.f120em {
+  font-size: 1.2em;
+}
+
+.f110em {
+  font-size: 1.1em;
+}
+
+.w175em {
+  width: 1.75em;
+}
+
+.mb-20 {
+  margin-bottom: -20px;
+}
+
 
 .recipeDeleteQuestion, .commentDeleteQuestion {
   color: red;
