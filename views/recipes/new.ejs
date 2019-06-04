@@ -1,6 +1,8 @@
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 <script defer src="../javascripts/formHandler.js"></script>
+<script type="text/javascript">function noenter() {return !(window.event && window.event.keyCode == 13); }</script>
+<script type="text/javascript">function addRow {return !(window.event && window.event.keyCode == 13); }</script>
 
 <%- include ../partials/header.ejs %>
 <div class="pageContainer">
@@ -13,7 +15,7 @@
 
         <legend><h3>Recipe Name</h3></legend>
 
-        <input class="h25 w300" required name="name" type="text">
+        <input onkeypress="return noenter()" class="h25 w300" required name="name" type="text">
 
     </fieldset>
 
@@ -38,9 +40,9 @@
         <div class="ingredientsSection">
             <div class="ingredientRow">
                 <p class="mb5">
-                    <input class="w100 h25" required name="qty" type="text">
-                    <input class="w300 h25" required name="ingredient" type="text">
-                    <input class="w300 h25" name="preparation" type="text">
+                    <input onkeypress="return advanceToNextField()" class="w100 h25 qty" required name="qty" type="text">
+                    <input onkeypress="return advanceToNextField()" class="w300 h25 name" required name="ingredient" type="text">
+                    <input onkeypress="return addIngredientRow()" class="w300 h25 prep" name="preparation" type="text">
                     <button type="button" class="removeIngredient rowButton red"> - </button>
                 </p>
                 <p>
@@ -58,7 +60,7 @@
         <div class="instructionsSection">
             <div class="instructionRow">
                 <p class="mb5">
-                    <input class="width100 h25 mb5" required name="instructions" type="text">
+                    <input onkeypress="return noenter()" class="width100 h25 mb5 instruction" required name="instructions" type="text">
                     <button type="button" class="removeInstruction rowButton red"> - </button>
                 </p>
                 <p>
@@ -81,19 +83,19 @@
         </select><br>
 
         <div class="mb10">
-            <span><strong>Sevings:</strong> </span><input class="h25" required class="numberOnlyInput" name="servings" type="text" pattern="\d+"><br>
+            <span><strong>Sevings:</strong> </span><input onkeypress="return noenter()" class="h25" required class="numberOnlyInput" name="servings" type="text" pattern="\d+"><br>
         </div>
         <div class="mb10">
-            <span><strong>Prep Time</strong> (minutes): </span><input class="h25" required class="numberOnlyInput mb10" name="timePrep" type="text" pattern="\d+"><br>
+            <span><strong>Prep Time</strong> (minutes): </span><input onkeypress="return noenter()" class="h25" required class="numberOnlyInput mb10" name="timePrep" type="text" pattern="\d+"><br>
         </div>
         <div class="mb10">
-            <span><strong>Cook Time</strong> (minutes): </span><input class="h25" required class="numberOnlyInput mb10" name="timeCook" type="text" pattern="\d+"><br>
+            <span><strong>Cook Time</strong> (minutes): </span><input onkeypress="return noenter()" class="h25" required class="numberOnlyInput mb10" name="timeCook" type="text" pattern="\d+"><br>
         </div>
         <div class="mb10">
-            <span><strong>Wait Time</strong> (minutes): </span><input class="h25" class="numberOnlyInput mb10" name="timeWait" type="text" pattern="\d+"><br>
+            <span><strong>Wait Time</strong> (minutes): </span><input onkeypress="return noenter()" class="h25" class="numberOnlyInput mb10" name="timeWait" type="text" pattern="\d+"><br>
         </div>
         <div class="mb10">
-            <span><strong>Add image URL:</strong> </span><input class="h25" name="imageUrl" type="text"><br>
+            <span><strong>Add image URL:</strong> </span><input onkeypress="return noenter()" class="h25" name="imageUrl" type="text"><br>
         </div>
 
     </fieldset>

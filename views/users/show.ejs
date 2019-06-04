@@ -88,7 +88,7 @@
                             <div class="flex fdCol">
                                 <div class="flex">
                                     <span class="mr5 darkGrey"><a class="noDecoration darkGrey" href="/recipes/<%= commentRecipeId %>"><%= recipeName %></a></span>
-                                    <%= getFormattedCommentDate(c.createdAt) %>
+                                    <span class="mr5 grey"><%= getFormattedCommentDate(c.createdAt) %></span>
                                     <% if (getFormattedCommentDate(c.createdAt) !== getFormattedCommentDate(c.updatedAt)) { %>
                                         <span class="grey">(Edited on <%= getFormattedCommentDate(c.updatedAt) %>)</span>
                                     <% } %>
