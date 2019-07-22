@@ -44,6 +44,8 @@ Browse, review, and share your favorite recipes!
 
 #### Rate, comment, review, and add to favorites
 
+
+
 <p align="center">
     <img align="center" src="https://imgur.com/WsyTZ3jl.png">
 </p>
@@ -54,11 +56,10 @@ Browse, review, and share your favorite recipes!
 
 <p align="center">
     <img align="center" src="https://imgur.com/D0FN9Utl.png">
-        <img align="center" src="https://imgur.com/X0rC8APl.png">
-
 </p>
-
+->
 <p align="center">
+    <img align="center" src="https://imgur.com/X0rC8APml.png">
 </p>
 
 
