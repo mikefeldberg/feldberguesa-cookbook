@@ -20,19 +20,12 @@ Browse, review, and share your favorite recipes!
 
 # <a href="https://feldberguesa-cookbook.herokuapp.com/" target="_blank">View Feldberguesa's Cookbook</a>
 
-
 ## Screenshots
-
-### 
-
-<p align="center">
-    <img align="center" src="https://imgur.com/5lBj5mfl.png">
-</p>
 
 ### Browse all recipes
 
 <p align="center">
-    <img align="center" src=".png">
+    <img align="center" src="https://imgur.com/5lBj5mfl.png">
 </p>
 
 ### Find one you like
