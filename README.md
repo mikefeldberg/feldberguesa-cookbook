@@ -22,13 +22,13 @@ Browse, review, and share your favorite recipes!
 
 ## Screenshots
 
-### Browse all recipes
+#### Browse all recipes
 
 <p align="center">
     <img align="center" src="https://imgur.com/5lBj5mfl.png">
 </p>
 
-### Find one you like
+#### Find one you like
 
 <p align="center">
     <img align="center" src="https://imgur.com/hqNkAkOl.png">
@@ -36,13 +36,13 @@ Browse, review, and share your favorite recipes!
 
 ### Log in with your Google account to access additional features
 
-### Add and edit your own recipes
+#### Add and edit your own recipes
 
 <p align="center">
     <img align="center" src="https://imgur.com/ltlHUbZl.png">
 </p>
 
-### Rate, comment, review, and add to favorites
+#### Rate, comment, review, and add to favorites
 
 <p align="center">
     <img align="center" src="https://imgur.com/WsyTZ3jl.png">
@@ -52,14 +52,13 @@ Browse, review, and share your favorite recipes!
     <img align="center" src="https://imgur.com/RWbylXHl.png">
 </p>
 
-
 <p align="center">
     <img align="center" src="https://imgur.com/D0FN9Utl.png">
+        <img align="center" src="https://imgur.com/X0rC8APl.png">
+
 </p>
 
-
 <p align="center">
-    <img align="center" src="https://imgur.com/X0rC8APl.png">
 </p>
 
 
