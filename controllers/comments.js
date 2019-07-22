@@ -20,7 +20,7 @@ function create(req, res) {
         comment.recipeId = req.params.id;
         comment.addedBy = req.user.name;
 
-        Recipe.findById(req.params.id).exec(function (err, recipe) { 
+        Recipe.findById(req.params.id).exec(function(err, recipe) { 
             comment.addedTo = recipe.name;
             comment.save(function(err) {
                 if (comment.rating) {
@@ -44,8 +44,8 @@ function edit(req, res) {
         res.redirect(`/recipes/${req.params.id}`);
     } else {
         var recipeId = Object.keys(req.query)[0];
-        Comment.findById(req.params.id).exec(function (err, comment) {
-            User.findById(req.user._id).exec(function (err, sessionUser) {
+        Comment.findById(req.params.id).exec(function(err, comment) {
+            User.findById(req.user._id).exec(function(err, sessionUser) {
                 res.render(`comments/edit`, { comment, sessionUser, recipeId });
             });
         });
@@ -57,7 +57,7 @@ function update(req, res) {
         res.redirect(`/recipes/${req.params.id}`);
     } else {
         var recipeId = req.query._recipeId;
-        Comment.findById(req.params.id).exec(function (err, comment) {
+        Comment.findById(req.params.id).exec(function(err, comment) {
             if (comment.userId !== req.user._id) {
                 res.redirect(`/recipes/${req.params.id}`);
             } else {            
@@ -66,7 +66,7 @@ function update(req, res) {
                 incrementRating = !comment.rating && req.body.rated ? true : false;
                 
                 comment.rating = req.body.rated;
-                comment.save(function (err) {
+                comment.save(function(err) {
                     Recipe.findById(recipeId).exec(function(err, recipe) {
                         if (comment.rating) {
                             Comment.find({ recipeId: recipe._id, deletedAt: null }).exec(function(err, comments) {
@@ -92,12 +92,10 @@ function deleteComment(req, res) {
     if (!req.user) {
         res.redirect(`/recipes`);
     } else {
-        Comment.findById(req.params.id).exec(function (err, comment) {
-            if (comment.userId !== req.user._id) {
-                res.redirect(`/recipes`);
-            } else {
+        Comment.findById(req.params.id).exec(function(err, comment) {
+            if (comment.userId = req.user._id) {
                 comment.deletedAt = new Date();
-                comment.save(function (err) {
+                comment.save(function(err) {
                     Recipe.findById(comment.recipeId).exec(function(err, recipe) {
                         Comment.find({ recipeId: recipe._id, deletedAt: null }).exec(function(err, comments) {
                             recipe.rating = calculateRating(comments)
@@ -108,6 +106,8 @@ function deleteComment(req, res) {
                         });
                     });
                 });
+            } else {
+                res.redirect(`/recipes`);
             }
         });
     }

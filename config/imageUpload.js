@@ -15,10 +15,10 @@ var upload = multer({
     acl: 'public-read',
     bucket: process.env.bucket_name,
     contentType: multerS3.AUTO_CONTENT_TYPE,
-    metadata: function (req, file, cb) {
+    metadata: function(req, file, cb) {
       cb(null, {fieldName: file.fieldname});
     },
-    key: function (req, file, cb) {
+    key: function(req, file, cb) {
       // use Date.now() for unique file keys
       // cb(null, Date.now().toString())
       cb(null, file.originalname);
