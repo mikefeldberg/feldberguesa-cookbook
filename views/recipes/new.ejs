@@ -39,17 +39,13 @@
         <div class="ingredientsSection">
             <div class="ingredientRow">
                 <p class="mb5">
-
-                    <input class="w100 h25 qty" required name="qty" type="text">
-                    <input class="w300 h25 name" required name="ingredient" type="text">
-                    <input class="w300 h25 prep" name="preparation" type="text">
-
+                    <input class="ingredientInput w100 h25 qty" required name="qty" type="text">
+                    <input class="ingredientInput w300 h25 name" required name="ingredient" type="text">
+                    <input class="ingredientInput w300 h25 prep" name="preparation" type="text">
                     <button type="button" class="removeIngredient rowButton red"> - </button>
                 </p>
-                <p>
-                    <button type="button" class="addIngredient rowButton green"> + </button>
-                </p>
             </div>
+            <button type="button" class="addEditIngredient rowButton green"> + </button>
         </div>
 
     </fieldset>
@@ -61,13 +57,11 @@
         <div class="instructionsSection">
             <div class="instructionRow">
                 <p class="mb5">
-                    <input onkeypress="return noenter()" class="width100 h25 mb5 instruction" required name="instructions" type="text">
+                    <input onkeypress="return noenter()" class="width100 h25 instruction instructionInput" required name="instructions" type="text">
                     <button type="button" class="removeInstruction rowButton red"> - </button>
                 </p>
-                <p>
-                    <button type="button" class="addInstruction rowButton green"> + </button>
-                </p>
             </div>
+            <button type="button" class="addEditInstruction rowButton green"> + </button>
         </div>
 
     </fieldset>
@@ -84,19 +78,19 @@
         </select><br>
 
         <div class="mb10">
-            <span><strong>Sevings:</strong> </span><input onkeypress="return noenter()" class="h25" required class="numberOnlyInput" name="servings" type="text" pattern="\d+"><br>
+            <span><strong>Sevings:</strong> </span><input onkeypress="return noenter()" class="addlInfoInput h25" required class="numberOnlyInput" name="servings" type="text" pattern="\d+"><br>
         </div>
         <div class="mb10">
-            <span><strong>Prep Time</strong> (minutes): </span><input onkeypress="return noenter()" class="h25" required class="numberOnlyInput mb10" name="timePrep" type="text" pattern="\d+"><br>
+            <span><strong>Prep Time</strong> (minutes): </span><input onkeypress="return noenter()" class="addlInfoInput h25" required class="numberOnlyInput mb10" name="timePrep" type="text" pattern="\d+"><br>
         </div>
         <div class="mb10">
-            <span><strong>Cook Time</strong> (minutes): </span><input onkeypress="return noenter()" class="h25" required class="numberOnlyInput mb10" name="timeCook" type="text" pattern="\d+"><br>
+            <span><strong>Cook Time</strong> (minutes): </span><input onkeypress="return noenter()" class="addlInfoInput h25" required class="numberOnlyInput mb10" name="timeCook" type="text" pattern="\d+"><br>
         </div>
         <div class="mb10">
-            <span><strong>Wait Time</strong> (minutes): </span><input onkeypress="return noenter()" class="h25" class="numberOnlyInput mb10" name="timeWait" type="text" pattern="\d+"><br>
+            <span><strong>Wait Time</strong> (minutes): </span><input onkeypress="return noenter()" class="addlInfoInput h25" class="numberOnlyInput mb10" name="timeWait" type="text" pattern="\d+"><br>
         </div>
         <div class="mb10">
-            <span><strong>Add image URL:</strong> </span><input onkeypress="return noenter()" class="h25" name="imageUrl" type="text"><br>
+            <span><strong>Add image URL:</strong> </span><input onkeypress="return noenter()" class="addlInfoInput h25" name="imageUrl" type="text"><br>
         </div>
 
     </fieldset>
