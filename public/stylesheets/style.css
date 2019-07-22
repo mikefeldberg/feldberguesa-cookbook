@@ -184,7 +184,15 @@ form {
 }
 
 .green {
-  background-color: #59d85e;
+  /* background-color: #59d85e; */
+}
+
+.addRowButton {
+  color: #49bd4d
+}
+
+.deleteRowButton {
+  color: #ce1002
 }
 
 .red {

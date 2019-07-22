@@ -2,6 +2,7 @@
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 <script defer src="../../javascripts/formHandler.js"></script>
 <script type="text/javascript">function noenter() {return !(window.event && window.event.keyCode == 13); }</script>
+<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 <%- include ../partials/header.ejs %>
 <div class="pageContainer">
@@ -43,17 +44,17 @@
                     <input class="w100 h25" name="qty" type="text" value="<%= recipe.ingredients[i].qty %>">
                     <input class="w300 h25" name="ingredient" type="text" value="<%= recipe.ingredients[i].name %>">
                     <input class="w300 h25" name="preparation" type="text" value="<%= recipe.ingredients[i].prep %>">
-                    <button type="button" class="removeIngredient rowButton red"> - </button>
+                    <i class="fa fa-minus-circle fa-2x removeIngredient deleteRowButton" aria-hidden="true"></i>
                 </p>
             <% }; %>
                 <p class="mb5">
                     <input class="w100 h25" name="qty" type="text">
                     <input class="w300 h25" name="ingredient" type="text">
                     <input class="w300 h25" name="preparation" type="text">
-                    <button type="button" class="removeIngredient rowButton red"> - </button>
+                    <i class="fa fa-minus-circle fa-2x removeIngredient deleteRowButton" aria-hidden="true"></i>
                 </p>
             </div>
-            <button type="button" class="addEditIngredient rowButton green"> + </button>
+            <i class="fa fa-plus-circle fa-2x addEditIngredient addRowButton" aria-hidden="true"></i>
         </div>
 
     </fieldset>
@@ -75,7 +76,7 @@
                     <button type="button" class="removeInstruction rowButton red"> - </button>
                 </p>
             </div>
-            <button type="button" class="addEditInstruction rowButton green"> + </button>
+            <i class="fa fa-plus-circle fa-2x addEditInstruction addRowButton" aria-hidden="true"></i>
         </div>
 
     </fieldset>
