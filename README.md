@@ -42,17 +42,19 @@ Browse, review, and share your favorite recipes!
     <img align="center" src="https://imgur.com/ltlHUbZl.png">
 </p>
 
-#### Rate, comment, review, and add to favorites
-
-
+#### Leave comments, ratings, and reviews
 
 <p align="center">
     <img align="center" src="https://imgur.com/WsyTZ3jl.png">
 </p>
 
+#### Edit and delete your posts
+
 <p align="center">
     <img align="center" src="https://imgur.com/RWbylXHl.png">
 </p>
+
+#### Add recipes to your favorites
 
 <p align="center">
     <img align="center" src="https://imgur.com/D0FN9Utl.png">
@@ -62,7 +64,11 @@ Browse, review, and share your favorite recipes!
     <img align="center" src="https://imgur.com/X0rC8APml.png">
 </p>
 
+#### Access your account page for a list of all your favorites, contributions, and comments.
 
+<p align="center">
+    <img align="center" src="https://imgur.com/QCjJAsIl.png">
+</p>
 
 # License
 
