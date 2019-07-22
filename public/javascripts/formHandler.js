@@ -83,14 +83,14 @@ $(document).ready(function() {
 //     }
 // });
 
-function addIngredientRow() {
-    $(".ingredientRow > p:first-child").clone(true).insertBefore(".ingredientRow > p:last-child").find(":text").val("");
-}
+// function addIngredientRow() {
+//     $(".ingredientRow > p:first-child").clone(true).insertBefore(".ingredientRow > p:last-child").find(":text").val("");
+// }
 
-function addInstructionRow() {
-    $(".instructionRow > p:first-child").clone(true).insertBefore(".instructionRow > p:last-child").find(":text").val("");
-    return false;
-}
+// function addInstructionRow() {
+//     $(".instructionRow > p:first-child").clone(true).insertBefore(".instructionRow > p:last-child").find(":text").val("");
+//     return false;
+// }
 
 $(".removeIngredient").click(function() {
     $(this).parent().remove();
@@ -102,28 +102,27 @@ $(".removeInstruction").click(function() {
     return false;
 });
 
-
 // $(".removeEditIngredient").click(function() {
 //     $(this).parent().remove();
 // });
 
 $(".addNewIngredient").click(function() {
-    $(".ingredientRow > p:last-child").clone(true).insertBefore(".ingredientRow > p:last-child").find(":text").val("");
+    $(".ingredientRow > p:last-child").clone(true).insertAfter(".ingredientRow > p:last-child").find(":text").val("");
     return false;
 });
 
 $(".addNewInstruction").click(function() {
-    $(".instructionRow > p:last-child").clone(true).insertBefore(".instructionRow > p:last-child").find(":text").val("");
+    $(".instructionRow > p:last-child").clone(true).insertAfter(".instructionRow > p:last-child").find(":text").val("");
     return false;
 });
 
 $(".addEditIngredient").click(function() {
-    $(".ingredientRow > p:last-child").clone(true).insertBefore(".ingredientRow > p:last-child").find(":text").val("");
+    $(".ingredientRow > p:last-child").clone(true).insertAfter(".ingredientRow > p:last-child").find(":text").val("");
     return false;
 });
 
 $(".addEditInstruction").click(function() {
-    $(".instructionRow > p:last-child").clone(true).insertBefore(".instructionRow > p:last-child").find(":text").val("");
+    $(".instructionRow > p:last-child").clone(true).insertAfter(".instructionRow > p:last-child").find(":text").val("");
     return false;
 });
 
