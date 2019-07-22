@@ -117,12 +117,16 @@ function create(req, res) {
 
         recipe.name = req.body.name;
         recipe.description = req.body.description;
-        if (req.body.instructions.length > 1) {
+        console.log('########################################')
+        console.log('req.body.instructions typeof')
+        console.log(typeof req.body.instructions)
+
+        if (typeof req.body.instructions.length == 'object') {
             for (var i = 0; i < req.body.instructions.length; i++) {
                 if (req.body.instructions[i]) { recipe.instructions.push(req.body.instructions[i]) };
             }
         } else {
-            if (req.body.instructions) { recipe.instructions.push(req.body.instructions) };
+            if (req.body.instructions) { recipe.instructions = req.body.instructions };
         }
         recipe.skillLevel = req.body.skillLevel;
         recipe.timePrep = req.body.timePrep;
