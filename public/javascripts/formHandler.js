@@ -1,32 +1,45 @@
 $(document).ready(function() {
     $("#newRecipeForm").keydown(function (event) {
         if (event.keyCode == 13) {
-            event.preventDefault();
+            // event.preventDefault();
+            $(this).next().focus();
+            return false;
+        }
+    });
+});   
+
+$(document).ready(function() {
+    $("#editRecipeForm").keydown(function (event) {
+        if (event.keyCode == 13) {
+            // event.preventDefault();
+            $(this).next().focus();
             return false;
         }
     });
 });
 
-$(".prep").keydown(function(event) {
-    if (event.keyCode == 13) {
-        addIngredientRow();
-        return false;
-    }
-})
 
-$(".instruction").keydown(function(event) {
-    if (event.keyCode == 13) {
-        addInstructionRow();
-        return false;
-    }
-})
 
-$(".qty, .name").keydown(function(event) {
-    if (event.keyCode == 13) {
-        $(this).next('input').focus();
-        return false;
-    }
-});
+// $(".prep").keydown(function(event) {
+//     if (event.keyCode == 13) {
+//         addIngredientRow();
+//         return false;
+//     }
+// })
+
+// $(".instruction").keydown(function(event) {
+//     if (event.keyCode == 13) {
+//         addInstructionRow();
+//         return false;
+//     }
+// })
+
+// $(".qty, .name").keydown(function(event) {
+//     if (event.keyCode == 13) {
+//         $(this).next('input').focus();
+//         return false;
+//     }
+// });
 
 function addIngredientRow() {
     $(".ingredientRow > p:first-child").clone(true).insertBefore(".ingredientRow > p:last-child").find(":text").val("");
@@ -48,13 +61,23 @@ $(".removeInstruction").click(function() {
 });
 
 
-$(".addEditIngredient").click(function() {
+// $(".removeEditIngredient").click(function() {
+//     $(this).parent().remove();
+// });
+
+$(".addNewIngredient").click(function() {
     $(".ingredientRow > p:last-child").clone(true).insertBefore(".ingredientRow > p:last-child").find(":text").val("");
     return false;
 });
 
-$(".removeEditIngredient").click(function() {
-    $(this).parent().remove();
+$(".addNewInstruction").click(function() {
+    $(".instructionRow > p:last-child").clone(true).insertBefore(".instructionRow > p:last-child").find(":text").val("");
+    return false;
+});
+
+$(".addEditIngredient").click(function() {
+    $(".ingredientRow > p:last-child").clone(true).insertBefore(".ingredientRow > p:last-child").find(":text").val("");
+    return false;
 });
 
 $(".addEditInstruction").click(function() {
@@ -62,10 +85,10 @@ $(".addEditInstruction").click(function() {
     return false;
 });
 
-$(".removeEditInstruction").click(function() {
-    $(this).parent().remove();
-    return false;
-});
+// $(".removeEditInstruction").click(function() {
+//     $(this).parent().remove();
+//     return false;
+// });
 
 $(".openDeleteRecipeDialogue").click(function() {
     $(this).attr("disabled", "disabled"); /* This is good */
@@ -91,19 +114,6 @@ $(".openDeleteCommentDialogue").click(function() {
     $(this).attr("disabled", "disabled");
     $(this).parent().children().removeAttr("hidden");
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 $(".deleteCommentCancel").click(function() {
     $('.deleteCommentConfirm').attr("hidden", "");

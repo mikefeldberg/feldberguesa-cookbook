@@ -8,7 +8,7 @@
 
 <h1>Edit Your Recipe</h1>
 
-<form action="/recipes/<%= recipe._id %>?_method=PUT" method="POST">
+<form id="editRecipeForm" action="/recipes/<%= recipe._id %>?_method=PUT" method="POST">
 
     <fieldset class="br10 mb10 tbpad10">
 
@@ -43,14 +43,14 @@
                     <input class="w100 h25" name="qty" type="text" value="<%= recipe.ingredients[i].qty %>">
                     <input class="w300 h25" name="ingredient" type="text" value="<%= recipe.ingredients[i].name %>">
                     <input class="w300 h25" name="preparation" type="text" value="<%= recipe.ingredients[i].prep %>">
-                    <button type="button" class="removeEditIngredient rowButton red"> - </button>
+                    <button type="button" class="removeIngredient rowButton red"> - </button>
                 </p>
             <% }; %>
-                <p>
+                <p class="mb5">
                     <input class="w100 h25" name="qty" type="text">
                     <input class="w300 h25" name="ingredient" type="text">
                     <input class="w300 h25" name="preparation" type="text">
-                    <button type="button" class="removeEditIngredient rowButton red"> - </button>
+                    <button type="button" class="removeIngredient rowButton red"> - </button>
                 </p>
             </div>
             <button type="button" class="addEditIngredient rowButton green"> + </button>
@@ -67,12 +67,12 @@
             <% for (var i = 0; i < recipe.instructions.length; i++) { %>
                 <p>
                     <input class="width100 h25 mb5" name="instructions" type="text" value="<%= recipe.instructions[i] %>">
-                    <button type="button" class="removeEditInstruction rowButton red"> - </button>
+                    <button type="button" class="removeInstruction rowButton red"> - </button>
                 </p>
             <% } %>
                 <p>
                     <input class="width100 h25 mb5" name="instructions" type="text">
-                    <button type="button" class="removeEditInstruction rowButton red"> - </button>
+                    <button type="button" class="removeInstruction rowButton red"> - </button>
                 </p>
             </div>
             <button type="button" class="addEditInstruction rowButton green"> + </button>
