@@ -59,9 +59,15 @@ Browse, review, and share your favorite recipes!
 <p align="center">
     <img align="center" src="https://imgur.com/D0FN9Utl.png">
 </p>
-->
+
+
 <p align="center">
-    <img align="center" src="https://imgur.com/X0rC8APml.png">
+    ->
+</p>
+
+
+<p align="center">
+    <img align="center" src="https://imgur.com/X0rC8APl.png">
 </p>
 
 #### Access your account page for a list of all your favorites, contributions, and comments.
