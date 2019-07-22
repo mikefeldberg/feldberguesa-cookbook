@@ -93,17 +93,17 @@ function deleteComment(req, res) {
         res.redirect(`/recipes`);
     } else {
         Comment.findById(req.params.id).exec(function (err, comment) {
-            if (comment.userId !== req.user._id) {
+            if (comment.userId != req.user._id) {
                 res.redirect(`/recipes`);
             } else {
-                comment.deletedAt = new Date();
+                var redirect = comment.recipeId
                 comment.save(function (err) {
                     Recipe.findById(comment.recipeId).exec(function(err, recipe) {
                         Comment.find({ recipeId: recipe._id, deletedAt: null }).exec(function(err, comments) {
                             recipe.rating = calculateRating(comments)
                             recipe.ratingCount -= 1
                             recipe.save(function(err) {
-                                res.redirect(`/recipes/${comment.recipeId}`);
+                                res.redirect(`/recipes/${redirect}`);
                             });
                         });
                     });
