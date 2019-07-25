@@ -58,7 +58,8 @@ Browse, review, and share your favorite recipes!
 
 <p align="center">
     <img src="https://imgur.com/D0FN9Utm.png">
-    <p></p>
+</p>
+<p align="center">
     <img src="https://imgur.com/X0rC8APm.png">
 </p>
 
