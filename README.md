@@ -57,17 +57,9 @@ Browse, review, and share your favorite recipes!
 #### Add recipes to your favorites
 
 <p align="center">
-    <img align="center" src="https://imgur.com/D0FN9Utl.png">
-</p>
-
-
-<p align="center">
+    <img src="https://imgur.com/D0FN9Utm.png">
     ->
-</p>
-
-
-<p align="center">
-    <img align="center" src="https://imgur.com/X0rC8APl.png">
+    <img src="https://imgur.com/X0rC8APm.png">
 </p>
 
 #### Access your account page for a list of all your favorites, contributions, and comments.
