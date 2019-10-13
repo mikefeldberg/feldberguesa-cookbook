@@ -78,7 +78,7 @@
             <% if (c.deletedAt == null) { %>
                 <% var commentRecipeId = c.recipeId %>
                 <% var commentRecipe = recipes.filter(obj => { return obj._id == commentRecipeId }) %>
-                <% if (commentRecipe[0].deletedAt == null) { %>
+                <% if (commentRecipe[0] && commentRecipe[0].deletedAt == null) { %>
                     <% var recipeAvatar = commentRecipe[0].imageUrl %>
                     <% var recipeName = commentRecipe[0].name %>
 
