@@ -10,6 +10,12 @@ Browse, review, and share your favorite recipes!
 
 `HTML5` | `CSS3` | `JavaScript` | `jQuery`| `NodeJS` | `ExpressJS` | `Mongoose` | `MongoDB` | `Heroku` | `OAuth`
 
+# To Start
+
+```
+npm -i
+nodemon app.js
+```
 # Features
 
 ### 1. View recipes from other chefs
@@ -57,17 +63,10 @@ Browse, review, and share your favorite recipes!
 #### Add recipes to your favorites
 
 <p align="center">
-    <img align="center" src="https://imgur.com/D0FN9Utl.png">
+    <img src="https://imgur.com/D0FN9Utl.png">
 </p>
-
-
 <p align="center">
-    ->
-</p>
-
-
-<p align="center">
-    <img align="center" src="https://imgur.com/X0rC8APl.png">
+    <img src="https://imgur.com/X0rC8APl.png">
 </p>
 
 #### Access your account page for a list of all your favorites, contributions, and comments.
